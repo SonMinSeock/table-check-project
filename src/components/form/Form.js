@@ -2,6 +2,7 @@ import styled from "styled-components";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
+import { ko } from "date-fns/locale";
 
 const Card = styled.form`
   background-color: var(--color-white);
@@ -154,10 +155,12 @@ function Form() {
           </Label>
           <DatePicker
             id="date1"
+            locale={ko}
             selected={selectedDates[0]}
             onChange={(date) => handleDateChange(date, 0)}
-            dateFormat="yyyy-MM-dd"
+            dateFormat="yyyy년 MM월 dd일"
             placeholderText="yyyy-MM-dd"
+            popperPlacement="auto"
           />
         </div>
         <div>
@@ -166,12 +169,14 @@ function Form() {
           </Label>
           <DatePicker
             id="time1"
+            locale={ko}
             selected={selectedTimes[0]}
             onChange={(time) => handleTimeChange(time, 0)}
             showTimeSelect
             showTimeSelectOnly
             dateFormat="HH:mm"
             placeholderText="시간을 선택하세요"
+            popperPlacement="auto" // 팝업이 화면 중앙에 나타나도록 설정
           />
         </div>
       </DropMenuSection>
@@ -183,10 +188,12 @@ function Form() {
           </Label>
           <DatePicker
             id="date2"
+            locale={ko}
             selected={selectedDates[1]}
             onChange={(date) => handleDateChange(date, 1)}
-            dateFormat="yyyy-MM-dd"
             placeholderText="yyyy-MM-dd"
+            dateFormat="yyyy년 MM월 dd일"
+            popperPlacement="auto"
           />
         </div>
         <div>
@@ -195,12 +202,14 @@ function Form() {
           </Label>
           <DatePicker
             id="time2"
+            locale={ko}
             selected={selectedTimes[1]}
             onChange={(time) => handleTimeChange(time, 1)}
             showTimeSelect
             showTimeSelectOnly
             dateFormat="HH:mm"
             placeholderText="시간을 선택하세요"
+            popperPlacement="auto" // 팝업이 화면 중앙에 나타나도록 설정
           />
         </div>
       </DropMenuSection>
@@ -212,10 +221,12 @@ function Form() {
           </Label>
           <DatePicker
             id="date3"
+            locale={ko}
             selected={selectedDates[2]}
             onChange={(date) => handleDateChange(date, 2)}
-            dateFormat="yyyy-MM-dd"
+            dateFormat="yyyy년 MM월 dd일"
             placeholderText="yyyy-MM-dd"
+            popperPlacement="auto"
           />
         </div>
         <div>
@@ -224,12 +235,14 @@ function Form() {
           </Label>
           <DatePicker
             id="time3"
+            locale={ko}
             selected={selectedTimes[2]}
             onChange={(time) => handleTimeChange(time, 2)}
             showTimeSelect
             showTimeSelectOnly
             dateFormat="HH:mm"
             placeholderText="시간을 선택하세요"
+            popperPlacement="auto" // 팝업이 화면 중앙에 나타나도록 설정
           />
         </div>
       </DropMenuSection>
