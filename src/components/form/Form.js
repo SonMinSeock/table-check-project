@@ -1,8 +1,7 @@
 import styled from "styled-components";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
+import Calender from "../calender/Calender";
+import TimeSelector from "../time-selector/TimeSelector";
 import { useState } from "react";
-import { ko } from "date-fns/locale";
 
 const Card = styled.form`
   background-color: var(--color-white);
@@ -61,11 +60,18 @@ const DropMenuSection = styled.section`
     width: 100%;
     padding: 0 10px;
   }
-  p:first-of-type {
+  & > div:first-of-type {
     border-right: 1px solid #000000;
   }
-  input {
+  .datapicker-container {
     width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  font-size: var(--font-size-3);
+  .date-record {
+    display: none;
   }
 `;
 
@@ -73,6 +79,7 @@ const Select = styled.select`
   border: none;
   background-color: var(--color-white);
   color: #000000;
+  font: inherit;
 `;
 
 const Button = styled.button`
@@ -90,26 +97,6 @@ function Form() {
   const [selectedDates, setSelectedDates] = useState([null, null, null]);
   const [selectedTimes, setSelectedTimes] = useState([null, null, null]);
 
-  const handleDateChange = (date, index) => {
-    const newDates = [...selectedDates];
-    newDates[index] = date;
-    setSelectedDates(newDates);
-  };
-
-  const handleTimeChange = (time, index) => {
-    const newTimes = [...selectedTimes];
-    newTimes[index] = time;
-    setSelectedTimes(newTimes);
-  };
-
-  // popperModifiers를 사용하여 모바일에서의 스크롤 및 터치 동작을 막음
-  const popperModifiers = {
-    preventOverflow: {
-      enabled: true,
-      escapeWithReference: false, // 이 값이 false이면 올라가지 않습니다.
-      boundariesElement: "viewport",
-    },
-  };
   return (
     <Card>
       <Title>첫 번째 예약</Title>
@@ -149,102 +136,18 @@ function Form() {
       <hr />
       {/* 첫 번째 날짜와 시간 */}
       <DropMenuSection>
-        <div>
-          <Label htmlFor="date1">
-            날짜<span className="highlight-red">(필수)</span>
-          </Label>
-          <DatePicker
-            id="date1"
-            locale={ko}
-            selected={selectedDates[0]}
-            onChange={(date) => handleDateChange(date, 0)}
-            dateFormat="yyyy년 MM월 dd일"
-            placeholderText="yyyy-MM-dd"
-            popperPlacement="auto"
-          />
-        </div>
-        <div>
-          <Label htmlFor="time1">
-            시간<span className="highlight-red">(필수)</span>
-          </Label>
-          <DatePicker
-            id="time1"
-            locale={ko}
-            selected={selectedTimes[0]}
-            onChange={(time) => handleTimeChange(time, 0)}
-            showTimeSelect
-            showTimeSelectOnly
-            dateFormat="HH:mm"
-            placeholderText="시간을 선택하세요"
-            popperPlacement="auto" // 팝업이 화면 중앙에 나타나도록 설정
-          />
-        </div>
+        <Calender selectedDates={selectedDates} setSelectedDates={setSelectedDates} index={0} />
+        <TimeSelector selectedTimes={selectedTimes} setSelectedTimes={setSelectedTimes} index={0} />
       </DropMenuSection>
       {/* 두 번째 날짜와 시간 */}
       <DropMenuSection>
-        <div>
-          <Label htmlFor="date2">
-            날짜<span>(선택)</span>
-          </Label>
-          <DatePicker
-            id="date2"
-            locale={ko}
-            selected={selectedDates[1]}
-            onChange={(date) => handleDateChange(date, 1)}
-            placeholderText="yyyy-MM-dd"
-            dateFormat="yyyy년 MM월 dd일"
-            popperPlacement="auto"
-          />
-        </div>
-        <div>
-          <Label htmlFor="time2">
-            시간<span>(선택)</span>
-          </Label>
-          <DatePicker
-            id="time2"
-            locale={ko}
-            selected={selectedTimes[1]}
-            onChange={(time) => handleTimeChange(time, 1)}
-            showTimeSelect
-            showTimeSelectOnly
-            dateFormat="HH:mm"
-            placeholderText="시간을 선택하세요"
-            popperPlacement="auto" // 팝업이 화면 중앙에 나타나도록 설정
-          />
-        </div>
+        <Calender selectedDates={selectedDates} setSelectedDates={setSelectedDates} index={1} />
+        <TimeSelector selectedTimes={selectedTimes} setSelectedTimes={setSelectedTimes} index={1} />
       </DropMenuSection>
       {/* 세 번째 날짜와 시간 */}
       <DropMenuSection>
-        <div>
-          <Label htmlFor="date3">
-            날짜<span>(선택)</span>
-          </Label>
-          <DatePicker
-            id="date3"
-            locale={ko}
-            selected={selectedDates[2]}
-            onChange={(date) => handleDateChange(date, 2)}
-            dateFormat="yyyy년 MM월 dd일"
-            placeholderText="yyyy-MM-dd"
-            popperPlacement="auto"
-          />
-        </div>
-        <div>
-          <Label htmlFor="time3">
-            시간<span>(선택)</span>
-          </Label>
-          <DatePicker
-            id="time3"
-            locale={ko}
-            selected={selectedTimes[2]}
-            onChange={(time) => handleTimeChange(time, 2)}
-            showTimeSelect
-            showTimeSelectOnly
-            dateFormat="HH:mm"
-            placeholderText="시간을 선택하세요"
-            popperPlacement="auto" // 팝업이 화면 중앙에 나타나도록 설정
-          />
-        </div>
+        <Calender selectedDates={selectedDates} setSelectedDates={setSelectedDates} index={2} />
+        <TimeSelector selectedTimes={selectedTimes} setSelectedTimes={setSelectedTimes} index={2} />
       </DropMenuSection>
       <Button>무료 예약 확인하기</Button>
     </Card>
