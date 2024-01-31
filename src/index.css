@@ -131,3 +131,50 @@ table {
 * {
   box-sizing: border-box;
 }
+
+html {
+  --color-primary: #007aff;
+  --color-white: #ffffff;
+  --color-gray: #dddddd;
+  --color-alert-red: #d80665;
+  --font-size-2: 0.6rem;
+  --font-size-3: 0.8rem;
+  --font-size-4: 1rem;
+  --font-size-5: 1.25rem;
+  --font-size-6: 1.5rem;
+  --font-size-7: 2rem;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.8rem;
+  --space-4: 1rem;
+  --space-5: 1.2rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-9: 2.5rem;
+  --border-radius-1: 0.3rem;
+  --border-radius-2: 0.6rem;
+  --border-radius-3: 0.8rem;
+}
+
+body {
+  padding-top: env(safe-area-inset-top); /* iOS 11+ */
+  background-color: #ffffff;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+ol,
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+@media (min-width: 34.25rem) {
+  body {
+    max-width: 430px;
+    margin: 0 auto;
+  }
+}
