@@ -44,8 +44,7 @@ const Label = styled.label`
 
 const Input = styled.input`
   border: none;
-  border-bottom: 1px solid #000000;
-  width: 60%;
+  width: 100%;
 `;
 
 const DropMenuSection = styled.section`
