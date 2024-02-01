@@ -56,6 +56,15 @@ function Calender({ selectedDates, setSelectedDates, index }) {
         withPortal
         onFocus={(e) => e.target.blur()}
         customInput={<CustomDatePickerInput />}
+        onCalendarOpen={() => {
+          document.addEventListener(
+            "touchstart",
+            (event) => {
+              event.stopPropagation();
+            },
+            true
+          );
+        }}
       />
     </div>
   );

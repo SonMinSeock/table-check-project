@@ -54,6 +54,15 @@ function TimeSelector({ selectedTimes, setSelectedTimes, index }) {
         withPortal
         onFocus={(e) => e.target.blur()}
         customInput={<CustomDatePickerInput type="time" />}
+        onCalendarOpen={() => {
+          document.addEventListener(
+            "touchstart",
+            (event) => {
+              event.stopPropagation();
+            },
+            true
+          );
+        }}
       />
     </div>
   );
