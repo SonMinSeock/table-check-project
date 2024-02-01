@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { forwardRef, useRef, useState } from "react";
+import { forwardRef, useRef } from "react";
 import { ko } from "date-fns/locale";
 import { IoIosArrowDown } from "react-icons/io";
+import { Controller } from "react-hook-form";
 
 const Label = styled.label`
   font-size: var(--font-size-3);
@@ -16,13 +17,17 @@ const Label = styled.label`
   margin-bottom: var(--space-2);
 `;
 
-function Calender({ selectedDates, setSelectedDates, index }) {
+function Calender({ index, control }) {
   const calendar = useRef(null);
 
-  const handleDateChange = (date, index) => {
-    const newDates = [...selectedDates];
-    newDates[index] = date;
-    setSelectedDates(newDates);
+  const setRegisterName = () => {
+    if (index === 0) {
+      return "firstDate";
+    } else if (index === 1) {
+      return "secondDate";
+    } else if (index === 2) {
+      return "thirdDate";
+    }
   };
 
   const CustomDatePickerInput = forwardRef(({ value, onClick, type = "date" }, ref) => {
@@ -44,18 +49,36 @@ function Calender({ selectedDates, setSelectedDates, index }) {
       <Label htmlFor="date1">
         날짜<span className="highlight-red">(필수)</span>
       </Label>
-
-      <DatePicker
-        ref={calendar}
-        locale={ko}
-        selected={selectedDates[index]}
-        onChange={(date) => handleDateChange(date, index)}
-        dateFormat="yyyy년 MM월 dd일"
-        placeholderText="yyyy-MM-dd"
-        popperPlacement="auto"
-        withPortal
-        onFocus={(e) => e.target.blur()}
-        customInput={<CustomDatePickerInput />}
+      <Controller
+        name={setRegisterName()}
+        control={control}
+        rules={index === 0 ? { required: true } : { required: false }}
+        render={({ field: { value, onChange } }) => (
+          <DatePicker
+            ref={calendar}
+            locale={ko}
+            // selected={selectedDates[index]}
+            // onChange={(date) => handleDateChange(date, index)}
+            // onChange={field.onChange}
+            // placeholderText="yyyy-MM-dd"
+            selected={value}
+            onChange={(date) => onChange(date)}
+            dateFormat="yyyy년 MM월 dd일"
+            popperPlacement="auto"
+            withPortal
+            onFocus={(e) => e.target.blur()}
+            customInput={<CustomDatePickerInput />}
+            onCalendarOpen={() => {
+              document.addEventListener(
+                "touchstart",
+                (event) => {
+                  event.stopPropagation();
+                },
+                true
+              );
+            }}
+          />
+        )}
       />
     </div>
   );
