@@ -2,6 +2,7 @@ import styled from "styled-components";
 import Calender from "../calender/Calender";
 import TimeSelector from "../time-selector/TimeSelector";
 import { useState } from "react";
+import { useForm, Controller } from "react-hook-form";
 
 const Card = styled.form`
   background-color: var(--color-white);
@@ -96,22 +97,40 @@ function Form() {
   const [selectedDates, setSelectedDates] = useState([null, null, null]);
   const [selectedTimes, setSelectedTimes] = useState([null, null, null]);
 
+  const {
+    control,
+    register,
+    handleSubmit,
+    formState: { errors },
+    watch,
+    setValue,
+  } = useForm();
+
+  const onValid = (data) => {
+    console.log(data);
+  };
   return (
-    <Card>
+    <Card onSubmit={handleSubmit(onValid)}>
       <Title>첫 번째 예약</Title>
       <section></section>
       <InputMapSection>
         <Label htmlFor="map-link">
           구글 지도 음식점 링크 공유<span className="highlight-red">(필수)</span>
         </Label>
-        <Input type="url" id="map-link" placeholder="https://www.google.com/maps" />
+        <Input
+          type="url"
+          id="map-link"
+          {...register("mapUrl", { required: true })}
+          placeholder="https://www.google.com/maps"
+        />
       </InputMapSection>
       <DropMenuSection>
         <div>
           <Label htmlFor="adult-number">
             성인<span className="highlight-red">(필수)</span>
           </Label>
-          <Select id="adult-number" name="adult-number">
+
+          <Select {...register("adultNumber")} id="adult-number">
             <option value="0">0</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -123,7 +142,7 @@ function Form() {
           <Label htmlFor="child-number">
             어린이<span className="highlight-red">(필수)</span>
           </Label>
-          <Select id="child-number" name="child-number">
+          <Select {...register("childNumber")} id="child-number">
             <option value="0">0</option>
             <option value="1">1</option>
             <option value="2">2</option>
@@ -135,18 +154,18 @@ function Form() {
       <hr />
       {/* 첫 번째 날짜와 시간 */}
       <DropMenuSection>
-        <Calender selectedDates={selectedDates} setSelectedDates={setSelectedDates} index={0} />
-        <TimeSelector selectedTimes={selectedTimes} setSelectedTimes={setSelectedTimes} index={0} />
+        <Calender index={0} control={control} />
+        <TimeSelector index={0} control={control} />
       </DropMenuSection>
       {/* 두 번째 날짜와 시간 */}
       <DropMenuSection>
-        <Calender selectedDates={selectedDates} setSelectedDates={setSelectedDates} index={1} />
-        <TimeSelector selectedTimes={selectedTimes} setSelectedTimes={setSelectedTimes} index={1} />
+        <Calender index={1} control={control} />
+        <TimeSelector index={1} control={control} />
       </DropMenuSection>
       {/* 세 번째 날짜와 시간 */}
       <DropMenuSection>
-        <Calender selectedDates={selectedDates} setSelectedDates={setSelectedDates} index={2} />
-        <TimeSelector selectedTimes={selectedTimes} setSelectedTimes={setSelectedTimes} index={2} />
+        <Calender index={2} control={control} />
+        <TimeSelector index={2} control={control} />
       </DropMenuSection>
       <Button>무료 예약 확인하기</Button>
     </Card>

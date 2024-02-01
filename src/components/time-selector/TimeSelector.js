@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { forwardRef, useRef, useState } from "react";
+import { forwardRef } from "react";
 import { ko } from "date-fns/locale";
 import { IoIosArrowDown } from "react-icons/io";
+import { Controller } from "react-hook-form";
 
 const Label = styled.label`
   font-size: var(--font-size-3);
@@ -16,11 +17,15 @@ const Label = styled.label`
   margin-bottom: var(--space-2);
 `;
 
-function TimeSelector({ selectedTimes, setSelectedTimes, index }) {
-  const handleTimeChange = (time, index) => {
-    const newTimes = [...selectedTimes];
-    newTimes[index] = time;
-    setSelectedTimes(newTimes);
+function TimeSelector({ index, control }) {
+  const setRegisterName = () => {
+    if (index === 0) {
+      return "firstTime";
+    } else if (index === 1) {
+      return "secondTime";
+    } else if (index === 2) {
+      return "thirdTime";
+    }
   };
 
   const CustomDatePickerInput = forwardRef(({ value, onClick, type = "date" }, ref) => {
@@ -42,27 +47,34 @@ function TimeSelector({ selectedTimes, setSelectedTimes, index }) {
       <Label htmlFor="time1">
         시간<span className="highlight-red">(필수)</span>
       </Label>
-      <DatePicker
-        locale={ko}
-        selected={selectedTimes[index]}
-        onChange={(time) => handleTimeChange(time, index)}
-        showTimeSelect
-        showTimeSelectOnly
-        dateFormat="HH:mm"
-        placeholderText="시간을 선택하세요"
-        popperPlacement="auto" // 팝업이 화면 중앙에 나타나도록 설정
-        withPortal
-        onFocus={(e) => e.target.blur()}
-        customInput={<CustomDatePickerInput type="time" />}
-        onCalendarOpen={() => {
-          document.addEventListener(
-            "touchstart",
-            (event) => {
-              event.stopPropagation();
-            },
-            true
-          );
-        }}
+      <Controller
+        name={setRegisterName()}
+        control={control}
+        rules={index === 0 ? { required: true } : { required: false }}
+        render={({ field: { value, onChange } }) => (
+          <DatePicker
+            // placeholderText="시간을 선택하세요"
+            locale={ko}
+            selected={value}
+            onChange={(time) => onChange(time)}
+            showTimeSelect
+            showTimeSelectOnly
+            dateFormat="HH:mm"
+            popperPlacement="auto" // 팝업이 화면 중앙에 나타나도록 설정
+            withPortal
+            onFocus={(e) => e.target.blur()}
+            customInput={<CustomDatePickerInput type="time" />}
+            onCalendarOpen={() => {
+              document.addEventListener(
+                "touchstart",
+                (event) => {
+                  event.stopPropagation();
+                },
+                true
+              );
+            }}
+          />
+        )}
       />
     </div>
   );
