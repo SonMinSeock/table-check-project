@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import Calender from "../calender/Calender";
 import TimeSelector from "../time-selector/TimeSelector";
-import { useState } from "react";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 const Card = styled.form`
   background-color: var(--color-white);
@@ -94,16 +93,11 @@ const Button = styled.button`
 `;
 
 function Form() {
-  const [selectedDates, setSelectedDates] = useState([null, null, null]);
-  const [selectedTimes, setSelectedTimes] = useState([null, null, null]);
-
   const {
     control,
     register,
     handleSubmit,
     formState: { errors },
-    watch,
-    setValue,
   } = useForm();
 
   const onValid = (data) => {
