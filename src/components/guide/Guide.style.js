@@ -9,6 +9,7 @@ export const Section = styled.section`
   border: 1px solid var(--color-primary);
   border-radius: var(--border-radius-1);
   color: var(--color-primary);
+  font-weight: 500;
   a {
     display: flex;
     align-items: center;

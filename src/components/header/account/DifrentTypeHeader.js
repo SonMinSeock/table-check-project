@@ -1,12 +1,8 @@
-import styled from "styled-components";
 import { IoIosArrowBack } from "react-icons/io";
 import { Link } from "react-router-dom";
+import { Header } from "../includes/AccountHeader.style";
 
-const Header = styled.header`
-  padding: var(--space-4);
-`;
-
-function AccountHeader() {
+function DifrentTypeHeader() {
   return (
     <>
       <Header>
@@ -18,4 +14,4 @@ function AccountHeader() {
   );
 }
 
-export default AccountHeader;
+export default DifrentTypeHeader;

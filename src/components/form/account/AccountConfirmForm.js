@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import { Button } from "../includes/form-style";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Form = styled.form`
   height: 100%;
@@ -42,18 +42,7 @@ const Paragraph = styled.p`
   font-size: var(--font-size-2);
 `;
 
-const LinkContainer = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  & a {
-    margin-bottom: var(--space-4);
-    color: #5e5e5e;
-    font-size: var(--font-size-3);
-  }
-`;
-
-function AccountForm() {
+function AccountConfirmForm() {
   const {
     register,
     handleSubmit,
@@ -71,15 +60,6 @@ function AccountForm() {
     <Form onSubmit={handleSubmit(onValid)}>
       <section>
         <InputContainer>
-          <Label>예약자 성함</Label>
-          <Input
-            type="text"
-            {...register("username", { required: true, minLength: 2 })}
-            required
-            placeholder="홍길동"
-          />
-        </InputContainer>
-        <InputContainer>
           <Label>전화번호</Label>
           <Input
             type="tel"
@@ -88,22 +68,13 @@ function AccountForm() {
             maxLength="11"
             placeholder="01012345678"
           />
-          <Paragraph>추후 예약 확인 및 서비스 안내에 사용되는 정보에요</Paragraph>
         </InputContainer>
       </section>
       <section>
-        <LinkContainer>
-          <Link to="https://www.notion.so/f8d7c49e99254b0d83f79c1167634020?pvs=4" target="_blank">
-            개인정보 수집 동의
-          </Link>
-          <Link to="https://www.notion.so/f8d7c49e99254b0d83f79c1167634020?pvs=4" target="_blank">
-            SMS 서비스 필수 안내 수신 동의
-          </Link>
-        </LinkContainer>
-        <Button>모두 동의</Button>
+        <Button>확인</Button>
       </section>
     </Form>
   );
 }
 
-export default AccountForm;
+export default AccountConfirmForm;

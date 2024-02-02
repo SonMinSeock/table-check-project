@@ -27,7 +27,7 @@ const Footer = styled.footer`
   margin-top: 40px;
   padding: 20px 0;
   line-height: 23px;
-  background-color: #d9d9d9;
+  background-color: var(--color-gray-900);
   color: #717171;
   strong {
     font-weight: bold;
