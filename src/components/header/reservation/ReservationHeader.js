@@ -11,7 +11,7 @@ function ReservationHeader() {
           <Link to="..">
             <IoIosArrowBack size={20} />
           </Link>
-          <Link to="">문의하기</Link>
+          <Link to="/contact">문의하기</Link>
         </section>
         <Guide />
       </Header>
