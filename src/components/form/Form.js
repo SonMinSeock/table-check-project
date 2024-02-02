@@ -2,6 +2,8 @@ import styled from "styled-components";
 import Calender from "../calender/Calender";
 import TimeSelector from "../time-selector/TimeSelector";
 import { useForm } from "react-hook-form";
+import { Button } from "./includes/form-style";
+import { useNavigate } from "react-router-dom";
 
 const Card = styled.form`
   background-color: var(--color-white);
@@ -81,17 +83,6 @@ const Select = styled.select`
   font: inherit;
 `;
 
-const Button = styled.button`
-  width: 100%;
-  background-color: var(--color-primary);
-  color: var(--color-white);
-  border: none;
-  padding: var(--space-3);
-  border-radius: var(--border-radius-2);
-  font-size: 1.1rem;
-  cursor: pointer;
-`;
-
 function Form() {
   const {
     control,
@@ -100,8 +91,11 @@ function Form() {
     formState: { errors },
   } = useForm();
 
+  const navigate = useNavigate();
+
   const onValid = (data) => {
     console.log(data);
+    navigate("/account", { state: { ...data } });
   };
   return (
     <Card onSubmit={handleSubmit(onValid)}>
