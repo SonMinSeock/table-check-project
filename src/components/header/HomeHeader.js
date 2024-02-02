@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Guide from "../guide/Guide";
 import { Header, Nav } from "./HomeHeader.style";
 
@@ -6,12 +7,12 @@ function HomeHeader() {
     <>
       <Header>
         <section>
-          <a id="logo-title" href="/">
+          <Link id="logo-title" to="/">
             오마타세
-          </a>
+          </Link>
           <Nav>
-            <a href="/contact">문의하기</a>
-            <a href="/account/confirm">예약확인</a>
+            <Link to="/contact">문의하기</Link>
+            <Link to="/account/confirm">예약확인</Link>
           </Nav>
         </section>
         <Guide />
