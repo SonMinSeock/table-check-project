@@ -10,8 +10,8 @@ function HomeHeader() {
             오마타세
           </a>
           <Nav>
-            <a href="#">문의하기</a>
-            <a href="#">예약확인</a>
+            <a href="/contact">문의하기</a>
+            <a href="/account/confirm">예약확인</a>
           </Nav>
         </section>
         <Guide />

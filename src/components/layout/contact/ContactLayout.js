@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import DifrentTypeHeader from "../../header/account/DifrentTypeHeader";
 
-function AccountLayout() {
+function ContactLayout() {
   return (
     <>
       <DifrentTypeHeader />
@@ -10,4 +10,4 @@ function AccountLayout() {
   );
 }
 
-export default AccountLayout;
+export default ContactLayout;

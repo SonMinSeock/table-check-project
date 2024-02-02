@@ -9,13 +9,15 @@ const Card = styled.form`
   background-color: var(--color-white);
   margin: var(--space-4) var(--space-6);
   padding: var(--space-8) var(--space-4);
-  border-radius: var(--border-radius-1);
+  border-radius: var(--border-radius-2);
   border: 1px solid #000000;
   hr {
-    background: var(--color-gray);
+    background: var(--color-gray-700);
     height: 1px;
     border: 0;
+    margin: var(--space-4) 0;
   }
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 `;
 
 const Title = styled.h2`
@@ -47,6 +49,7 @@ const Label = styled.label`
 const Input = styled.input`
   border: none;
   width: 100%;
+  font-size: 14px;
 `;
 
 const DropMenuSection = styled.section`
