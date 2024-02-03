@@ -45,7 +45,7 @@ function TimeSelector({ index, control }) {
   return (
     <div>
       <Label htmlFor="time1">
-        시간<span className="highlight-red">(필수)</span>
+        시간{index === 0 ? <span className="highlight-red">(필수)</span> : <span>({index + 1}순위)</span>}
       </Label>
       <Controller
         name={setRegisterName()}

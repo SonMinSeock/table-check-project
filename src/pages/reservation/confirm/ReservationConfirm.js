@@ -1,7 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { Button } from "../form/includes/form-style";
+import { Button } from "../../../components/form/includes/form-style";
 import { IoCheckmark } from "react-icons/io5";
+import DifrentTypeHeader from "../../../components/header/account/DifrentTypeHeader";
 
 const Card = styled.section`
   background-color: var(--color-white);
@@ -18,6 +19,9 @@ const Card = styled.section`
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   &.cancle {
     border-color: var(--color-alert-red);
+  }
+  &.confirm {
+    border: 2px solid var(--color-primary);
   }
 `;
 
@@ -102,33 +106,39 @@ const Paragraph = styled.p`
   margin: 0 var(--space-4);
   font-size: var(--font-size-3);
   margin-bottom: var(--space-4);
+  line-height: 20px;
 `;
 
 const CancleParagraph = styled(Paragraph)`
   color: var(--color-alert-red);
 `;
 
-function ReservationCard({ state }) {
-  const navigate = useNavigate();
-  const showBorderColor = () => {
-    if (state === "예약 불가" || state === "자동 취소") {
-      return "cancle";
-    } else if (state === "예약 확정") {
-      return "confirm";
-    }
+const ButtonWrapper = styled.section`
+  padding: var(--space-4);
+`;
 
-    return "";
-  };
+const TitleH1 = styled.h1`
+  font-weight: bold;
+  font-size: var(--font-size-6);
+  margin: var(--space-2) var(--space-4);
+  line-height: 35px;
+`;
+
+function ReservationConfirm({ state }) {
+  const navigate = useNavigate();
   return (
     <>
-      <Card className={showBorderColor()}>
+      <DifrentTypeHeader />
+      <TitleH1>
+        다시 한번 더<br /> 예약 정보를 확인해 주세요
+      </TitleH1>
+      <Paragraph>
+        예약 취소는 불가하지만 만약 취소를 해야 한다
+        <br /> 문의하기를 통해 꼭 알려주세요
+      </Paragraph>
+      <Card>
         <CardHeader>
           <Title>첫 번째 예약</Title>
-          {state === "예약 불가" || state === "자동 취소" ? (
-            <CancleStatusText>{state}</CancleStatusText>
-          ) : (
-            <StatusText>{state}</StatusText>
-          )}
         </CardHeader>
         <CardContentContainer>
           <CardContentLabel>구글 지도 음식점 링크 공유</CardContentLabel>
@@ -180,20 +190,13 @@ function ReservationCard({ state }) {
             <CardContentText>0</CardContentText>
           </Wrapper>
         </CardContentFlex>
-        {state === "확정 대기중" ? (
-          <Button onClick={() => navigate("/user/reservation/confirm/check")}>00/00 00:00 확정하기</Button>
-        ) : null}
-        {state === "예약 확정" ? <Button>예약 일본어 보여주기</Button> : null}
       </Card>
-      {state === "예약 요청중" ? <Paragraph>곧 예약 관련한 문자 알림을 보내겠습니다.</Paragraph> : null}
-      {state === "예약 불가" ? (
-        <CancleParagraph>모든 날짜에 예약이 이미 완료되어 예약이 불가합니다.</CancleParagraph>
-      ) : null}
-      {state === "자동 취소" ? (
-        <CancleParagraph>예약 확정이 되지 않아 자동으로 취소 되었습니다.</CancleParagraph>
-      ) : null}
+
+      <ButtonWrapper>
+        <Button onClick={() => navigate("final")}>00/00 00:00 확정하기</Button>
+      </ButtonWrapper>
     </>
   );
 }
 
-export default ReservationCard;
+export default ReservationConfirm;

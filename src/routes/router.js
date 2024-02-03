@@ -9,6 +9,9 @@ import ReservationLayout from "../components/layout/reservation/ReservationLayou
 import AccountConfrim from "../pages/account/AccountConfirm";
 import ContactLayout from "../components/layout/contact/ContactLayout";
 import Contact from "../pages/contact/Contact";
+import ReservationConfirm from "../pages/reservation/confirm/ReservationConfirm";
+import ReservationConfirmLayout from "../components/layout/reservation/ReservationConfirmLayout";
+import ReservationConfirmFinal from "../components/layout/reservation/ReservationConfirmFinal";
 
 function Router() {
   const routes = [
@@ -52,6 +55,20 @@ function Router() {
             {
               index: true,
               element: <Reservation />,
+            },
+          ],
+        },
+        {
+          path: "user/reservation/confirm/check",
+          element: <ReservationConfirmLayout />,
+          children: [
+            {
+              index: true,
+              element: <ReservationConfirm state="예약 확정" />,
+            },
+            {
+              path: "final",
+              element: <ReservationConfirmFinal />,
             },
           ],
         },

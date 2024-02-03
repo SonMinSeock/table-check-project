@@ -47,7 +47,7 @@ function Calender({ index, control }) {
   return (
     <div>
       <Label htmlFor="date1">
-        날짜<span className="highlight-red">(필수)</span>
+        날짜{index === 0 ? <span className="highlight-red">(필수)</span> : <span>({index + 1}순위)</span>}
       </Label>
       <Controller
         name={setRegisterName()}
