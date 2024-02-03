@@ -19,6 +19,9 @@ const Card = styled.section`
   &.cancle {
     border-color: var(--color-alert-red);
   }
+  &.confirm {
+    border: 2px solid var(--color-primary);
+  }
 `;
 
 const CardHeader = styled.section`

@@ -36,20 +36,6 @@ const Title = styled.h2`
   font-size: var(--font-size-6);
 `;
 
-const StatusText = styled.span`
-  width: 125px;
-  text-align: center;
-  font-size: var(--font-size-3);
-  color: #ffffff;
-  background-color: var(--color-primary);
-  padding: var(--space-2) var(--space-5);
-  border-radius: var(--border-radius-3);
-`;
-
-const CancleStatusText = styled(StatusText)`
-  background-color: var(--color-alert-red);
-`;
-
 const CardContentContainer = styled.section`
   position: relative;
   border: 1px solid #717171;
@@ -107,10 +93,6 @@ const Paragraph = styled.p`
   font-size: var(--font-size-3);
   margin-bottom: var(--space-4);
   line-height: 20px;
-`;
-
-const CancleParagraph = styled(Paragraph)`
-  color: var(--color-alert-red);
 `;
 
 const ButtonWrapper = styled.section`
