@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { Button } from "../form/includes/form-style";
+import { IoCheckmark } from "react-icons/io5";
 
 const Card = styled.section`
   background-color: var(--color-white);
@@ -14,6 +16,9 @@ const Card = styled.section`
     margin: var(--space-4) 0;
   }
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  &.cancle {
+    border-color: var(--color-alert-red);
+  }
 `;
 
 const CardHeader = styled.section`
@@ -28,6 +33,8 @@ const Title = styled.h2`
 `;
 
 const StatusText = styled.span`
+  width: 125px;
+  text-align: center;
   font-size: var(--font-size-3);
   color: #ffffff;
   background-color: var(--color-primary);
@@ -35,8 +42,13 @@ const StatusText = styled.span`
   border-radius: var(--border-radius-3);
 `;
 
+const CancleStatusText = styled(StatusText)`
+  background-color: var(--color-alert-red);
+`;
+
 const CardContentContainer = styled.section`
-  border: 1px solid #000000;
+  position: relative;
+  border: 1px solid #717171;
   padding: var(--space-3) var(--space-4);
   margin-bottom: var(--space-4);
   border-radius: var(--border-radius-3);
@@ -47,6 +59,9 @@ const CardContentContainer = styled.section`
     &:hover {
       border-bottom: 1px solid #000000;
     }
+  }
+  &.confirmed {
+    border: 2px solid var(--color-primary);
   }
 `;
 const CardContentLabel = styled.span`
@@ -62,19 +77,48 @@ const CardContentText = styled.span`
 `;
 const Wrapper = styled.div`
   width: 100%;
-  &:last-child {
+  &:nth-child(2) {
     padding-left: 10px;
     border-left: 1px solid #000000;
   }
 `;
+const CheckConfirm = styled.div`
+  position: absolute;
+  top: -7px;
+  right: -7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  color: #ffffff;
+  width: 15px;
+  height: 15px;
+  padding: 2px;
+  background-color: var(--color-primary);
+`;
 
-function ReservationCard() {
+const Paragraph = styled.p`
+  color: var(--color-gray-800);
+  margin: 0 var(--space-4);
+  font-size: var(--font-size-3);
+  margin-bottom: var(--space-4);
+`;
+
+const CancleParagraph = styled(Paragraph)`
+  color: var(--color-alert-red);
+`;
+
+function ReservationCard({ state }) {
   return (
     <>
-      <Card>
+      <Card className={state === "예약 불가" || state === "자동 취소" ? "cancle" : ""}>
         <CardHeader>
           <Title>첫 번째 예약</Title>
-          <StatusText>예약 요청중</StatusText>
+          {state === "예약 불가" || state === "자동 취소" ? (
+            <CancleStatusText>{state}</CancleStatusText>
+          ) : (
+            <StatusText>{state}</StatusText>
+          )}
         </CardHeader>
         <CardContentContainer>
           <CardContentLabel>구글 지도 음식점 링크 공유</CardContentLabel>
@@ -93,7 +137,7 @@ function ReservationCard() {
           </Wrapper>
         </CardContentFlex>
         <hr />
-        <CardContentFlex>
+        <CardContentFlex className="confirmed">
           <Wrapper>
             <CardContentLabel>날짜</CardContentLabel>
             <CardContentText>0</CardContentText>
@@ -102,6 +146,9 @@ function ReservationCard() {
             <CardContentLabel>시간</CardContentLabel>
             <CardContentText>0</CardContentText>
           </Wrapper>
+          <CheckConfirm>
+            <IoCheckmark color="white" size={13} />
+          </CheckConfirm>
         </CardContentFlex>
         <CardContentFlex>
           <Wrapper>
@@ -123,7 +170,16 @@ function ReservationCard() {
             <CardContentText>0</CardContentText>
           </Wrapper>
         </CardContentFlex>
+        {state === "확정 대기중" ? <Button>00/00 00:00 확정하기</Button> : null}
+        {state === "예약 확정" ? <Button>예약 일본어 보여주기</Button> : null}
       </Card>
+      {state === "예약 요청중" ? <Paragraph>곧 예약 관련한 문자 알림을 보내겠습니다.</Paragraph> : null}
+      {state === "예약 불가" ? (
+        <CancleParagraph>모든 날짜에 예약이 이미 완료되어 예약이 불가합니다.</CancleParagraph>
+      ) : null}
+      {state === "자동 취소" ? (
+        <CancleParagraph>예약 확정이 되지 않아 자동으로 취소 되었습니다.</CancleParagraph>
+      ) : null}
     </>
   );
 }

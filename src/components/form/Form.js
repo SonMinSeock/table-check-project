@@ -26,7 +26,7 @@ const Title = styled.h2`
 `;
 
 const InputMapSection = styled.section`
-  border: 1px solid #000000;
+  border: 1px solid #717171;
   padding: var(--space-3) var(--space-4);
   margin-bottom: var(--space-4);
   border-radius: var(--border-radius-3);
@@ -54,7 +54,7 @@ const Input = styled.input`
 
 const DropMenuSection = styled.section`
   display: flex;
-  border: 1px solid #000000;
+  border: 1px solid #717171;
   border-radius: var(--border-radius-3);
   padding: var(--space-3) var(--space-4);
   margin-bottom: var(--space-4);
