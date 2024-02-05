@@ -175,7 +175,7 @@ function ReservationConfirm({ state }) {
       </Card>
 
       <ButtonWrapper>
-        <Button onClick={() => navigate("final")}>00/00 00:00 확정하기</Button>
+        <Button onClick={() => navigate("final", { state: { message: "예약 확정" } })}>00/00 00:00 확정하기</Button>
       </ButtonWrapper>
     </>
   );

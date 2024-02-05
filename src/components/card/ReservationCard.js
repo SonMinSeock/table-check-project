@@ -101,10 +101,10 @@ const CheckConfirm = styled.div`
 `;
 
 const Paragraph = styled.p`
-  color: var(--color-gray-800);
-  margin: 0 var(--space-4);
+  color: #86898f;
+  margin: var(--space-4) var(--space-4);
   font-size: var(--font-size-3);
-  margin-bottom: var(--space-4);
+  font-weight: bold;
 `;
 
 const CancleParagraph = styled(Paragraph)`
@@ -124,6 +124,7 @@ function ReservationCard({ state }) {
   };
   return (
     <>
+      {state === "예약 요청중" ? <Paragraph>예약 가능 여부를 확인 후 안내 문자를 보내드릴게요</Paragraph> : null}
       <Card className={showBorderColor()}>
         <CardHeader>
           <Title>첫 번째 예약</Title>
@@ -188,7 +189,6 @@ function ReservationCard({ state }) {
         ) : null}
         {state === "예약 확정" ? <Button>예약 일본어 보여주기</Button> : null}
       </Card>
-      {state === "예약 요청중" ? <Paragraph>곧 예약 관련한 문자 알림을 보내겠습니다.</Paragraph> : null}
       {state === "예약 불가" ? (
         <CancleParagraph>모든 날짜에 예약이 이미 완료되어 예약이 불가합니다.</CancleParagraph>
       ) : null}

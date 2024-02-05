@@ -86,7 +86,7 @@ const Select = styled.select`
   font: inherit;
 `;
 
-function Form() {
+function Form({ state = "무료 예약" }) {
   const {
     control,
     register,
@@ -102,8 +102,7 @@ function Form() {
   };
   return (
     <Card onSubmit={handleSubmit(onValid)}>
-      <Title>첫 번째 예약</Title>
-      <section></section>
+      {state === "무료 예약" ? <Title>첫 번째 예약</Title> : <Title>두 번째 예약</Title>}
       <InputMapSection>
         <Label htmlFor="map-link">
           구글 지도 음식점 링크 공유<span className="highlight-red">(필수)</span>
@@ -158,7 +157,7 @@ function Form() {
         <Calender index={2} control={control} />
         <TimeSelector index={2} control={control} />
       </DropMenuSection>
-      <Button>무료 예약 확인하기</Button>
+      {state === "무료 예약" ? <Button>무료 예약 확인하기</Button> : null}
     </Card>
   );
 }

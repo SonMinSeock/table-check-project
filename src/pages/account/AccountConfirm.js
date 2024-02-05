@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import AccountForm from "../../components/form/account/AccountForm";
 import AccountConfirmForm from "../../components/form/account/AccountConfirmForm";
 //import { useLocation } from "react-router-dom";
 

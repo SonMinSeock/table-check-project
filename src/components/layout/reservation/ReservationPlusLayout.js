@@ -1,8 +1,8 @@
+import { Link, Outlet } from "react-router-dom";
+import { Header } from "../../header/HomeHeader.style";
 import { IoIosArrowBack } from "react-icons/io";
-import { Link } from "react-router-dom";
-import { Header } from "../includes/header.style";
 
-function ReservationHeader() {
+function ReservationPlusLayout() {
   return (
     <>
       <Header>
@@ -13,8 +13,9 @@ function ReservationHeader() {
           <Link to="/contact">문의하기</Link>
         </section>
       </Header>
+      <Outlet />
     </>
   );
 }
 
-export default ReservationHeader;
+export default ReservationPlusLayout;

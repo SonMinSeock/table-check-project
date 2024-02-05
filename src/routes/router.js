@@ -12,6 +12,8 @@ import Contact from "../pages/contact/Contact";
 import ReservationConfirm from "../pages/reservation/confirm/ReservationConfirm";
 import ReservationConfirmLayout from "../components/layout/reservation/ReservationConfirmLayout";
 import ReservationConfirmFinal from "../components/layout/reservation/ReservationConfirmFinal";
+import ReservationPlus from "../pages/reservation/plus/ReservationPlus";
+import ReservationPlusLayout from "../components/layout/reservation/ReservationPlusLayout";
 
 function Router() {
   const routes = [
@@ -55,6 +57,16 @@ function Router() {
             {
               index: true,
               element: <Reservation />,
+            },
+          ],
+        },
+        {
+          path: "user/reservation/plus",
+          element: <ReservationPlusLayout />,
+          children: [
+            {
+              index: true,
+              element: <ReservationPlus />,
             },
           ],
         },

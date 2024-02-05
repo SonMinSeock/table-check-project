@@ -64,9 +64,9 @@ function AccountForm() {
 
   const onValid = (data) => {
     console.log(data);
-    navigate("/user/reservation", { state: { reservationState: "확정 대기중" } });
-  };
 
+    navigate("/user/reservation/confirm/check/final", { state: { message: "예약 확인" } });
+  };
   return (
     <Form onSubmit={handleSubmit(onValid)}>
       <section>
