@@ -14,6 +14,8 @@ import ReservationConfirmLayout from "../components/layout/reservation/Reservati
 import ReservationConfirmFinal from "../components/layout/reservation/ReservationConfirmFinal";
 import ReservationPlus from "../pages/reservation/plus/ReservationPlus";
 import ReservationPlusLayout from "../components/layout/reservation/ReservationPlusLayout";
+import Admin from "../pages/admin/Admin";
+import AdminLayout from "../components/layout/admin/AdminLayout";
 
 function Router() {
   const routes = [
@@ -81,6 +83,16 @@ function Router() {
             {
               path: "final",
               element: <ReservationConfirmFinal />,
+            },
+          ],
+        },
+        {
+          path: "admin",
+          element: <AdminLayout />,
+          children: [
+            {
+              index: true,
+              element: <Admin />,
             },
           ],
         },
