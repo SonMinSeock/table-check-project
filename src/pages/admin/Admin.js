@@ -9,8 +9,7 @@ const Header = styled.header`
 `;
 
 const Main = styled.main`
-  margin: var(--space-4);
-  height: 100%;
+  padding: var(--space-4);
 `;
 
 const H1 = styled.h1`
@@ -33,6 +32,7 @@ const Card = styled.section`
   max-height: 520px;
   overflow: auto;
   font-weight: bold;
+  margin-bottom: var(--space-4);
 `;
 
 const Row = styled.section`
@@ -42,7 +42,8 @@ const Row = styled.section`
   align-items: center;
   margin-bottom: var(--space-3);
   font-size: 0.78rem;
-  & .state-text {
+  & .state-text,
+  & .text-blue {
     color: var(--color-primary);
   }
   & .state-text-cancle {
@@ -91,12 +92,12 @@ function Admin() {
 
   const onToggle = () => setToggle((prev) => !prev);
 
-  return (
-    <>
-      <Header>
-        <H1>오마타세 관리자</H1>
-      </Header>
-      <Main>
+  let cards = 1;
+
+  const showCards = () => {
+    const renderCards = [];
+    for (let i = 0; i < cards; i++) {
+      renderCards.push(
         <Card>
           <H2>1. 손민석(01022742538 | 첫 번째 예약)</H2>
           <Row>
@@ -105,6 +106,10 @@ function Admin() {
           </Row>
           <Row>
             <span className="state-text">현재 상태(예약 요청중)</span>
+            {/* <span className="state-text">현재 상태(확정 대기중)</span> */}
+            {/* <span className="state-text">현재 상태(예약 확정)</span> */}
+            {/* <span className="state-text-cancle">현재 상태(예약 불가)</span> */}
+            {/* <span className="state-text-cancle">현재 상태(자동 취소)</span> */}
           </Row>
           <hr />
           <Row>
@@ -120,7 +125,11 @@ function Admin() {
               <Text>3차 예약 시간 : 2024.02.05 | 18:30</Text>
               <Button className="btn-confirm">3차 예약 가능</Button>
             </Row>
+            {/* <Row>
+              <span className="text-blue">1차 예약 가능 보낸시간 : 2024.02.04 | 13:50</span>
+            </Row> */}
           </Row>
+          <hr />
           <Row>
             <Button className="btn-cancle" onClick={onToggle}>
               예약 불가
@@ -156,7 +165,16 @@ function Admin() {
             <span>2024.02.04 | 14:00</span>
           </Row>
         </Card>
-      </Main>
+      );
+    }
+    return renderCards;
+  };
+  return (
+    <>
+      <Header>
+        <H1>오마타세 관리자</H1>
+      </Header>
+      <Main>{cards === 0 ? <H2>예약 내역</H2> : showCards()}</Main>
     </>
   );
 }
