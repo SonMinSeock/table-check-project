@@ -80,7 +80,11 @@ function AdminLogin() {
       for (const user of users) {
         if (user.email === data.email && user.username === data.username) {
           setUser(user);
-          return navigate("/admin");
+          if (user.isAdmin) {
+            return navigate("/admin");
+          } else {
+            return alert("관리자 아닙니다!");
+          }
         }
       }
       alert("등록되지 않은 계정이거나 또는 사용자 이름 잘못 입력했습니다.");

@@ -1,5 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
+import { userAtom } from "../../recoil/user/user";
+import { useNavigate } from "react-router-dom";
 
 const Header = styled.header`
   display: flex;
@@ -12,9 +15,19 @@ const Main = styled.main`
   padding: var(--space-4);
 `;
 
+const Nav = styled.nav`
+  width: 30%;
+  ul li {
+    cursor: pointer;
+    text-align: end;
+  }
+`;
+
 const H1 = styled.h1`
   font-size: var(--font-size-7);
   font-weight: bold;
+  width: 100%;
+  text-align: end;
 `;
 
 const H2 = styled.h2`
@@ -89,8 +102,21 @@ const Textarea = styled.textarea`
 
 function Admin() {
   const [toggle, setToggle] = useState(false);
+  const [user, setUser] = useRecoilState(userAtom);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user) {
+      return navigate("/admin/login");
+    }
+  }, []);
 
   const onToggle = () => setToggle((prev) => !prev);
+  const logout = () => {
+    setUser(null);
+    navigate("/admin/login");
+  };
 
   let cards = 1;
 
@@ -173,6 +199,11 @@ function Admin() {
     <>
       <Header>
         <H1>오마타세 관리자</H1>
+        <Nav>
+          <ul>
+            <li onClick={logout}>로그아웃</li>
+          </ul>
+        </Nav>
       </Header>
       <Main>{cards === 0 ? <H2>예약 내역</H2> : showCards()}</Main>
     </>
