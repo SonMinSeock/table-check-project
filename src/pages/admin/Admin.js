@@ -98,7 +98,7 @@ function Admin() {
     const renderCards = [];
     for (let i = 0; i < cards; i++) {
       renderCards.push(
-        <Card>
+        <Card key={i}>
           <H2>1. 손민석(01022742538 | 첫 번째 예약)</H2>
           <Row>
             <Text>예약 요청한 날짜 시간</Text>

@@ -16,6 +16,7 @@ import ReservationPlus from "../pages/reservation/plus/ReservationPlus";
 import ReservationPlusLayout from "../components/layout/reservation/ReservationPlusLayout";
 import Admin from "../pages/admin/Admin";
 import AdminLayout from "../components/layout/admin/AdminLayout";
+import AdminLogin from "../pages/admin/login/AdminLogin";
 
 function Router() {
   const routes = [
@@ -93,6 +94,10 @@ function Router() {
             {
               index: true,
               element: <Admin />,
+            },
+            {
+              path: "login",
+              element: <AdminLogin />,
             },
           ],
         },
