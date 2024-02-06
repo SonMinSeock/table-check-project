@@ -5,6 +5,9 @@ import { forwardRef } from "react";
 import { ko } from "date-fns/locale";
 import { IoIosArrowDown } from "react-icons/io";
 import { Controller } from "react-hook-form";
+import { reservationAtom } from "../../recoil/reservation/reservation";
+import { useSetRecoilState } from "recoil";
+import { dateAtom } from "../../recoil/date/date";
 
 const Label = styled.label`
   font-size: var(--font-size-3);
@@ -18,6 +21,8 @@ const Label = styled.label`
 `;
 
 function TimeSelector({ index, control }) {
+  const setDateTime = useSetRecoilState(dateAtom);
+
   const setRegisterName = () => {
     if (index === 0) {
       return "firstTime";
@@ -56,7 +61,25 @@ function TimeSelector({ index, control }) {
             // placeholderText="시간을 선택하세요"
             locale={ko}
             selected={value}
-            onChange={(time) => onChange(time)}
+            onChange={(time) => {
+              if (index === 0) {
+                setDateTime((prev) => ({
+                  ...prev,
+                  firstTime: time.toTimeString().slice(0, 8),
+                }));
+              } else if (index === 1) {
+                setDateTime((prev) => ({
+                  ...prev,
+                  secondTime: time.toTimeString().slice(0, 8),
+                }));
+              } else if (index === 2) {
+                setDateTime((prev) => ({
+                  ...prev,
+                  thirdTime: time.toTimeString().slice(0, 8),
+                }));
+              }
+              onChange(time);
+            }}
             showTimeSelect
             showTimeSelectOnly
             dateFormat="HH:mm"

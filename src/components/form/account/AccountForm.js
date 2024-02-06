@@ -2,6 +2,11 @@ import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import { Button } from "../includes/form-style";
 import { Link, useNavigate } from "react-router-dom";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import { reservationAtom, reservationsAtom } from "../../../recoil/reservation/reservation";
+import { userAtom, userIdAtom } from "../../../recoil/user/user";
+import { accountUser } from "../../../model/user";
+import { readReservations } from "../../../model/reservation";
 
 const Form = styled.form`
   height: 100%;
@@ -60,10 +65,19 @@ function AccountForm() {
     formState: { errors },
   } = useForm();
 
+  const [getReservation, setReservation] = useRecoilState(reservationAtom);
+  const setReservations = useSetRecoilState(reservationsAtom);
+  const setUserId = useSetRecoilState(userIdAtom);
+
   const navigate = useNavigate();
 
-  const onValid = (data) => {
+  console.log(getReservation);
+  const onValid = async (data) => {
     console.log(data);
+
+    const userId = await accountUser({ ...data, reservation: getReservation });
+
+    setUserId(userId);
 
     navigate("/user/reservation/confirm/check/final", { state: { message: "예약 확인" } });
   };

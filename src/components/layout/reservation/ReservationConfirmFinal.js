@@ -3,6 +3,8 @@ import { Button } from "../../form/includes/form-style";
 import EmailImage from "../../../assets/images/icon_Email.png";
 import ChatImage from "../../../assets/images/icon_Chat.png";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { userIdAtom } from "../../../recoil/user/user";
 
 const Title = styled.h1`
   font-size: 1.5rem;
@@ -44,6 +46,10 @@ function ReservationConfirmFinal() {
   } = useLocation();
 
   const navigate = useNavigate();
+
+  const userId = useRecoilValue(userIdAtom);
+
+  console.log(userId);
 
   if (message === "예약 확정") {
     return (

@@ -4,6 +4,9 @@ import TimeSelector from "../time-selector/TimeSelector";
 import { useForm } from "react-hook-form";
 import { Button } from "./includes/form-style";
 import { useNavigate } from "react-router-dom";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
+import { reservationAtom } from "../../recoil/reservation/reservation";
+import { dateAtom } from "../../recoil/date/date";
 
 const Card = styled.form`
   background-color: var(--color-white);
@@ -93,13 +96,27 @@ function Form({ state = "무료 예약" }) {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const [getReservation, setReservation] = useRecoilState(reservationAtom);
+  const getDateTime = useRecoilValue(dateAtom);
 
   const navigate = useNavigate();
 
   const onValid = (data) => {
-    console.log(data);
+    setReservation({
+      adultNumber: data.adultNumber,
+      childNumber: data.childNumber,
+      mapUrl: data.mapUrl,
+      ...getDateTime,
+      isFirstDateTimeConfirm: false, // 날짜 시간, 확정
+      isSecondDateTimeConfirm: false,
+      isThirdDateTimeConfirm: false,
+    });
+
     navigate("/account", { state: { ...data } });
   };
+
+  console.log(getReservation);
+
   return (
     <Card onSubmit={handleSubmit(onValid)}>
       {state === "무료 예약" ? <Title>첫 번째 예약</Title> : <Title>두 번째 예약</Title>}

@@ -56,8 +56,10 @@ const CardContentContainer = styled.section`
   margin-bottom: var(--space-4);
   border-radius: var(--border-radius-3);
   font-size: var(--font-size-3);
+
   & a {
     color: #5e5e5e;
+    overflow: hidden;
 
     &:hover {
       border-bottom: 1px solid #000000;
@@ -67,6 +69,13 @@ const CardContentContainer = styled.section`
     border: 2px solid var(--color-primary);
   }
 `;
+
+const CartContentMap = styled(CardContentContainer)`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
 const CardContentLabel = styled.span`
   display: block;
   margin-bottom: var(--space-2);
@@ -111,7 +120,24 @@ const CancleParagraph = styled(Paragraph)`
   color: var(--color-alert-red);
 `;
 
-function ReservationCard({ state }) {
+function ReservationCard({
+  reservation: {
+    state,
+    adultNumber,
+    childNumber,
+    mapUrl,
+    firstDate,
+    firstTime,
+    secondDate,
+    secondTime,
+    thirdDate,
+    thirdTime,
+    isCancleMessage,
+    isFirstDateTimeConfirm,
+    isSecondDateTimeConfirm,
+    isThirdDateTimeConfirm,
+  },
+}) {
   const navigate = useNavigate();
   const showBorderColor = () => {
     if (state === "예약 불가" || state === "자동 취소") {
@@ -134,56 +160,74 @@ function ReservationCard({ state }) {
             <StatusText>{state}</StatusText>
           )}
         </CardHeader>
-        <CardContentContainer>
+        <CartContentMap>
           <CardContentLabel>구글 지도 음식점 링크 공유</CardContentLabel>
           <Link to="https://www.google.com/maps" target="_blank">
-            https://www.google.com/maps
+            {mapUrl}
           </Link>
-        </CardContentContainer>
+        </CartContentMap>
         <CardContentFlex>
           <Wrapper>
             <CardContentLabel>성인</CardContentLabel>
-            <CardContentText>0</CardContentText>
+            <CardContentText>{adultNumber}</CardContentText>
           </Wrapper>
           <Wrapper>
             <CardContentLabel>어린이</CardContentLabel>
-            <CardContentText>0</CardContentText>
+            <CardContentText>{childNumber}</CardContentText>
           </Wrapper>
         </CardContentFlex>
         <hr />
-        <CardContentFlex className="confirmed">
-          <Wrapper>
-            <CardContentLabel>날짜</CardContentLabel>
-            <CardContentText>0</CardContentText>
-          </Wrapper>
-          <Wrapper>
-            <CardContentLabel>시간</CardContentLabel>
-            <CardContentText>0</CardContentText>
-          </Wrapper>
-          <CheckConfirm>
-            <IoCheckmark color="white" size={13} />
-          </CheckConfirm>
-        </CardContentFlex>
-        <CardContentFlex>
-          <Wrapper>
-            <CardContentLabel>날짜</CardContentLabel>
-            <CardContentText>0</CardContentText>
-          </Wrapper>
-          <Wrapper>
-            <CardContentLabel>시간</CardContentLabel>
-            <CardContentText>0</CardContentText>
-          </Wrapper>
-        </CardContentFlex>
-        <CardContentFlex>
-          <Wrapper>
-            <CardContentLabel>날짜</CardContentLabel>
-            <CardContentText>0</CardContentText>
-          </Wrapper>
-          <Wrapper>
-            <CardContentLabel>시간</CardContentLabel>
-            <CardContentText>0</CardContentText>
-          </Wrapper>
-        </CardContentFlex>
+        {firstDate && firstTime && (
+          <CardContentFlex className={isFirstDateTimeConfirm ? "confirmed" : null}>
+            <Wrapper>
+              <CardContentLabel>날짜</CardContentLabel>
+              <CardContentText>{firstDate}</CardContentText>
+            </Wrapper>
+            <Wrapper>
+              <CardContentLabel>시간</CardContentLabel>
+              <CardContentText>{firstTime}</CardContentText>
+            </Wrapper>
+            {isFirstDateTimeConfirm && (
+              <CheckConfirm>
+                <IoCheckmark color="white" size={13} />
+              </CheckConfirm>
+            )}
+          </CardContentFlex>
+        )}
+        {secondDate && secondTime && (
+          <CardContentFlex className={isSecondDateTimeConfirm ? "confirmed" : null}>
+            <Wrapper>
+              <CardContentLabel>날짜</CardContentLabel>
+              <CardContentText>{secondDate}</CardContentText>
+            </Wrapper>
+            <Wrapper>
+              <CardContentLabel>시간</CardContentLabel>
+              <CardContentText>{secondTime}</CardContentText>
+            </Wrapper>
+            {isSecondDateTimeConfirm && (
+              <CheckConfirm>
+                <IoCheckmark color="white" size={13} />
+              </CheckConfirm>
+            )}
+          </CardContentFlex>
+        )}
+        {thirdDate && thirdTime && (
+          <CardContentFlex className={isThirdDateTimeConfirm ? "confirmed" : null}>
+            <Wrapper>
+              <CardContentLabel>날짜</CardContentLabel>
+              <CardContentText>{thirdDate}</CardContentText>
+            </Wrapper>
+            <Wrapper>
+              <CardContentLabel>시간</CardContentLabel>
+              <CardContentText>{thirdTime}</CardContentText>
+            </Wrapper>
+            {isThirdDateTimeConfirm && (
+              <CheckConfirm>
+                <IoCheckmark color="white" size={13} />
+              </CheckConfirm>
+            )}
+          </CardContentFlex>
+        )}
         {state === "확정 대기중" ? (
           <Button onClick={() => navigate("/user/reservation/confirm/check")}>00/00 00:00 확정하기</Button>
         ) : null}

@@ -5,6 +5,8 @@ import { forwardRef, useRef } from "react";
 import { ko } from "date-fns/locale";
 import { IoIosArrowDown } from "react-icons/io";
 import { Controller } from "react-hook-form";
+import { dateAtom } from "../../recoil/date/date";
+import { useSetRecoilState } from "recoil";
 
 const Label = styled.label`
   font-size: var(--font-size-3);
@@ -18,6 +20,8 @@ const Label = styled.label`
 `;
 
 function Calender({ index, control }) {
+  const setDateTime = useSetRecoilState(dateAtom);
+
   const calendar = useRef(null);
 
   const setRegisterName = () => {
@@ -62,7 +66,29 @@ function Calender({ index, control }) {
             // onChange={field.onChange}
             // placeholderText="yyyy-MM-dd"
             selected={value}
-            onChange={(date) => onChange(date)}
+            onChange={(date) => {
+              const month = String(date.getMonth() + 1).padStart(2, "0");
+              const day = String(date.getDate()).padStart(2, "0");
+
+              const dateString = `${month}월 ${day}일`;
+              if (index === 0) {
+                setDateTime((prev) => ({
+                  ...prev,
+                  firstDate: dateString,
+                }));
+              } else if (index === 1) {
+                setDateTime((prev) => ({
+                  ...prev,
+                  secondDate: dateString,
+                }));
+              } else if (index === 2) {
+                setDateTime((prev) => ({
+                  ...prev,
+                  thirdDate: dateString,
+                }));
+              }
+              onChange(date);
+            }}
             dateFormat="yyyy년 MM월 dd일"
             popperPlacement="auto"
             withPortal

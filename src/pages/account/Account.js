@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import AccountForm from "../../components/form/account/AccountForm";
-import { useLocation } from "react-router-dom";
 
 const Title = styled.h1`
   font-weight: bold;
@@ -13,9 +12,6 @@ const Main = styled.main`
 `;
 
 function Account() {
-  const { state } = useLocation();
-
-  console.log(state);
   return (
     <>
       <Main>
