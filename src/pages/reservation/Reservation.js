@@ -46,8 +46,6 @@ function Reservation() {
 
   useEffect(() => {
     if (getUserId) {
-      setLoading(true); // 데이터를 다시 로드하기 전에 로딩 상태를 설정합니다.
-
       const q = query(collection(fireStore, "reservations"), where("userId", "==", getUserId));
 
       const unsubscribe = onSnapshot(q, (snapshot) => {
@@ -57,24 +55,35 @@ function Reservation() {
         }));
 
         setReservations(docs);
-        setLoading(false); // 데이터 로딩이 완료되면 로딩 상태를 false로 설정합니다.
       });
 
+      setLoading(false); // 데이터 로딩이 완료되면 로딩 상태를 false로 설정합니다.
       // useEffect 클린업 함수에서 구독 해제를 수행합니다.
       return () => unsubscribe();
+    } else {
+      navigate("/");
     }
+    setLoading(false); // 데이터 로딩이 완료되면 로딩 상태를 false로 설정합니다.
   }, [getUserId, setReservations]);
+
+  const showReservations = () => {
+    if (loading) {
+      return <LoadingTitle>불러오고 있습니다.</LoadingTitle>;
+    } else {
+      if (reservations.length !== 0) {
+        console.log(reservations);
+        return reservations.map((reservation) => <ReservationCard key={reservation.id} reservation={reservation} />);
+      } else {
+        return <EmptyTitle>예약 내역이 없습니다.</EmptyTitle>;
+      }
+    }
+  };
 
   return (
     <>
       <Main>
         <Guide />
-        {loading ? <LoadingTitle>불러오고 있습니다.</LoadingTitle> : null}
-        {reservations.length === 0 && !loading ? (
-          <EmptyTitle>예약 내역이 없습니다.</EmptyTitle>
-        ) : (
-          reservations.map((reservation, index) => <ReservationCard key={index} reservation={reservation} />)
-        )}
+        {showReservations()}
       </Main>
       <Footer>
         <Button onClick={() => navigate("/user/reservation/plus")}>추가로 예약하기</Button>
