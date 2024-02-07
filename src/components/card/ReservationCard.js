@@ -136,6 +136,7 @@ function ReservationCard({
     isFirstDateTimeConfirm,
     isSecondDateTimeConfirm,
     isThirdDateTimeConfirm,
+    checkDateTime,
   },
 }) {
   const navigate = useNavigate();
@@ -229,7 +230,7 @@ function ReservationCard({
           </CardContentFlex>
         )}
         {state === "확정 대기중" ? (
-          <Button onClick={() => navigate("/user/reservation/confirm/check")}>00/00 00:00 확정하기</Button>
+          <Button onClick={() => navigate("/user/reservation/confirm/check")}>{`${checkDateTime} 확정하기`}</Button>
         ) : null}
         {state === "예약 확정" ? <Button>예약 일본어 보여주기</Button> : null}
       </Card>

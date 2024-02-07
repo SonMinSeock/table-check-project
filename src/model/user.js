@@ -27,11 +27,19 @@ export async function accountUser(inputData) {
     console.log("유저 생성 결과 : ", resultUserDoc);
 
     const resultReservationDoc = await addDoc(collection(fireStore, "reservations"), {
+      username: inputData.username,
+      phoneNumber: inputData.phoneNumber,
       ...inputData.reservation,
       state: "예약 요청중",
       isCancleMessage: "", // 예약 불가 사유
       message: "",
       userId: resultUserDoc.id,
+      requestDateTime: `${String(new Date().getMonth() + 1).padStart(2, "0")}월 ${String(new Date().getDate()).padStart(
+        2,
+        "0"
+      )}일 | ${new Date().toTimeString().slice(0, 8)}`, // 예약 요청한 날짜, 시간
+      responseDateTime: "",
+      checkDateTime: "",
     });
 
     const userRef = doc(fireStore, "users", resultUserDoc.id);
@@ -46,11 +54,19 @@ export async function accountUser(inputData) {
   } else {
     const userRef = doc(fireStore, "users", userId);
     const resultReservationDoc = await addDoc(collection(fireStore, "reservations"), {
+      username: inputData.username,
+      phoneNumber: inputData.phoneNumber,
       ...inputData.reservation,
       state: "예약 요청중",
       isCancleMessage: "", // 예약 불가 사유
       message: "",
       userId: userId,
+      requestDateTime: `${String(new Date().getMonth() + 1).padStart(2, "0")}월 ${String(new Date().getDate()).padStart(
+        2,
+        "0"
+      )}일 | ${new Date().toTimeString().slice(0, 8)}`, // 예약 요청한 날짜, 시간
+      responseDateTime: "",
+      checkDateTime: "",
     });
 
     const user = await readUser(userId);
