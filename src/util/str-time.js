@@ -2,6 +2,4 @@
 export function dateToLocal(date) {
   //   console.log(date.toLocaleString().slice(0, 11));
   const timeOptions = { hour: "2-digit", minute: "2-digit", second: "2-digit" };
-
-  console.log(date.toLocaleTimeString("en-US", timeOptions));
 }

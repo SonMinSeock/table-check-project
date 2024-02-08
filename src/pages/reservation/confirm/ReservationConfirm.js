@@ -1,8 +1,10 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "../../../components/form/includes/form-style";
 import { IoCheckmark } from "react-icons/io5";
 import DifrentTypeHeader from "../../../components/header/account/DifrentTypeHeader";
+import { doc, updateDoc } from "firebase/firestore";
+import { fireStore } from "../../../database/config";
 
 const Card = styled.section`
   background-color: var(--color-white);
@@ -106,8 +108,37 @@ const TitleH1 = styled.h1`
   line-height: 35px;
 `;
 
-function ReservationConfirm({ state }) {
+const CartContentMap = styled(CardContentContainer)`
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+`;
+
+function ReservationConfirm() {
   const navigate = useNavigate();
+  const {
+    state: {
+      reservation: {
+        id,
+        state,
+        adultNumber,
+        childNumber,
+        mapUrl,
+        firstDate,
+        firstTime,
+        secondDate,
+        secondTime,
+        thirdDate,
+        thirdTime,
+        isCancleMessage,
+        isFirstDateTimeConfirm,
+        isSecondDateTimeConfirm,
+        isThirdDateTimeConfirm,
+        checkDateTime,
+        reservationNumber,
+      },
+    },
+  } = useLocation();
   return (
     <>
       <DifrentTypeHeader />
@@ -120,62 +151,93 @@ function ReservationConfirm({ state }) {
       </Paragraph>
       <Card>
         <CardHeader>
-          <Title>첫 번째 예약</Title>
+          <Title>{reservationNumber}</Title>
         </CardHeader>
-        <CardContentContainer>
+        <CartContentMap>
           <CardContentLabel>구글 지도 음식점 링크 공유</CardContentLabel>
           <Link to="https://www.google.com/maps" target="_blank">
-            https://www.google.com/maps
+            {mapUrl}
           </Link>
-        </CardContentContainer>
+        </CartContentMap>
         <CardContentFlex>
           <Wrapper>
             <CardContentLabel>성인</CardContentLabel>
-            <CardContentText>0</CardContentText>
+            <CardContentText>{adultNumber}</CardContentText>
           </Wrapper>
           <Wrapper>
             <CardContentLabel>어린이</CardContentLabel>
-            <CardContentText>0</CardContentText>
+            <CardContentText>{childNumber}</CardContentText>
           </Wrapper>
         </CardContentFlex>
         <hr />
-        <CardContentFlex className="confirmed">
-          <Wrapper>
-            <CardContentLabel>날짜</CardContentLabel>
-            <CardContentText>0</CardContentText>
-          </Wrapper>
-          <Wrapper>
-            <CardContentLabel>시간</CardContentLabel>
-            <CardContentText>0</CardContentText>
-          </Wrapper>
-          <CheckConfirm>
-            <IoCheckmark color="white" size={13} />
-          </CheckConfirm>
-        </CardContentFlex>
-        <CardContentFlex>
-          <Wrapper>
-            <CardContentLabel>날짜</CardContentLabel>
-            <CardContentText>0</CardContentText>
-          </Wrapper>
-          <Wrapper>
-            <CardContentLabel>시간</CardContentLabel>
-            <CardContentText>0</CardContentText>
-          </Wrapper>
-        </CardContentFlex>
-        <CardContentFlex>
-          <Wrapper>
-            <CardContentLabel>날짜</CardContentLabel>
-            <CardContentText>0</CardContentText>
-          </Wrapper>
-          <Wrapper>
-            <CardContentLabel>시간</CardContentLabel>
-            <CardContentText>0</CardContentText>
-          </Wrapper>
-        </CardContentFlex>
+
+        {isFirstDateTimeConfirm && (
+          <CardContentFlex className={isFirstDateTimeConfirm ? "confirmed" : null}>
+            <Wrapper>
+              <CardContentLabel>날짜</CardContentLabel>
+              <CardContentText>{firstDate}</CardContentText>
+            </Wrapper>
+            <Wrapper>
+              <CardContentLabel>시간</CardContentLabel>
+              <CardContentText>{firstTime}</CardContentText>
+            </Wrapper>
+            {isFirstDateTimeConfirm && (
+              <CheckConfirm>
+                <IoCheckmark color="white" size={13} />
+              </CheckConfirm>
+            )}
+          </CardContentFlex>
+        )}
+        {isSecondDateTimeConfirm && (
+          <CardContentFlex className={isSecondDateTimeConfirm ? "confirmed" : null}>
+            <Wrapper>
+              <CardContentLabel>날짜</CardContentLabel>
+              <CardContentText>{secondDate}</CardContentText>
+            </Wrapper>
+            <Wrapper>
+              <CardContentLabel>시간</CardContentLabel>
+              <CardContentText>{secondTime}</CardContentText>
+            </Wrapper>
+            {isSecondDateTimeConfirm && (
+              <CheckConfirm>
+                <IoCheckmark color="white" size={13} />
+              </CheckConfirm>
+            )}
+          </CardContentFlex>
+        )}
+        {isThirdDateTimeConfirm && (
+          <CardContentFlex className={isThirdDateTimeConfirm ? "confirmed" : null}>
+            <Wrapper>
+              <CardContentLabel>날짜</CardContentLabel>
+              <CardContentText>{thirdDate}</CardContentText>
+            </Wrapper>
+            <Wrapper>
+              <CardContentLabel>시간</CardContentLabel>
+              <CardContentText>{thirdTime}</CardContentText>
+            </Wrapper>
+            {isThirdDateTimeConfirm && (
+              <CheckConfirm>
+                <IoCheckmark color="white" size={13} />
+              </CheckConfirm>
+            )}
+          </CardContentFlex>
+        )}
       </Card>
 
       <ButtonWrapper>
-        <Button onClick={() => navigate("final", { state: { message: "예약 확정" } })}>00/00 00:00 확정하기</Button>
+        <Button
+          onClick={async () => {
+            const reservationRef = doc(fireStore, "reservations", id);
+
+            await updateDoc(reservationRef, {
+              state: "예약 확정",
+              responseDateTime: `${String(new Date().getMonth() + 1).padStart(2, "0")}월 ${String(
+                new Date().getDate()
+              ).padStart(2, "0")}일 | ${new Date().toTimeString().slice(0, 8)}`,
+            });
+            navigate("final", { state: { message: "예약 확정" } });
+          }}
+        >{`${checkDateTime} 확정하기`}</Button>
       </ButtonWrapper>
     </>
   );

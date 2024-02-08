@@ -49,8 +49,6 @@ function ReservationConfirmFinal() {
 
   const userId = useRecoilValue(userIdAtom);
 
-  console.log(userId);
-
   if (message === "예약 확정") {
     return (
       <>
@@ -64,7 +62,7 @@ function ReservationConfirmFinal() {
           </Paragraph>
         </Main>
         <Footer>
-          <Button>확인</Button>
+          <Button onClick={() => navigate("/user/reservation")}>확인</Button>
         </Footer>
       </>
     );

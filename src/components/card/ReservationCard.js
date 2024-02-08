@@ -2,6 +2,8 @@ import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "../form/includes/form-style";
 import { IoCheckmark } from "react-icons/io5";
+import { collection, updateDoc, query, doc } from "firebase/firestore";
+import { fireStore } from "../../database/config";
 
 const Card = styled.section`
   background-color: var(--color-white);
@@ -122,6 +124,7 @@ const CancleParagraph = styled(Paragraph)`
 
 function ReservationCard({
   reservation: {
+    id,
     state,
     adultNumber,
     childNumber,
@@ -137,6 +140,7 @@ function ReservationCard({
     isSecondDateTimeConfirm,
     isThirdDateTimeConfirm,
     checkDateTime,
+    reservationNumber,
   },
 }) {
   const navigate = useNavigate();
@@ -149,12 +153,13 @@ function ReservationCard({
 
     return "";
   };
+
   return (
     <>
       {state === "예약 요청중" ? <Paragraph>예약 가능 여부를 확인 후 안내 문자를 보내드릴게요</Paragraph> : null}
       <Card className={showBorderColor()}>
         <CardHeader>
-          <Title>첫 번째 예약</Title>
+          <Title>{reservationNumber}</Title>
           {state === "예약 불가" || state === "자동 취소" ? (
             <CancleStatusText>{state}</CancleStatusText>
           ) : (
@@ -178,7 +183,7 @@ function ReservationCard({
           </Wrapper>
         </CardContentFlex>
         <hr />
-        {firstDate && firstTime && (
+        {state !== "예약 확정" && firstDate && firstTime && (
           <CardContentFlex className={isFirstDateTimeConfirm ? "confirmed" : null}>
             <Wrapper>
               <CardContentLabel>날짜</CardContentLabel>
@@ -195,7 +200,24 @@ function ReservationCard({
             )}
           </CardContentFlex>
         )}
-        {secondDate && secondTime && (
+        {state === "예약 확정" && isFirstDateTimeConfirm && (
+          <CardContentFlex className={isFirstDateTimeConfirm ? "confirmed" : null}>
+            <Wrapper>
+              <CardContentLabel>날짜</CardContentLabel>
+              <CardContentText>{firstDate}</CardContentText>
+            </Wrapper>
+            <Wrapper>
+              <CardContentLabel>시간</CardContentLabel>
+              <CardContentText>{firstTime}</CardContentText>
+            </Wrapper>
+            {isFirstDateTimeConfirm && (
+              <CheckConfirm>
+                <IoCheckmark color="white" size={13} />
+              </CheckConfirm>
+            )}
+          </CardContentFlex>
+        )}
+        {state !== "예약 확정" && secondDate && secondTime && (
           <CardContentFlex className={isSecondDateTimeConfirm ? "confirmed" : null}>
             <Wrapper>
               <CardContentLabel>날짜</CardContentLabel>
@@ -212,7 +234,41 @@ function ReservationCard({
             )}
           </CardContentFlex>
         )}
-        {thirdDate && thirdTime && (
+        {state === "예약 확정" && isSecondDateTimeConfirm && (
+          <CardContentFlex className={isSecondDateTimeConfirm ? "confirmed" : null}>
+            <Wrapper>
+              <CardContentLabel>날짜</CardContentLabel>
+              <CardContentText>{secondDate}</CardContentText>
+            </Wrapper>
+            <Wrapper>
+              <CardContentLabel>시간</CardContentLabel>
+              <CardContentText>{secondTime}</CardContentText>
+            </Wrapper>
+            {isSecondDateTimeConfirm && (
+              <CheckConfirm>
+                <IoCheckmark color="white" size={13} />
+              </CheckConfirm>
+            )}
+          </CardContentFlex>
+        )}
+        {state !== "예약 확정" && thirdDate && thirdTime && (
+          <CardContentFlex className={isThirdDateTimeConfirm ? "confirmed" : null}>
+            <Wrapper>
+              <CardContentLabel>날짜</CardContentLabel>
+              <CardContentText>{thirdDate}</CardContentText>
+            </Wrapper>
+            <Wrapper>
+              <CardContentLabel>시간</CardContentLabel>
+              <CardContentText>{thirdTime}</CardContentText>
+            </Wrapper>
+            {isThirdDateTimeConfirm && (
+              <CheckConfirm>
+                <IoCheckmark color="white" size={13} />
+              </CheckConfirm>
+            )}
+          </CardContentFlex>
+        )}
+        {state === "예약 확정" && isThirdDateTimeConfirm && (
           <CardContentFlex className={isThirdDateTimeConfirm ? "confirmed" : null}>
             <Wrapper>
               <CardContentLabel>날짜</CardContentLabel>
@@ -230,13 +286,37 @@ function ReservationCard({
           </CardContentFlex>
         )}
         {state === "확정 대기중" ? (
-          <Button onClick={() => navigate("/user/reservation/confirm/check")}>{`${checkDateTime} 확정하기`}</Button>
+          <Button
+            onClick={() => {
+              navigate("/user/reservation/confirm/check", {
+                state: {
+                  reservation: {
+                    id,
+                    state,
+                    adultNumber,
+                    childNumber,
+                    mapUrl,
+                    firstDate,
+                    firstTime,
+                    secondDate,
+                    secondTime,
+                    thirdDate,
+                    thirdTime,
+                    isCancleMessage,
+                    isFirstDateTimeConfirm,
+                    isSecondDateTimeConfirm,
+                    isThirdDateTimeConfirm,
+                    checkDateTime,
+                    reservationNumber,
+                  },
+                },
+              });
+            }}
+          >{`${checkDateTime} 확정하기`}</Button>
         ) : null}
         {state === "예약 확정" ? <Button>예약 일본어 보여주기</Button> : null}
       </Card>
-      {state === "예약 불가" ? (
-        <CancleParagraph>모든 날짜에 예약이 이미 완료되어 예약이 불가합니다.</CancleParagraph>
-      ) : null}
+      {state === "예약 불가" ? <CancleParagraph>{isCancleMessage}</CancleParagraph> : null}
       {state === "자동 취소" ? (
         <CancleParagraph>예약 확정이 되지 않아 자동으로 취소 되었습니다.</CancleParagraph>
       ) : null}

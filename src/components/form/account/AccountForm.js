@@ -6,7 +6,6 @@ import { useRecoilState, useSetRecoilState } from "recoil";
 import { reservationAtom, reservationsAtom } from "../../../recoil/reservation/reservation";
 import { userAtom, userIdAtom } from "../../../recoil/user/user";
 import { accountUser } from "../../../model/user";
-import { readReservations } from "../../../model/reservation";
 
 const Form = styled.form`
   height: 100%;
@@ -68,15 +67,15 @@ function AccountForm() {
   const [getReservation, setReservation] = useRecoilState(reservationAtom);
   const setReservations = useSetRecoilState(reservationsAtom);
   const setUserId = useSetRecoilState(userIdAtom);
-
+  const setUser = useSetRecoilState(userAtom);
   const navigate = useNavigate();
 
-  console.log(getReservation);
   const onValid = async (data) => {
-    console.log(data);
-
     const userId = await accountUser({ ...data, reservation: getReservation });
 
+    setUser({
+      ...data,
+    });
     setUserId(userId);
 
     navigate("/user/reservation/confirm/check/final", { state: { message: "예약 확인" } });

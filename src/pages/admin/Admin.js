@@ -3,8 +3,9 @@ import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { userAtom } from "../../recoil/user/user";
 import { Link, useNavigate } from "react-router-dom";
-import { collection, doc, onSnapshot, query, updateDoc } from "firebase/firestore";
+import { collection, doc, onSnapshot, orderBy, query, updateDoc } from "firebase/firestore";
 import { fireStore } from "../../database/config";
+import { useForm } from "react-hook-form";
 
 const Header = styled.header`
   display: flex;
@@ -111,15 +112,17 @@ const Textarea = styled.textarea`
 `;
 
 function Admin() {
-  const [toggle, setToggle] = useState(false);
+  // 예약 카드별 토글 상태를 관리하는 배열
+  const [toggleStates, setToggleStates] = useState([]);
   const [user, setUser] = useRecoilState(userAtom);
   const [reservations, setReservations] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { register, handleSubmit, reset } = useForm();
 
   const navigate = useNavigate();
 
   const getReservations = () => {
-    const q = query(collection(fireStore, "reservations"));
+    const q = query(collection(fireStore, "reservations"), orderBy("createdAt", "asc"));
 
     onSnapshot(q, (snapshot) => {
       const docs = snapshot.docs.map((doc) => {
@@ -130,9 +133,10 @@ function Admin() {
       });
 
       setReservations(docs);
+      // 예약 카드별로 토글 상태 배열 초기화
+      setToggleStates(docs.map(() => false));
     });
   };
-
   useEffect(() => {
     if (!user) {
       return navigate("/admin/login");
@@ -144,7 +148,13 @@ function Admin() {
     setLoading(false);
   }, []);
 
-  const onToggle = () => setToggle((prev) => !prev);
+  const onToggle = (index) => {
+    setToggleStates((prevStates) => {
+      const newStates = [...prevStates];
+      newStates[index] = !newStates[index]; // 해당 인덱스의 토글 상태를 반전
+      return newStates;
+    });
+  };
 
   const logout = () => {
     setUser(null);
@@ -180,16 +190,63 @@ function Admin() {
     }
   };
 
+  const updateCancleMessageState = async (id, message) => {
+    const reservationRef = doc(fireStore, "reservations", id);
+    await updateDoc(reservationRef, {
+      isCancleMessage: message,
+      state: "예약 불가",
+    });
+    reset();
+  };
+
+  const updateMessageState = async (id, message) => {
+    const reservationRef = doc(fireStore, "reservations", id);
+    await updateDoc(reservationRef, {
+      message: message,
+    });
+    reset();
+  };
+
+  const onCancleMessageValid = async (id, data, index) => {
+    await updateCancleMessageState(id, data[`cancleMessage-${index}`]);
+    alert("예약 불가 사용자에게 응답했습니다.");
+  };
+
+  const onMessageValid = async (id, data, index) => {
+    await updateMessageState(id, data[`message-${index}`]);
+
+    alert("해당 예약에 대해 메시지 작성 완료 했습니다.");
+  };
+
+  // 예약 상태 표기
+  const showReservationState = (reservation) => {
+    if (reservation.state === "예약 요청중" || reservation.state === "예약 불가" || reservation.state === "자동 취소") {
+      return `현재 상태(${reservation.state})`;
+    } else {
+      if (reservation.isFirstDateTimeConfirm) {
+        return `현재 상태(1차 ${reservation.state})`;
+      } else if (reservation.isSecondDateTimeConfirm) {
+        return `현재 상태(2차 ${reservation.state})`;
+      } else if (reservation.isThirdDateTimeConfirm) {
+        return `현재 상태(3차 ${reservation.state})`;
+      }
+    }
+  };
+
   const showCards = () => {
     const renderCards = reservations.map((reservation, index) => (
       <Card key={reservation.id}>
-        <H2>{`${index + 1}. ${reservation.username}(${reservation.phoneNumber} | 첫 번째 예약)`}</H2>
+        <H2>{`${index + 1}. ${reservation.username}(${reservation.phoneNumber} | ${
+          reservation.reservationNumber
+        })`}</H2>
         <Row>
           <Text>예약 요청한 날짜 시간</Text>
           <span>{`${reservation.requestDateTime}`}</span>
         </Row>
         <Row>
-          <span className="state-text">{`현재 상태(${reservation.state})`}</span>
+          <span className={reservation.state !== "예약 불가" ? "state-text" : "state-text-cancle"}>
+            {showReservationState(reservation)}
+          </span>
           {/* <span className="state-text">현재 상태(확정 대기중)</span> */}
           {/* <span className="state-text">현재 상태(예약 확정)</span> */}
           {/* <span className="state-text-cancle">현재 상태(예약 불가)</span> */}
@@ -256,46 +313,50 @@ function Admin() {
         </Row>
         <hr />
         <Row>
-          <Button className="btn-cancle" onClick={onToggle}>
+          <Button className="btn-cancle" onClick={() => onToggle(index)}>
             예약 불가
           </Button>
-          <Form>
-            {toggle ? (
+
+          <Form onSubmit={handleSubmit((data) => onCancleMessageValid(reservation.id, data, index))}>
+            {toggleStates[index] && ( // 해당 카드의 토글 상태에 따라 보여주기
               <>
                 <div>
-                  <Textarea rows={6}></Textarea>
+                  <Textarea {...register(`cancleMessage-${index}`)} rows={6}></Textarea>
                 </div>
                 <div>
                   <Button className="btn-save">저장</Button>
                 </div>
               </>
-            ) : null}
+            )}
           </Form>
         </Row>
         <hr />
         <Row>
           <Text>메시지 작성</Text>
-          <Form>
+          <Form onSubmit={handleSubmit((data) => onMessageValid(reservation.id, data, index))}>
             <div>
-              <Textarea rows={6}></Textarea>
+              <Textarea {...register(`message-${index}`)} rows={6} defaultValue={reservation.message}></Textarea>
             </div>
             <div>
               <Button className="btn-save">저장</Button>
             </div>
           </Form>
         </Row>
-        <hr />
-        <Row>
-          <Text>예약 확정 시간</Text>
-          <span>2024.02.04 | 14:00</span>
-        </Row>
+        {reservation.responseDateTime && (
+          <>
+            <hr />
+            <Row>
+              <Text>예약 확정 시간</Text>
+              <span>{reservation.responseDateTime}</span>
+            </Row>
+          </>
+        )}
       </Card>
     ));
 
     return renderCards;
   };
 
-  console.log(reservations);
   return (
     <>
       <Header>

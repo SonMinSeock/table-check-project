@@ -8,7 +8,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { userIdAtom } from "../../recoil/user/user";
 import { reservationsAtom } from "../../recoil/reservation/reservation";
 import { readReservations } from "../../model/reservation";
-import { collection, onSnapshot, query, where } from "firebase/firestore";
+import { collection, onSnapshot, orderBy, query, where } from "firebase/firestore";
 import { fireStore } from "../../database/config";
 
 const Main = styled.main`
@@ -46,7 +46,11 @@ function Reservation() {
 
   useEffect(() => {
     if (getUserId) {
-      const q = query(collection(fireStore, "reservations"), where("userId", "==", getUserId));
+      const q = query(
+        collection(fireStore, "reservations"),
+        where("userId", "==", getUserId),
+        orderBy("createdAt", "asc")
+      );
 
       const unsubscribe = onSnapshot(q, (snapshot) => {
         const docs = snapshot.docs.map((doc) => ({
@@ -71,7 +75,6 @@ function Reservation() {
       return <LoadingTitle>불러오고 있습니다.</LoadingTitle>;
     } else {
       if (reservations.length !== 0) {
-        console.log(reservations);
         return reservations.map((reservation) => <ReservationCard key={reservation.id} reservation={reservation} />);
       } else {
         return <EmptyTitle>예약 내역이 없습니다.</EmptyTitle>;
@@ -86,7 +89,7 @@ function Reservation() {
         {showReservations()}
       </Main>
       <Footer>
-        <Button onClick={() => navigate("/user/reservation/plus")}>추가로 예약하기</Button>
+        <Button onClick={() => navigate("/user/reservation/plus", { state: { reservations } })}>추가로 예약하기</Button>
       </Footer>
     </>
   );

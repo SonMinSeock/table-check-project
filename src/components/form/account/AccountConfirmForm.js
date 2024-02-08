@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { fireStore } from "../../../database/config";
 import { collection, doc, onSnapshot, query, where } from "firebase/firestore";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { userIdAtom } from "../../../recoil/user/user";
+import { userAtom, userIdAtom } from "../../../recoil/user/user";
 import { reservationsAtom } from "../../../recoil/reservation/reservation";
 
 const Form = styled.form`
@@ -56,12 +56,11 @@ function AccountConfirmForm() {
 
   const navigate = useNavigate();
 
+  const setUser = useSetRecoilState(userAtom);
   const setUserId = useSetRecoilState(userIdAtom);
   const setReservations = useSetRecoilState(reservationsAtom);
 
   const onValid = (data) => {
-    console.log(data);
-
     const q = query(collection(fireStore, "users"), where("phoneNumber", "==", data.phoneNumber));
 
     onSnapshot(q, (snapshot) => {
@@ -71,6 +70,7 @@ function AccountConfirmForm() {
       }));
 
       if (docs.length !== 0) {
+        setUser({ ...docs[0] });
         setUserId(docs[0].id);
       } else {
         setUserId(null);

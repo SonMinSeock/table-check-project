@@ -1,5 +1,24 @@
-import { collection, query, getDocs, addDoc, updateDoc, doc } from "firebase/firestore";
+import { collection, query, getDocs, addDoc, updateDoc, doc, where } from "firebase/firestore";
 import { fireStore } from "../database/config";
+import { reservationNumber } from "../util/reservation-number";
+
+function getReservationNumber(reservations) {
+  const reservationsLength = reservations.length;
+
+  if (reservationsLength === 0) {
+    return reservationNumber[reservationsLength];
+  } else if (reservationsLength === 1) {
+    return reservationNumber[1];
+  } else if (reservationsLength === 2) {
+    return reservationNumber[2];
+  } else if (reservationsLength === 3) {
+    return reservationNumber[3];
+  } else if (reservationsLength === 4) {
+    return reservationNumber[4];
+  } else {
+    return reservationNumber[5];
+  }
+}
 
 export async function accountUser(inputData) {
   const q = query(collection(fireStore, "users"));
@@ -24,7 +43,6 @@ export async function accountUser(inputData) {
       createdAt: new Date().toLocaleString(),
       reservationIdList: [],
     });
-    console.log("유저 생성 결과 : ", resultUserDoc);
 
     const resultReservationDoc = await addDoc(collection(fireStore, "reservations"), {
       username: inputData.username,
@@ -40,6 +58,10 @@ export async function accountUser(inputData) {
       )}일 | ${new Date().toTimeString().slice(0, 8)}`, // 예약 요청한 날짜, 시간
       responseDateTime: "",
       checkDateTime: "",
+      reservationNumber: reservationNumber[0],
+      pay: "무료",
+      createdAt: Date.now(),
+      // isPay: false,
     });
 
     const userRef = doc(fireStore, "users", resultUserDoc.id);
@@ -49,10 +71,12 @@ export async function accountUser(inputData) {
     });
 
     userId = resultUserDoc.id;
-
-    console.log("예약 생성 결과 : ", resultReservationDoc);
   } else {
     const userRef = doc(fireStore, "users", userId);
+    const reservationQuery = query(collection(fireStore, "reservations"), where("userId", "==", userId));
+
+    const reservations = (await getDocs(reservationQuery)).docs.map((doc) => ({ ...doc.data() }));
+
     const resultReservationDoc = await addDoc(collection(fireStore, "reservations"), {
       username: inputData.username,
       phoneNumber: inputData.phoneNumber,
@@ -67,6 +91,10 @@ export async function accountUser(inputData) {
       )}일 | ${new Date().toTimeString().slice(0, 8)}`, // 예약 요청한 날짜, 시간
       responseDateTime: "",
       checkDateTime: "",
+      reservationNumber: getReservationNumber(reservations),
+      pay: "유료",
+      createdAt: Date.now(),
+      // isPay: false,
     });
 
     const user = await readUser(userId);
@@ -74,7 +102,6 @@ export async function accountUser(inputData) {
     await updateDoc(userRef, {
       reservationIdList: [...user.reservationIdList, resultReservationDoc.id],
     });
-    console.log("예약 생성 결과 : ", resultReservationDoc);
   }
 
   return userId;

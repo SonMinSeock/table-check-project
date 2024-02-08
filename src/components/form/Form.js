@@ -7,6 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { reservationAtom } from "../../recoil/reservation/reservation";
 import { dateAtom } from "../../recoil/date/date";
+import { userAtom, userIdAtom } from "../../recoil/user/user";
+import { accountUser } from "../../model/user";
 
 const Card = styled.form`
   background-color: var(--color-white);
@@ -88,20 +90,33 @@ const Select = styled.select`
   color: #000000;
   font: inherit;
 `;
+const Paragraph = styled.p`
+  color: var(--color-gray-800);
+  font-size: var(--font-size-3);
+  text-align: center;
+  margin-bottom: 0.3rem;
+  line-height: 15px;
+  font-weight: bold;
+  color: #5e5e5e;
+`;
 
-function Form({ state = "무료 예약" }) {
+function Form({ state = "무료 예약", reservationNumber }) {
   const {
     control,
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
   const [getReservation, setReservation] = useRecoilState(reservationAtom);
-  const getDateTime = useRecoilValue(dateAtom);
+  const [getDateTime, setDateTime] = useRecoilState(dateAtom);
+
+  const getUser = useRecoilValue(userAtom);
+  const getUserId = useRecoilValue(userIdAtom);
 
   const navigate = useNavigate();
 
-  const onValid = (data) => {
+  const onValid = async (data) => {
     setReservation({
       adultNumber: data.adultNumber,
       childNumber: data.childNumber,
@@ -112,14 +127,39 @@ function Form({ state = "무료 예약" }) {
       isThirdDateTimeConfirm: false,
     });
 
-    navigate("/account", { state: { ...data } });
-  };
+    setDateTime({
+      firstDate: null,
+      secondDate: null,
+      thirdDate: null,
+      firstTime: null,
+      secondTime: null,
+      thirdTime: null,
+    });
 
-  console.log(getReservation);
+    if (getUserId) {
+      await accountUser({
+        ...getUser,
+        reservation: {
+          adultNumber: data.adultNumber,
+          childNumber: data.childNumber,
+          mapUrl: data.mapUrl,
+          ...getDateTime,
+          isFirstDateTimeConfirm: false, // 날짜 시간, 확정
+          isSecondDateTimeConfirm: false,
+          isThirdDateTimeConfirm: false,
+        },
+      });
+      reset();
+      navigate("/user/reservation/confirm/check/final", { state: { message: "예약 확인" } });
+    } else {
+      reset();
+      navigate("/account", { state: { ...data } });
+    }
+  };
 
   return (
     <Card onSubmit={handleSubmit(onValid)}>
-      {state === "무료 예약" ? <Title>첫 번째 예약</Title> : <Title>두 번째 예약</Title>}
+      {state === "무료 예약" ? <Title>첫 번째 예약</Title> : <Title>{reservationNumber}</Title>}
       <InputMapSection>
         <Label htmlFor="map-link">
           구글 지도 음식점 링크 공유<span className="highlight-red">(필수)</span>
@@ -174,7 +214,18 @@ function Form({ state = "무료 예약" }) {
         <Calender index={2} control={control} />
         <TimeSelector index={2} control={control} />
       </DropMenuSection>
-      {state === "무료 예약" ? <Button>무료 예약 확인하기</Button> : null}
+      {state === "무료 예약" ? (
+        <Button>무료 예약 확인하기</Button>
+      ) : (
+        <>
+          <Paragraph>
+            3,000원의 수수료가 발생해요
+            <br />
+            예약 완료가 되면 수수료가 부가되니 안심하세요
+          </Paragraph>
+          <Button>예약 확인하기</Button>
+        </>
+      )}
     </Card>
   );
 }
