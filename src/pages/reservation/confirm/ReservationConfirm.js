@@ -155,7 +155,7 @@ function ReservationConfirm() {
         </CardHeader>
         <CartContentMap>
           <CardContentLabel>구글 지도 음식점 링크 공유</CardContentLabel>
-          <Link to="https://www.google.com/maps" target="_blank">
+          <Link to={mapUrl} target="_blank">
             {mapUrl}
           </Link>
         </CartContentMap>
