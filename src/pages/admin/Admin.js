@@ -58,6 +58,13 @@ const Row = styled.section`
   align-items: center;
   margin-bottom: var(--space-3);
   font-size: 0.78rem;
+  &.adult-child-container {
+    flex-direction: row;
+    span:first-child,
+    span:nth-child(2) {
+      margin-right: 0.3rem;
+    }
+  }
   & .state-text,
   & .text-blue {
     color: var(--color-primary);
@@ -117,7 +124,7 @@ function Admin() {
   const [user, setUser] = useRecoilState(userAtom);
   const [reservations, setReservations] = useState([]);
   const [loading, setLoading] = useState(true);
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const navigate = useNavigate();
 
@@ -195,8 +202,10 @@ function Admin() {
     await updateDoc(reservationRef, {
       isCancleMessage: message,
       state: "예약 불가",
+      cancleResponseDateTime: `${String(new Date().getMonth() + 1).padStart(2, "0")}월 ${String(
+        new Date().getDate()
+      ).padStart(2, "0")}일 | ${new Date().toTimeString().slice(0, 8)}`,
     });
-    reset();
   };
 
   const updateMessageState = async (id, message) => {
@@ -204,7 +213,14 @@ function Admin() {
     await updateDoc(reservationRef, {
       message: message,
     });
-    reset();
+  };
+
+  // 예약자 일본어 필드 업데이트 해주는 함수.
+  const updateReservationUsernameJPN = async (id, reservationUsernameJPN) => {
+    const reservationRef = doc(fireStore, "reservations", id);
+    await updateDoc(reservationRef, {
+      reservationUsernameJPN: reservationUsernameJPN,
+    });
   };
 
   const onCancleMessageValid = async (id, data, index) => {
@@ -216,6 +232,12 @@ function Admin() {
     await updateMessageState(id, data[`message-${index}`]);
 
     alert("해당 예약에 대해 메시지 작성 완료 했습니다.");
+  };
+
+  // 예약자 일본어 폼 제출 핸들러.
+  const onUsernameTurnJPNValid = async (id, data, index) => {
+    await updateReservationUsernameJPN(id, data[`reservationUsernameJPN-${index}`]);
+    alert("일본어 예약자 작성 완료 했습니다.");
   };
 
   // 예약 상태 표기
@@ -247,14 +269,12 @@ function Admin() {
           <span className={reservation.state !== "예약 불가" ? "state-text" : "state-text-cancle"}>
             {showReservationState(reservation)}
           </span>
-          {/* <span className="state-text">현재 상태(확정 대기중)</span> */}
-          {/* <span className="state-text">현재 상태(예약 확정)</span> */}
-          {/* <span className="state-text-cancle">현재 상태(예약 불가)</span> */}
           {/* <span className="state-text-cancle">현재 상태(자동 취소)</span> */}
         </Row>
-        <Row>
+        <Row className="adult-child-container">
           <Text>{`성인(${reservation.adultNumber}명)`}</Text>
-          <Text>{`어린이(${reservation.childNumber}명)`}</Text>
+          <Text>|</Text>
+          <Text>{` 어린이(${reservation.childNumber}명)`}</Text>
         </Row>
         <hr />
         <Row>
@@ -332,6 +352,22 @@ function Admin() {
         </Row>
         <hr />
         <Row>
+          <Text>일본어 예약자 작성</Text>
+          <Form onSubmit={handleSubmit((data) => onUsernameTurnJPNValid(reservation.id, data, index))}>
+            <div>
+              <Textarea
+                {...register(`reservationUsernameJPN-${index}`)}
+                rows={6}
+                defaultValue={reservation.reservationUsernameJPN}
+              ></Textarea>
+            </div>
+            <div>
+              <Button className="btn-save">저장</Button>
+            </div>
+          </Form>
+        </Row>
+        <hr />
+        <Row>
           <Text>메시지 작성</Text>
           <Form onSubmit={handleSubmit((data) => onMessageValid(reservation.id, data, index))}>
             <div>
@@ -346,8 +382,17 @@ function Admin() {
           <>
             <hr />
             <Row>
-              <Text>예약 확정 시간</Text>
-              <span>{reservation.responseDateTime}</span>
+              <Text>예약 확정 응답 시간</Text>
+              <span className="text-blue">{reservation.responseDateTime}</span>
+            </Row>
+          </>
+        )}
+        {reservation.cancleResponseDateTime && (
+          <>
+            <hr />
+            <Row>
+              <Text>예약 불가 응답 시간</Text>
+              <span className="state-text-cancle">{reservation.cancleResponseDateTime}</span>
             </Row>
           </>
         )}

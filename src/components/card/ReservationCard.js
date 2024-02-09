@@ -141,6 +141,7 @@ function ReservationCard({
     isThirdDateTimeConfirm,
     checkDateTime,
     reservationNumber,
+    reservationUsernameJPN,
   },
 }) {
   const navigate = useNavigate();
@@ -314,7 +315,15 @@ function ReservationCard({
             }}
           >{`${checkDateTime} 확정하기`}</Button>
         ) : null}
-        {state === "예약 확정" ? <Button>예약 일본어 보여주기</Button> : null}
+        {state === "예약 확정" ? (
+          <Button
+            onClick={() =>
+              navigate("/reservation/confirm/jpn", { state: { reservationUsernameJPN: reservationUsernameJPN } })
+            }
+          >
+            예약 일본어 보여주기
+          </Button>
+        ) : null}
       </Card>
       {state === "예약 불가" ? <CancleParagraph>{isCancleMessage}</CancleParagraph> : null}
       {state === "자동 취소" ? (

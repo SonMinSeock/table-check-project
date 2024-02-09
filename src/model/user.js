@@ -56,11 +56,13 @@ export async function accountUser(inputData) {
         2,
         "0"
       )}일 | ${new Date().toTimeString().slice(0, 8)}`, // 예약 요청한 날짜, 시간
-      responseDateTime: "",
-      checkDateTime: "",
+      responseDateTime: "", // 예약 확정 응답 시간
+      cancleResponseDateTime: "", // 예약 불가능 응답 시간 또는 예약 자동 취소 응답 시간
+      checkDateTime: "", // 예약 가능한 시간
       reservationNumber: reservationNumber[0],
       pay: "무료",
       createdAt: Date.now(),
+      reservationUsernameJPN: "", // 예약자 일본어
       // isPay: false,
     });
 
@@ -94,6 +96,7 @@ export async function accountUser(inputData) {
       reservationNumber: getReservationNumber(reservations),
       pay: "유료",
       createdAt: Date.now(),
+      reservationUsernameJPN: "", // 예약자 일본어
       // isPay: false,
     });
 

@@ -17,6 +17,8 @@ import ReservationPlusLayout from "../components/layout/reservation/ReservationP
 import Admin from "../pages/admin/Admin";
 import AdminLayout from "../components/layout/admin/AdminLayout";
 import AdminLogin from "../pages/admin/login/AdminLogin";
+import ReservationConfirmJPNLayout from "../components/layout/reservation/ReservationConfirmJPNLayout";
+import ReservationConfirmJPN from "../pages/reservation/confirm/jpn/ReservationConfirmJPN";
 
 function Router() {
   const routes = [
@@ -84,6 +86,17 @@ function Router() {
             {
               path: "final",
               element: <ReservationConfirmFinal />,
+            },
+          ],
+        },
+        // 일본어 예약자 확인
+        {
+          path: "/reservation/confirm/jpn",
+          element: <ReservationConfirmJPNLayout />,
+          children: [
+            {
+              index: true,
+              element: <ReservationConfirmJPN />,
             },
           ],
         },
