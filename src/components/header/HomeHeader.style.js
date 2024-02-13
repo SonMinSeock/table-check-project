@@ -6,8 +6,8 @@ export const Header = styled.header`
     justify-content: space-between;
     align-items: center;
     #logo-title {
-      font-size: var(--font-size-6);
-      font-weight: bold;
+      font-size: var(--font-size-7);
+      font-family: "Nanum Brush Script", cursive;
     }
     padding: var(--space-4) var(--space-4) var(--space-2) var(--space-4);
     margin-bottom: 1rem;

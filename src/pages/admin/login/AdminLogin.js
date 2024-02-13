@@ -15,8 +15,8 @@ const Header = styled.header`
 `;
 
 const H1 = styled.h1`
-  font-size: var(--font-size-6);
-  font-weight: bold;
+  font-size: var(--font-size-7);
+  font-family: "Nanum Brush Script", cursive;
 `;
 
 const Form = styled.form`

@@ -19,7 +19,7 @@ const Main = styled.main`
 `;
 
 const Nav = styled.nav`
-  width: 30%;
+  width: 35%;
   ul li {
     cursor: pointer;
     text-align: end;
@@ -27,10 +27,10 @@ const Nav = styled.nav`
 `;
 
 const H1 = styled.h1`
-  font-size: var(--font-size-7);
-  font-weight: bold;
   width: 100%;
   text-align: end;
+  font-size: var(--font-size-7);
+  font-family: "Nanum Brush Script", cursive;
 `;
 
 const H2 = styled.h2`
