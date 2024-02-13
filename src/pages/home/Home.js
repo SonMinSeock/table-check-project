@@ -5,7 +5,6 @@ import Form from "../../components/form/Form";
 
 const Title = styled.h1`
   color: var(--color-white);
-  /* font-size: var(--font-size-7); */
   font-size: 32px;
   padding: var(--space-6) var(--space-8);
   font-weight: bold;

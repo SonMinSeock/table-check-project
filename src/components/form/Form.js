@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import Calender from "../calender/Calender";
-import TimeSelector from "../time-selector/TimeSelector";
 import { useForm } from "react-hook-form";
 import { Button } from "./includes/form-style";
 import { useNavigate } from "react-router-dom";
@@ -119,7 +118,6 @@ function Form({ state = "무료 예약", reservationNumber }) {
   const navigate = useNavigate();
 
   const onValid = async (data) => {
-    console.log(data);
     if (data.firstTime === "선택") {
       return alert("1차 예약 시간 선택하지 않았습니다!");
     }
@@ -148,9 +146,6 @@ function Form({ state = "무료 예약", reservationNumber }) {
       firstDate: null,
       secondDate: null,
       thirdDate: null,
-      // firstTime: null,
-      // secondTime: null,
-      // thirdTime: null,
     });
 
     if (getUserId) {
@@ -259,7 +254,6 @@ function Form({ state = "무료 예약", reservationNumber }) {
             <option value="그외">그외</option>
           </Select>
         </div>
-        {/* <TimeSelector index={0} control={control} /> */}
       </DropMenuSection>
       {/* 두 번째 날짜와 시간 */}
       <DropMenuSection>
@@ -296,7 +290,6 @@ function Form({ state = "무료 예약", reservationNumber }) {
             <option value="그외">그외</option>
           </Select>
         </div>
-        {/* <TimeSelector index={1} control={control} /> */}
       </DropMenuSection>
       {/* 세 번째 날짜와 시간 */}
       <DropMenuSection>
@@ -333,7 +326,6 @@ function Form({ state = "무료 예약", reservationNumber }) {
             <option value="그외">그외</option>
           </Select>
         </div>
-        {/* <TimeSelector index={2} control={control} /> */}
       </DropMenuSection>
       {state === "무료 예약" ? (
         <Button>무료 예약 요청</Button>

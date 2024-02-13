@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { userIdAtom } from "../../recoil/user/user";
 import { reservationsAtom } from "../../recoil/reservation/reservation";
-import { readReservations } from "../../model/reservation";
 import { collection, onSnapshot, orderBy, query, where } from "firebase/firestore";
 import { fireStore } from "../../database/config";
 

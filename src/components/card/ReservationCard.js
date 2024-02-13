@@ -2,8 +2,6 @@ import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "../form/includes/form-style";
 import { IoCheckmark } from "react-icons/io5";
-import { collection, updateDoc, query, doc } from "firebase/firestore";
-import { fireStore } from "../../database/config";
 
 const Card = styled.section`
   background-color: var(--color-white);
