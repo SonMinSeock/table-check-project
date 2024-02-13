@@ -7,17 +7,19 @@ import { useRecoilValue } from "recoil";
 import { userIdAtom } from "../../../recoil/user/user";
 
 const Title = styled.h1`
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   font-weight: bold;
   text-align: center;
+  line-height: 30px;
 `;
 const Paragraph = styled.p`
   color: #757880;
   margin: 0 var(--space-4);
   font-size: var(--font-size-3);
-  margin-top: var(--space-4);
+  margin-top: var(--space-6);
   text-align: center;
   font-weight: bold;
+  line-height: 20px;
 `;
 
 const Main = styled.main`
@@ -28,8 +30,9 @@ const Main = styled.main`
   height: 80%;
   padding: var(--space-4);
   img {
-    width: 254px;
+    width: 190px;
     height: auto;
+    margin-bottom: var(--space-8);
   }
 `;
 

@@ -20,13 +20,14 @@ const InputContainer = styled.section`
   display: flex;
   flex-direction: column;
   &:first-of-type input {
-    margin-bottom: var(--space-6);
+    margin-bottom: var(--space-9);
   }
   &:nth-of-type(2) input {
     margin-bottom: var(--space-2);
   }
 `;
 const Label = styled.label`
+  font-weight: 600;
   font-size: var(--font-size-3);
   margin-bottom: var(--space-2);
 `;
@@ -101,7 +102,7 @@ function AccountForm() {
             maxLength="11"
             placeholder="01012345678"
           />
-          <Paragraph>추후 예약 확인 및 서비스 안내에 사용되는 정보에요</Paragraph>
+          <Paragraph>서비스 진행 현황을 문자 메세지로 전송해 드려요</Paragraph>
         </InputContainer>
       </section>
       <section>

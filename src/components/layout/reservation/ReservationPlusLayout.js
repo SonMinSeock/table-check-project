@@ -1,14 +1,17 @@
 import { Link, Outlet } from "react-router-dom";
-import { Header } from "../../header/HomeHeader.style";
+
 import { IoIosArrowBack } from "react-icons/io";
+
+import ReservationHeader from "../../header/reservation/ReservationHeader";
+import { Header } from "../../header/includes/header.style";
 
 function ReservationPlusLayout() {
   return (
     <>
       <Header>
         <section>
-          <Link to="..">
-            <IoIosArrowBack size={20} />
+          <Link to={-1}>
+            <IoIosArrowBack size={24} />
           </Link>
           <Link to="/contact">문의하기</Link>
         </section>

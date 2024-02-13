@@ -5,8 +5,11 @@ import Form from "../../components/form/Form";
 
 const Title = styled.h1`
   color: var(--color-white);
-  font-size: var(--font-size-7);
+  /* font-size: var(--font-size-7); */
+  font-size: 32px;
   padding: var(--space-6) var(--space-8);
+  font-weight: bold;
+  line-height: 40px;
 `;
 
 const Paragraph = styled.p`
@@ -26,7 +29,7 @@ const Footer = styled.footer`
   justify-content: center;
   margin-top: 40px;
   padding: 20px 0;
-  line-height: 23px;
+  line-height: 19px;
   background-color: var(--color-gray-900);
   color: #717171;
   strong {

@@ -11,5 +11,6 @@ export const HomeImg = styled.img`
   width: 100%;
   height: 15rem;
   object-fit: cover;
-  /* filter: sepia(100%); */
+  filter: brightness(0.5);
+  border-radius: var(--border-radius-2);
 `;

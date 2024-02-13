@@ -9,7 +9,9 @@ export const Header = styled.header`
       font-size: var(--font-size-6);
       font-weight: bold;
     }
-    padding: var(--space-4);
+    padding: var(--space-4) var(--space-4) var(--space-2) var(--space-4);
+    margin-bottom: 1rem;
+    /* border-bottom: 1px solid var(--color-gray-700); */
   }
 `;
 

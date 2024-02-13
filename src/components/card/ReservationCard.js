@@ -35,6 +35,7 @@ const CardHeader = styled.section`
 
 const Title = styled.h2`
   font-size: var(--font-size-6);
+  font-weight: 600;
 `;
 
 const StatusText = styled.span`
@@ -45,6 +46,7 @@ const StatusText = styled.span`
   background-color: var(--color-primary);
   padding: var(--space-2) var(--space-5);
   border-radius: var(--border-radius-3);
+  font-weight: 600;
 `;
 
 const CancleStatusText = styled(StatusText)`
@@ -82,6 +84,7 @@ const CardContentLabel = styled.span`
   display: block;
   margin-bottom: var(--space-2);
   font-size: var(--font-size-3);
+  font-weight: 600;
 `;
 const CardContentFlex = styled(CardContentContainer)`
   display: flex;
@@ -113,8 +116,8 @@ const CheckConfirm = styled.div`
 
 const Paragraph = styled.p`
   color: #86898f;
-  margin: var(--space-4) var(--space-4);
-  font-size: var(--font-size-3);
+  margin: var(--space-4) 0;
+  font-size: 0.82rem;
   font-weight: bold;
 `;
 
@@ -157,7 +160,6 @@ function ReservationCard({
 
   return (
     <>
-      {state === "예약 요청중" ? <Paragraph>예약 가능 여부를 확인 후 안내 문자를 보내드릴게요</Paragraph> : null}
       <Card className={showBorderColor()}>
         <CardHeader>
           <Title>{reservationNumber}</Title>
@@ -286,6 +288,11 @@ function ReservationCard({
             )}
           </CardContentFlex>
         )}
+        {state === "예약 요청중" ? <Paragraph>예약 가능 여부를 확인 후 안내 문자를 보내드릴게요</Paragraph> : null}
+        {state === "예약 불가" ? <CancleParagraph>{isCancleMessage}</CancleParagraph> : null}
+        {state === "자동 취소" ? (
+          <CancleParagraph>예약 확정이 되지 않아 자동으로 취소 되었습니다.</CancleParagraph>
+        ) : null}
         {state === "확정 대기중" ? (
           <Button
             onClick={() => {
@@ -325,10 +332,6 @@ function ReservationCard({
           </Button>
         ) : null}
       </Card>
-      {state === "예약 불가" ? <CancleParagraph>{isCancleMessage}</CancleParagraph> : null}
-      {state === "자동 취소" ? (
-        <CancleParagraph>예약 확정이 되지 않아 자동으로 취소 되었습니다.</CancleParagraph>
-      ) : null}
     </>
   );
 }

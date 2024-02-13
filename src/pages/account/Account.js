@@ -4,11 +4,12 @@ import AccountForm from "../../components/form/account/AccountForm";
 const Title = styled.h1`
   font-weight: bold;
   font-size: var(--font-size-6);
+  line-height: 31px;
   margin: var(--space-4);
 `;
 
 const Main = styled.main`
-  height: 80%;
+  height: calc(100% - 162px);
 `;
 
 function Account() {

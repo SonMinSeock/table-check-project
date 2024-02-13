@@ -36,6 +36,7 @@ const CardHeader = styled.section`
 
 const Title = styled.h2`
   font-size: var(--font-size-6);
+  font-weight: 600;
 `;
 
 const CardContentContainer = styled.section`
@@ -60,6 +61,7 @@ const CardContentLabel = styled.span`
   display: block;
   margin-bottom: var(--space-2);
   font-size: var(--font-size-3);
+  font-weight: 600;
 `;
 const CardContentFlex = styled(CardContentContainer)`
   display: flex;
@@ -90,11 +92,12 @@ const CheckConfirm = styled.div`
 `;
 
 const Paragraph = styled.p`
-  color: var(--color-gray-800);
+  color: #757880;
   margin: 0 var(--space-4);
   font-size: var(--font-size-3);
+  font-weight: 600;
   margin-bottom: var(--space-4);
-  line-height: 20px;
+  line-height: 21px;
 `;
 
 const ButtonWrapper = styled.section`

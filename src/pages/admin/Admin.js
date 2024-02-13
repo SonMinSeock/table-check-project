@@ -341,7 +341,11 @@ function Admin() {
             {toggleStates[index] && ( // 해당 카드의 토글 상태에 따라 보여주기
               <>
                 <div>
-                  <Textarea {...register(`cancleMessage-${index}`)} rows={6}></Textarea>
+                  <Textarea
+                    {...register(`cancleMessage-${index}`)}
+                    rows={6}
+                    defaultValue={reservation.isCancleMessage}
+                  ></Textarea>
                 </div>
                 <div>
                   <Button className="btn-save">저장</Button>

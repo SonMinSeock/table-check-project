@@ -8,15 +8,35 @@ import { Controller } from "react-hook-form";
 import { dateAtom } from "../../recoil/date/date";
 import { useSetRecoilState } from "recoil";
 
+const CalenderWrapper = styled.div`
+  .react-datepicker__header,
+  .react-datepicker__day--selected {
+    background-color: var(--color-primary);
+  }
+  .react-datepicker__day-name,
+  .react-datepicker__current-month,
+  .react-datepicker__day--selected {
+    color: white;
+  }
+
+  /* .react-datepicker__navigation-icon {
+    color: white;
+  } */
+`;
+
 const Label = styled.label`
   font-size: var(--font-size-3);
+  font-weight: 600;
   span {
     font-size: var(--font-size-2);
+    font-weight: normal;
   }
   .highlight-red {
     color: var(--color-alert-red);
   }
-  margin-bottom: var(--space-2);
+  &.date-label {
+    margin-bottom: 0.62rem;
+  }
 `;
 
 function Calender({ index, control }) {
@@ -43,14 +63,14 @@ function Calender({ index, control }) {
 
     return (
       <div className="datapicker-container" onClick={onClick} ref={ref}>
-        <span>{!value ? 0 : format}</span>
+        <span>{!value ? "선택" : format}</span>
         <IoIosArrowDown />
       </div>
     );
   });
   return (
-    <div>
-      <Label htmlFor="date1">
+    <CalenderWrapper>
+      <Label className="date-label" htmlFor="date1">
         날짜{index === 0 ? <span className="highlight-red">(필수)</span> : <span>({index + 1}순위)</span>}
       </Label>
       <Controller
@@ -92,6 +112,7 @@ function Calender({ index, control }) {
             dateFormat="yyyy년 MM월 dd일"
             popperPlacement="auto"
             withPortal
+            minDate={new Date()}
             onFocus={(e) => e.target.blur()}
             customInput={<CustomDatePickerInput />}
             onCalendarOpen={() => {
@@ -106,7 +127,7 @@ function Calender({ index, control }) {
           />
         )}
       />
-    </div>
+    </CalenderWrapper>
   );
 }
 

@@ -18,11 +18,15 @@ const Main = styled.main`
 const Footer = styled.footer`
   position: fixed;
   width: 100%;
-  height: 111px;
+  height: 88px;
   max-width: 430px;
   bottom: 0;
   background-color: var(--color-gray-900);
-  padding: var(--space-8) var(--space-4);
+  /* padding: var(--space-8) var(--space-4); */
+  & button {
+    height: 100%;
+    font-size: 23px;
+  }
 `;
 
 const EmptyTitle = styled.h1`

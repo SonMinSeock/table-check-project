@@ -16,4 +16,7 @@ export const Section = styled.section`
     color: var(--color-primary);
     font-size: var(--font-size-3);
   }
+  & > p {
+    font-weight: bold;
+  }
 `;
