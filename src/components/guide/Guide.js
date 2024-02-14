@@ -7,7 +7,7 @@ function Guide() {
     <>
       <Section>
         <p>서비스 이용이 처음이라면!</p>
-        <Link to="https://toothsome-raft-e05.notion.site/f8d7c49e99254b0d83f79c1167634020?pvs=4" target="_blank">
+        <Link to="https://imaginefly.notion.site/imaginefly/b890c551d4fb49d8b2e6cf978830488b" target="_blank">
           가이드 보기 {<IoIosArrowForward size={20} />}
         </Link>
       </Section>

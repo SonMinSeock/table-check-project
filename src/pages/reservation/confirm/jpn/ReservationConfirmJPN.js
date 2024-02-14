@@ -4,11 +4,8 @@ import styled from "styled-components";
 import { Button } from "../../../../components/form/includes/form-style";
 
 const Main = styled.main`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  height: 80%;
-  padding: var(--space-4);
+  height: 90%;
+  padding: 5rem var(--space-4);
   img {
     width: 254px;
     height: auto;
@@ -16,9 +13,17 @@ const Main = styled.main`
   & .label {
     margin-bottom: var(--space-2);
   }
+`;
+
+const Section = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 2rem;
   & > span {
-    font-size: 1.3rem;
-    font-weight: bold;
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-bottom: 0.4rem;
   }
 `;
 
@@ -30,16 +35,25 @@ const Footer = styled.footer`
 
 function ReservationConfirmJPN() {
   const {
-    state: { reservationUsernameJPN },
+    state: { reservationUsernameJPN, checkDateTime, username },
   } = useLocation();
   const navigate = useNavigate();
 
   return (
     <>
-      <DifrentTypeHeader />
       <Main>
-        <span className="label">예약자 이름</span>
-        <span>{reservationUsernameJPN}</span>
+        <Section>
+          <span>
+            {checkDateTime.split(" ")[0]}월 {checkDateTime.split(" ")[1]}일에 예약한
+          </span>
+          <span>
+            {checkDateTime.split(" ")[0]}月 {checkDateTime.split(" ")[1]}日 に予約した
+          </span>
+        </Section>
+        <Section>
+          <span>{username} 입니다.</span>
+          <span>{!reservationUsernameJPN ? "000" : reservationUsernameJPN}です</span>
+        </Section>
       </Main>
       <Footer>
         <Button onClick={() => navigate("/")}>확인</Button>

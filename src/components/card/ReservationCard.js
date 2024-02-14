@@ -124,6 +124,7 @@ const CancleParagraph = styled(Paragraph)`
 `;
 
 function ReservationCard({
+  user: { username },
   reservation: {
     id,
     state,
@@ -323,7 +324,13 @@ function ReservationCard({
         {state === "예약 확정" ? (
           <Button
             onClick={() =>
-              navigate("/reservation/confirm/jpn", { state: { reservationUsernameJPN: reservationUsernameJPN } })
+              navigate("/reservation/confirm/jpn", {
+                state: {
+                  reservationUsernameJPN: reservationUsernameJPN,
+                  checkDateTime: checkDateTime,
+                  username: username,
+                },
+              })
             }
           >
             예약 일본어 보여주기

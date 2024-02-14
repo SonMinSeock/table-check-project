@@ -107,10 +107,10 @@ function AccountForm() {
       </section>
       <section>
         <LinkContainer>
-          <Link to="https://www.notion.so/f8d7c49e99254b0d83f79c1167634020?pvs=4" target="_blank">
+          <Link to="https://imaginefly.notion.site/imaginefly/3878dc4a4b4040739d9059c18331053a" target="_blank">
             개인정보 수집 동의
           </Link>
-          <Link to="https://www.notion.so/f8d7c49e99254b0d83f79c1167634020?pvs=4" target="_blank">
+          <Link to="https://imaginefly.notion.site/imaginefly/SMS-b579e75505214dc39e6d1d091f956e33" target="_blank">
             SMS 서비스 필수 안내 수신 동의
           </Link>
         </LinkContainer>

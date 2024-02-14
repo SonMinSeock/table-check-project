@@ -1,17 +1,17 @@
 import styled from "styled-components";
 import ReservationCard from "../../components/card/ReservationCard";
-import { Button } from "../../components/form/includes/form-style";
+import { BigButton } from "../../components/form/includes/form-style";
 import { useNavigate } from "react-router-dom";
 import Guide from "../../components/guide/Guide";
 import { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { userIdAtom } from "../../recoil/user/user";
+import { userAtom, userIdAtom } from "../../recoil/user/user";
 import { reservationsAtom } from "../../recoil/reservation/reservation";
 import { collection, onSnapshot, orderBy, query, where } from "firebase/firestore";
 import { fireStore } from "../../database/config";
 
 const Main = styled.main`
-  height: calc(100vh - 70px - 111px);
+  height: calc(100vh - 70px - 80px);
   overflow: scroll;
 `;
 const Footer = styled.footer`
@@ -42,6 +42,7 @@ const LoadingTitle = styled(EmptyTitle)``;
 
 function Reservation() {
   const [reservations, setReservations] = useRecoilState(reservationsAtom);
+  const user = useRecoilValue(userAtom);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
@@ -78,7 +79,9 @@ function Reservation() {
       return <LoadingTitle>불러오고 있습니다.</LoadingTitle>;
     } else {
       if (reservations.length !== 0) {
-        return reservations.map((reservation) => <ReservationCard key={reservation.id} reservation={reservation} />);
+        return reservations.map((reservation) => (
+          <ReservationCard key={reservation.id} reservation={reservation} user={user} />
+        ));
       } else {
         return <EmptyTitle>예약 내역이 없습니다.</EmptyTitle>;
       }
@@ -92,7 +95,9 @@ function Reservation() {
         {showReservations()}
       </Main>
       <Footer>
-        <Button onClick={() => navigate("/user/reservation/plus", { state: { reservations } })}>추가로 예약하기</Button>
+        <BigButton onClick={() => navigate("/user/reservation/plus", { state: { reservations } })}>
+          추가로 예약하기
+        </BigButton>
       </Footer>
     </>
   );

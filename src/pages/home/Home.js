@@ -13,7 +13,7 @@ const Title = styled.h1`
 
 const Paragraph = styled.p`
   text-align: center;
-  max-width: 286px;
+
   margin: 0 auto;
   line-height: 23px;
   .highlight-blue {
@@ -48,8 +48,9 @@ function Home() {
         </Title>
         <Form />
         <Paragraph>
-          <strong className="highlight-blue">[무료 예약 확인하기]</strong> 는 실제 예약이 아닙니다. 추후 예약확인을 통해
-          예약을 확정할 수 있으니 안심하고 확인해 보세요
+          <strong className="highlight-blue">[무료로 예약 요청]</strong> 은 실제 예약이 아닙니다.
+          <br /> 추후 예약 확정 의사를 여쭤보니
+          <br /> 안심하고 확인해 보세요
         </Paragraph>
       </main>
       <Footer>

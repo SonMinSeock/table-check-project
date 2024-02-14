@@ -11,3 +11,7 @@ export const Button = styled.button`
   font-weight: bold;
   cursor: pointer;
 `;
+
+export const BigButton = styled(Button)`
+  border-radius: 0;
+`;

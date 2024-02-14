@@ -336,7 +336,7 @@ function Form({ state = "무료 예약", reservationNumber }) {
             <br />
             예약 완료가 되면 수수료가 부가되니 안심하세요
           </Paragraph>
-          <Button>예약 확인하기</Button>
+          <Button>예약 요청</Button>
         </>
       )}
     </Card>
