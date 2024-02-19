@@ -38,7 +38,7 @@ function Contact() {
           <br />
           말씀해주세요
         </Paragraph>
-        <Link to="#" target="_blank">
+        <Link to="https://open.kakao.com/o/ssRfGVag" target="_blank">
           오픈채팅방
         </Link>
       </Main>
