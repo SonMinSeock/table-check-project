@@ -1,13 +1,11 @@
-# 프로젝트 오마타세
-
-일본 음식점 예약 대행 서비스 프로젝트
+# 오마타세 - 일본 음식점 예약 대행 서비스 
 
 - 배포 URL : [https://web-spark-v2-rt92alk7z1x0g.sel4.cloudtype.app](https://omatase.shop/)
 
 ## 프로젝트 소개
-- 우리 프로젝트는 새로운 친구를 찾고자 하는 대학생들을 위한 특별한 공간입니다.
-- MBTI를 기반으로 매일 친구를 추천해드리며, 간단한 질문에 답하기만 하면 마음맞는 친구를 찾을 수 있습니다.
-- 지금 당장 스파크에 참여하여 새로운 친구를 만나보세요!
+- 일본 여행을 계획 중인 한국 고객들이 일본의 인기 음식점을 예약하는 과정을 간소화하고 편리하게 해줍니다.
+- 이 서비스를 통해 한국 고객들은 언어 장벽을 뛰어넘고 예약 대행 서비스의 도움을 받아 원하는 일본 음식점에서 예약 할 수 있습니다.
+- 오마타세 웹사이트 이용해 일본 음식 문화를 쉽게 경험해보세요!
 
 ## 팀원 구성
 
@@ -16,7 +14,7 @@
 |<img width="140" height="140" src="https://avatars.githubusercontent.com/u/44064257?s=400&u=c0f84c43a6aaa80ecc32bf82f47e893e26400fbf&v=4" /><br/>프론트엔드|<img width="140" height="140" alt="스크린샷 2023-09-13 오후 3 20 10" src="https://github.com/SonMinSeock/spark_v2/assets/44064257/9e6476fb-a5b0-4bfe-bea9-8c9219218f68"><br/>PO|
 
 ## 개발 환경
-- FrontEnd : React, JavaScript, styled-components
+- FrontEnd : React, JavaScript, styled-components, Recoil
 - BackEnd : Firebase
 - 버전 및 이슈관리 : Github
 - 협업 툴 : Notion, Google Docs
@@ -37,17 +35,9 @@
   - Google Analytics(GA)를 포함한 분석 기능을 활용할 수 있다는 점이 있습니다.
     - Firebase Analytics는 다양한 통계 및 리포트를 제공하여 앱의 성과를 이해하고 개선하기 위한 정보를 제공합니다.
 ### [브랜치 전략]
-  - Git-flow 전략을 기반으로 master, develop 브랜치와 기능 브랜치(Feat)를 운용했습니다.
-  - master, develop, 기능 브랜치(Feat)로 나누어 개발을 하였습니다.
+  - 레포지토리를 관리하기 위해 'master', 'develop', 그리고 '기능 브랜치(Feat)'로 구분하여 사용했습니다."
   - master 브랜치는 배포 단계에서만 사용하는 브랜치입니다.
   - develop 브랜치는 개발 중인 코드의 최신 버전을 포함하는 브랜치로 사용됩니다.
-  - Feat 브랜치는 기능 단위로 독립적인 개발 환경을 위하여 사용하고 merge 후 각 브랜치를 삭제해주었습니다.
+  - Feat 브랜치는 기능 단위로 독립적인 개발 환경을 위하여 사용합니다.
 
 ## 화면 구성
-| **초기화면** | **회원가입** | **질문작성** |
-| :------: |  :------: | :------: |
-| <img width="375" alt="스크린샷 2023-09-13 오후 2 42 27" src="https://github.com/SonMinSeock/spark_v2/assets/44064257/dd9516bb-f78f-45fa-bf69-0646f9b2c209"> |![회원가입](https://github.com/SonMinSeock/spark_v2/assets/44064257/01b07230-2289-4d95-9440-710abe4b758a)|![질문등록](https://github.com/SonMinSeock/spark_v2/assets/44064257/783c16fc-278e-42b3-ab71-e0de1c29f923)|
-
-| **홈** | **자신 프로필** | **상대방 프로필** | **신고 작성** |
-| :------: | :------: | :------: | :------: |
-|![홈](https://github.com/SonMinSeock/spark_v2/assets/44064257/4b41240a-712d-4aac-91fe-78be113baba3)|![자신프로필](https://github.com/SonMinSeock/spark_v2/assets/44064257/b2a5cc62-eff3-4fa1-82dc-8b70e5d72607)|![상대방프로필](https://github.com/SonMinSeock/spark_v2/assets/44064257/d6189b9d-0fe5-47fc-b405-8b537b5ad03b)|![신고](https://github.com/SonMinSeock/spark_v2/assets/44064257/137157c9-bd58-4f0a-92e9-fae6f29a1e81)|
