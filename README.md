@@ -1,6 +1,6 @@
 # 오마타세 - 일본 음식점 예약 대행 서비스 
 
-- 배포 URL : [https://web-spark-v2-rt92alk7z1x0g.sel4.cloudtype.app](https://omatase.shop/)
+- 배포 URL : [https://omatase.shop](https://omatase.shop/)
 
 ## 프로젝트 소개
 - 일본 여행을 계획 중인 한국 고객들이 일본의 인기 음식점을 예약하는 과정을 간소화하고 편리하게 해줍니다.
