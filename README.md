@@ -1,4 +1,4 @@
-## 오마타세 - 일본 음식점 예약 대행 서비스
+# 오마타세 - 일본 음식점 예약 대행 서비스
 
 - 배포 URL : [https://omatase.shop](https://omatase.shop/)
 - 유튜브 홍보 영상 : [오마타세](https://www.youtube.com/shorts/tY2PLKhwh8g)
