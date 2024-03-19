@@ -13,21 +13,21 @@
   - [주요 기능](#주요-기능)
   - [배운점](#배운점)
     
-## 프로젝트 소개
+## 1. 프로젝트 소개
 - 일본 여행을 계획 중인 한국 고객들이 일본의 인기 음식점을 예약하는 과정을 간소화하고 편리하게 해줍니다.
 - 이 서비스를 통해 한국 고객들은 언어 장벽을 뛰어넘고 예약 대행 서비스의 도움을 받아 원하는 일본 음식점에서 예약 할 수 있습니다.
 - 오마타세 웹사이트 이용해 일본 음식 문화를 쉽게 경험해보세요!
 
-## 프로젝트 기간
+## 2. 프로젝트 기간
 - 2024.02.05 ~ 2024.02.25
 
-## 팀원 구성
+## 3. 팀원 구성
 
 | **손민석** | **전민서** |
 | :------: | :------: |
 |<img width="140" height="140" src="https://avatars.githubusercontent.com/u/44064257?s=400&u=c0f84c43a6aaa80ecc32bf82f47e893e26400fbf&v=4" /><br/>프론트엔드|<img width="140" height="140" alt="스크린샷 2023-09-13 오후 3 20 10" src="https://github.com/SonMinSeock/spark_v2/assets/44064257/9e6476fb-a5b0-4bfe-bea9-8c9219218f68"><br/>PO|
 
-## 개발 환경
+## 4. 개발 환경
 - FrontEnd : React, JavaScript, styled-components, Recoil
   <div>    
     <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white">
@@ -53,7 +53,7 @@
     <img src="https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=Figma&logoColor=white"/>
   </div>
 
-## 채택한 개발 기술
+## 5. 채택한 개발 기술
 ### [React]
   - 컴포넌트화를 통해 추후 유지보수와 재사용성을 고려하기 위해 React를 채택하여 개발했습니다.
   - 컴포넌트화를 통해 리소스 절약의 효과 가능합니다.
@@ -79,7 +79,7 @@
   - develop 브랜치는 개발 중인 코드의 최신 버전을 포함하는 브랜치로 사용됩니다.
   - Feat 브랜치는 기능 단위로 독립적인 개발 환경을 위하여 사용합니다.
 
-## 화면 구성
+## 6. 화면 구성
 | **첫 예약** | **예약 내역 확인** | **두 번째 예약** | **예약 요청에서 예약 확정 대기 상태 조작 - 관리자** |
 | :------: |  :------: | :------: | :------: |
 |![오마타세-첫예약](https://github.com/SonMinSeock/ikw-market/assets/44064257/4b9d6f8b-4e85-41e7-8655-0e2fae6c0582)|![오마타세-예약확인](https://github.com/SonMinSeock/table-check-project/assets/44064257/aa525526-f3f9-4793-81d4-1caf1c7805d3)|![오마타세-두번째예약](https://github.com/SonMinSeock/table-check-project/assets/44064257/ea27012d-a72c-4b6c-a570-d5a0daf9a871)|![관리자-예약확정대기상태조작](https://github.com/SonMinSeock/table-check-project/assets/44064257/601b4039-cb4c-4aa7-8e31-8d610d9f3788)|
@@ -88,7 +88,7 @@
 | :------: | :------: | :------: | :------: | :------: |
 |![사용자-예약확정](https://github.com/SonMinSeock/table-check-project/assets/44064257/f1901f6f-3e5f-490b-824b-d0cd795c0db2)|![관리자-예약불가](https://github.com/SonMinSeock/table-check-project/assets/44064257/3c2d1cfa-405f-4c5c-b715-ab20418809f5)|![사용자-예약불가확인](https://github.com/SonMinSeock/table-check-project/assets/44064257/f7cb471e-ab65-405c-aafd-3bddbf7e7cb9)|![관리자-일본어작성](https://github.com/SonMinSeock/table-check-project/assets/44064257/8c457923-e794-431e-b818-72ed781963c2)|![고객-일본어확인](https://github.com/SonMinSeock/table-check-project/assets/44064257/d85597d8-cd50-4402-b38b-9c20a0dd5686)
 
-## 주요 기능
+## 7. 주요 기능
 ### [일본 음식점 예약 기능]
 - 사용자는 일본 음식점의 URL, 성인 및 어린이 수, 예약 날짜와 시간 작성 가능합니다.
 - 1차 예약은 필수이며 선택적으로 2차와 3차 예약 시간을 추가로 입력하여 예약할 수 있습니다.
@@ -167,7 +167,7 @@
 - 이를 통해 음식점은 사용자의 예약을 신속하게 확인하고 서비스를 제공할 수 있습니다.
 
 
-## 배운점
+## 8. 배운점
 1. 협업의 중요성 이해
   - 캘린더 디자인 협업을 통해 의사소통과 합의에 대한 중요성을 깨달았습니다.
   - 팀원들과의 의견 공유를 통해 합의를 이끌어내고, react-datepicker 패키지를 활용하여 프로젝트에 맞는 디자인을 구현했습니다.
