@@ -90,7 +90,8 @@
 
 ## 주요 기능
 ### [일본 음식점 예약 기능]
-- 사용자는 일본 음식점의 URL 주소를 입력하여 예약을 진행할 수 있습니다.
+- 사용자는 일본 음식점의 URL, 성인 및 어린이 수, 예약 날짜와 시간 작성 가능합니다.
+- 1차 예약은 필수이며 선택적으로 2차와 3차 예약 시간을 추가로 입력하여 예약할 수 있습니다.
 
   <img width="382" alt="사용자-예약기능" src="https://github.com/SonMinSeock/table-check-project/assets/44064257/8cf23ee4-ccf4-47c5-842a-640d1eb1197b">
 - 관리자는 사용자가 입력한 정보를 기반으로 예약을 대행할 수 있습니다.
@@ -106,15 +107,15 @@
 
   
 ### [날짜 및 시간 선택 기능]
-- 사용자는 원하는 날짜 입력창 선택하여 원하는 날짜를 예약할 수 있습니다.
+- 사용자는 캘린더 선택하여 원하는 날짜를 예약할 수 있습니다.
   
   <img width="362" alt="날짜선택" src="https://github.com/SonMinSeock/table-check-project/assets/44064257/c49ff335-4bcc-4237-9023-80fb3a2568b0">
-- 사용자는 시간 선택창에서 원하는 시간대에 예약을 진행할 수 있습니다.
+- 사용자는 시간 선택창에서 원하는 시간대에 예약할 수 있습니다.
   
   <img width="352" alt="시간선택" src="https://github.com/SonMinSeock/table-check-project/assets/44064257/be8c55c9-d987-4c8d-a214-6dfe76fb7427">
 
 ### [예약 상태 관리]
-- 예약은 총 네 가지 상태로 관리됩니다. "예약 요청중", "예약 확정 대기", "예약 확정", "예약 불가능".
+- 예약은 총 네 가지 상태로 관리됩니다: '예약 요청 중', '확정 대기 중', '예약 확정', 그리고 '예약 불가' 상태입니다.
 
   <img width="352" alt="예약요청중" src="https://github.com/SonMinSeock/table-check-project/assets/44064257/a3dfc7b8-6ee2-49b5-9641-79e11b333957">
   <img width="347" alt="확정 대기중" src="https://github.com/SonMinSeock/table-check-project/assets/44064257/7628044d-8a2c-4f83-b301-f9fb5a0fa0ba">
@@ -154,11 +155,11 @@
 
 - 음식점은 예약한 사용자의 이름을 일본어로 표시하여 체크인이 가능하도록 합니다.
 
-  - 3차 예약 예약자 일본어 보여주기 버튼
+  - 확정된 예약은 '일본어 보여주기' 버튼을 통해 예약자를 일본어 페이지로 이동시켜줍니다.
 
     <img width="300" alt="3차 예약 예약자 일본어 버튼" src="https://github.com/SonMinSeock/table-check-project/assets/44064257/2196ede9-723b-4ac2-9f2e-1ab79a8e4a06">
 
-  - 예약자 일본어
+  - 예약자 일본어 페이지에서는 예약자의 이름, 날짜, 시간을 일본어로 표시합니다.
 
     <img width="300" alt="예약자 일본어 페이지" src="https://github.com/SonMinSeock/table-check-project/assets/44064257/1bd5509a-4f47-45e0-88a6-96d5ad4dcfc8">
     
