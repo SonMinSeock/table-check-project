@@ -8,6 +8,9 @@
 - 이 서비스를 통해 한국 고객들은 언어 장벽을 뛰어넘고 예약 대행 서비스의 도움을 받아 원하는 일본 음식점에서 예약 할 수 있습니다.
 - 오마타세 웹사이트 이용해 일본 음식 문화를 쉽게 경험해보세요!
 
+## 프로젝트 기간
+- 2024.02.05 ~ 2024.02.25
+
 ## 팀원 구성
 
 | **손민석** | **전민서** |
@@ -16,10 +19,29 @@
 
 ## 개발 환경
 - FrontEnd : React, JavaScript, styled-components, Recoil
+  <div>    
+    <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white">
+    <img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white">
+    <img src="https://img.shields.io/badge/styled components-DB7093?style=flat-square&logo=styled-components&logoColor=white"/>
+    <img src="https://img.shields.io/badge/Recoil-3578E5?style=flat-square&logo=Recoil&logoColor=white"/>
+  </div>
+  
 - BackEnd : Firebase
+  <div>
+    <img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=black"/>
+  </div>
 - 버전 및 이슈관리 : Github
-- 협업 툴 : Notion, Google Docs
+  <div>
+    <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white"/>
+  </div>
+- 협업 툴 : Notion
+  <div>
+    <img src="https://img.shields.io/badge/Notion-000000?style=flat-square&logo=Notion&logoColor=white"/>
+  </div>
 - 디자인 : Figma
+  <div>
+    <img src="https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=Figma&logoColor=white"/>
+  </div>
 
 ## 채택한 개발 기술
 ### [React]
