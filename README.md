@@ -44,11 +44,11 @@
   <div>
     <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white"/>
   </div>
-- 협업 툴 : Notion
+- 협업 툴 : [Notion](https://toothsome-raft-e05.notion.site/f8d7c49e99254b0d83f79c1167634020?pvs=4)
   <div>
     <img src="https://img.shields.io/badge/Notion-000000?style=flat-square&logo=Notion&logoColor=white"/>
   </div>
-- 디자인 : Figma
+- 디자인 : [Figma](https://www.figma.com/file/TS2eplJvxi9Bp46TShxlGh/%E3%81%8A%E3%81%BE%E3%81%9F%E3%81%9B?type=design&node-id=28%3A2212&mode=design&t=LZiMjm3qxbNMiXTK-1)
   <div>
     <img src="https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=Figma&logoColor=white"/>
   </div>
