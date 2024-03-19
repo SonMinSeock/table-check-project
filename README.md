@@ -4,7 +4,8 @@
 - 유튜브 홍보 영상 : [오마타세](https://www.youtube.com/shorts/tY2PLKhwh8g)
 
 ## 목차
-  - [프로젝트 소개](#프로젝트-소개) 
+  - [프로젝트 소개](#프로젝트-소개)
+  - [프로젝트 배경](#프로젝트-배경)
   - [프로젝트 기간](#프로젝트-기간)
   - [팀원 구성](#팀원-구성)
   - [개발 환경](#개발-환경)
@@ -18,16 +19,19 @@
 - 이 서비스를 통해 한국 고객들은 언어 장벽을 뛰어넘고 예약 대행 서비스의 도움을 받아 원하는 일본 음식점에서 예약 할 수 있습니다.
 - 오마타세 웹사이트 이용해 일본 음식 문화를 쉽게 경험해보세요!
 
-## 2. 프로젝트 기간
-- 2024.02.05 ~ 2024.02.25
+## 2. 프로젝트 배경
+우리는 "테이블체크" 웹사이트를 보고 영감을 받아, 외국인 관광객들을 위한 일본 음식점 예약 서비스를 개발하게 되었습니다. 외국인이 일본어를 유창하게 구사하지 못하거나 예약 방식을 이해하기 어려운 문제를 해결하기 위해 시작되었습니다. 전화 예약이 일반적인 상황에서, 온라인 예약의 부재와 문화적인 장벽을 극복하여 고객들의 여행 경험을 향상시키고자 합니다.
 
-## 3. 팀원 구성
+## 3. 프로젝트 기간
+1차 개발 : 2024.02.05 ~ 2024.02.25
+
+## 4. 팀원 구성
 
 | **손민석** | **전민서** |
 | :------: | :------: |
 |<img width="140" height="140" src="https://avatars.githubusercontent.com/u/44064257?s=400&u=c0f84c43a6aaa80ecc32bf82f47e893e26400fbf&v=4" /><br/>프론트엔드|<img width="140" height="140" alt="스크린샷 2023-09-13 오후 3 20 10" src="https://github.com/SonMinSeock/spark_v2/assets/44064257/9e6476fb-a5b0-4bfe-bea9-8c9219218f68"><br/>PO|
 
-## 4. 개발 환경
+## 5. 개발 환경
 - FrontEnd : React, JavaScript, styled-components, Recoil
   <div>    
     <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white">
@@ -53,7 +57,7 @@
     <img src="https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=Figma&logoColor=white"/>
   </div>
 
-## 5. 채택한 개발 기술
+## 6. 채택한 개발 기술
 ### [React]
   - 컴포넌트화를 통해 추후 유지보수와 재사용성을 고려하기 위해 React를 채택하여 개발했습니다.
   - 컴포넌트화를 통해 리소스 절약의 효과 가능합니다.
@@ -79,7 +83,7 @@
   - develop 브랜치는 개발 중인 코드의 최신 버전을 포함하는 브랜치로 사용됩니다.
   - Feat 브랜치는 기능 단위로 독립적인 개발 환경을 위하여 사용합니다.
 
-## 6. 화면 구성
+## 7. 화면 구성
 | **첫 예약** | **예약 내역 확인** | **두 번째 예약** | **예약 요청에서 예약 확정 대기 상태 조작 - 관리자** |
 | :------: |  :------: | :------: | :------: |
 |![오마타세-첫예약](https://github.com/SonMinSeock/ikw-market/assets/44064257/4b9d6f8b-4e85-41e7-8655-0e2fae6c0582)|![오마타세-예약확인](https://github.com/SonMinSeock/table-check-project/assets/44064257/aa525526-f3f9-4793-81d4-1caf1c7805d3)|![오마타세-두번째예약](https://github.com/SonMinSeock/table-check-project/assets/44064257/ea27012d-a72c-4b6c-a570-d5a0daf9a871)|![관리자-예약확정대기상태조작](https://github.com/SonMinSeock/table-check-project/assets/44064257/601b4039-cb4c-4aa7-8e31-8d610d9f3788)|
@@ -88,7 +92,7 @@
 | :------: | :------: | :------: | :------: | :------: |
 |![사용자-예약확정](https://github.com/SonMinSeock/table-check-project/assets/44064257/f1901f6f-3e5f-490b-824b-d0cd795c0db2)|![관리자-예약불가](https://github.com/SonMinSeock/table-check-project/assets/44064257/3c2d1cfa-405f-4c5c-b715-ab20418809f5)|![사용자-예약불가확인](https://github.com/SonMinSeock/table-check-project/assets/44064257/f7cb471e-ab65-405c-aafd-3bddbf7e7cb9)|![관리자-일본어작성](https://github.com/SonMinSeock/table-check-project/assets/44064257/8c457923-e794-431e-b818-72ed781963c2)|![고객-일본어확인](https://github.com/SonMinSeock/table-check-project/assets/44064257/d85597d8-cd50-4402-b38b-9c20a0dd5686)
 
-## 7. 주요 기능
+## 8. 주요 기능
 ### [일본 음식점 예약 기능]
 - 사용자는 일본 음식점의 URL, 성인 및 어린이 수, 예약 날짜와 시간 작성 가능합니다.
 - 1차 예약은 필수이며 선택적으로 2차와 3차 예약 시간을 추가로 입력하여 예약할 수 있습니다.
@@ -116,11 +120,16 @@
 
 ### [예약 상태 관리]
 - 예약은 총 네 가지 상태로 관리됩니다: '예약 요청 중', '확정 대기 중', '예약 확정', 그리고 '예약 불가' 상태입니다.
-
-  <img width="352" alt="예약요청중" src="https://github.com/SonMinSeock/table-check-project/assets/44064257/a3dfc7b8-6ee2-49b5-9641-79e11b333957">
-  <img width="347" alt="확정 대기중" src="https://github.com/SonMinSeock/table-check-project/assets/44064257/7628044d-8a2c-4f83-b301-f9fb5a0fa0ba">
-  <img width="350" alt="예약확정상태" src="https://github.com/SonMinSeock/table-check-project/assets/44064257/b806fcda-79a9-4d76-a4e9-c4152c59d352">
-  <img width="379" alt="예약불가상태" src="https://github.com/SonMinSeock/table-check-project/assets/44064257/d716c070-4fc0-4b7a-849d-b84a5917e119">
+  <div>
+    <div>
+      <img width="352" alt="예약요청중" src="https://github.com/SonMinSeock/table-check-project/assets/44064257/a3dfc7b8-6ee2-49b5-9641-79e11b333957">
+      <img width="347" alt="확정 대기중" src="https://github.com/SonMinSeock/table-check-project/assets/44064257/7628044d-8a2c-4f83-b301-f9fb5a0fa0ba">
+    </div>
+    <div>
+      <img width="350" alt="예약확정상태" src="https://github.com/SonMinSeock/table-check-project/assets/44064257/b806fcda-79a9-4d76-a4e9-c4152c59d352">
+      <img width="379" alt="예약불가상태" src="https://github.com/SonMinSeock/table-check-project/assets/44064257/d716c070-4fc0-4b7a-849d-b84a5917e119">
+    </div>
+  </div>
 
 - 관리자는 이러한 예약 상태를 관리하고 사용자에게 적절한 상태를 할당할 수 있습니다.
     
@@ -167,7 +176,7 @@
 - 이를 통해 음식점은 사용자의 예약을 신속하게 확인하고 서비스를 제공할 수 있습니다.
 
 
-## 8. 배운점
+## 9. 배운점
 1. 협업의 중요성 이해
   - 캘린더 디자인 협업을 통해 의사소통과 합의에 대한 중요성을 깨달았습니다.
   - 팀원들과의 의견 공유를 통해 합의를 이끌어내고, react-datepicker 패키지를 활용하여 프로젝트에 맞는 디자인을 구현했습니다.
