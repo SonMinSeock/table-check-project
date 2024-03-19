@@ -48,7 +48,7 @@
   <div>
     <img src="https://img.shields.io/badge/Notion-000000?style=flat-square&logo=Notion&logoColor=white"/>
   </div>
-- 디자인 : [Figma](https://www.figma.com/file/TS2eplJvxi9Bp46TShxlGh/%E3%81%8A%E3%81%BE%E3%81%9F%E3%81%9B?type=design&node-id=28%3A2212&mode=design&t=LZiMjm3qxbNMiXTK-1)
+- 디자인 : <a href="https://www.figma.com/file/TS2eplJvxi9Bp46TShxlGh/%E3%81%8A%E3%81%BE%E3%81%9F%E3%81%9B?type=design&node-id=28%3A2212&mode=design&t=LZiMjm3qxbNMiXTK-1" target="_blank">Figma</a>
   <div>
     <img src="https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=Figma&logoColor=white"/>
   </div>
