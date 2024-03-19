@@ -3,6 +3,16 @@
 - 배포 URL : [https://omatase.shop](https://omatase.shop/)
 - 유튜브 홍보 영상 : [오마타세](https://www.youtube.com/shorts/tY2PLKhwh8g)
 
+## 목차
+  - [프로젝트 소개](#프로젝트-소개) 
+  - [프로젝트 기간](#프로젝트-기간)
+  - [팀원 구성](#팀원-구성)
+  - [개발 환경](#개발-환경)
+  - [채택한 개발 기술](#채택한-개발-기술)
+  - [화면 구성](#화면-구성)
+  - [주요 기능](#주요-기능)
+  - [배운점](#배운점)
+    
 ## 프로젝트 소개
 - 일본 여행을 계획 중인 한국 고객들이 일본의 인기 음식점을 예약하는 과정을 간소화하고 편리하게 해줍니다.
 - 이 서비스를 통해 한국 고객들은 언어 장벽을 뛰어넘고 예약 대행 서비스의 도움을 받아 원하는 일본 음식점에서 예약 할 수 있습니다.
@@ -78,7 +88,7 @@
 | :------: | :------: | :------: | :------: | :------: |
 |![사용자-예약확정](https://github.com/SonMinSeock/table-check-project/assets/44064257/f1901f6f-3e5f-490b-824b-d0cd795c0db2)|![관리자-예약불가](https://github.com/SonMinSeock/table-check-project/assets/44064257/3c2d1cfa-405f-4c5c-b715-ab20418809f5)|![사용자-예약불가확인](https://github.com/SonMinSeock/table-check-project/assets/44064257/f7cb471e-ab65-405c-aafd-3bddbf7e7cb9)|![관리자-일본어작성](https://github.com/SonMinSeock/table-check-project/assets/44064257/8c457923-e794-431e-b818-72ed781963c2)|![고객-일본어확인](https://github.com/SonMinSeock/table-check-project/assets/44064257/d85597d8-cd50-4402-b38b-9c20a0dd5686)
 
-## 주요기능
+## 주요 기능
 ### [일본 음식점 예약 기능]
 - 사용자는 일본 음식점의 URL 주소를 입력하여 예약을 진행할 수 있습니다.
 
