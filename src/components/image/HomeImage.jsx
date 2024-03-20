@@ -5,7 +5,7 @@ function HomeImage() {
   return (
     <>
       <HomeImgContainer>
-        <HomeImg src={HomeBackgroundImage} alt="일본 음식점 메인 이미지" decoding="async" />
+        <HomeImg src={HomeBackgroundImage} alt="일본 음식점 메인 이미지" loading="lazy" />
       </HomeImgContainer>
     </>
   );
