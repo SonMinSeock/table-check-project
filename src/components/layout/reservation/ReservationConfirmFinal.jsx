@@ -52,7 +52,7 @@ function ReservationConfirmFinal() {
     return (
       <>
         <Main>
-          <img src={EmailImage} alt="이메일 아이콘 이미지" loading="lazy" />
+          <img src={EmailImage} alt="이메일 아이콘 이미지" />
           <Title>예약이 완료되었어요</Title>
           <Paragraph>
             해당 음식점에 예약 확인 후 예약 안내를
@@ -69,7 +69,7 @@ function ReservationConfirmFinal() {
     return (
       <>
         <Main>
-          <img src={ChatImage} alt="차트 아이콘 이미지" loading="lazy" />
+          <img src={ChatImage} alt="차트 아이콘 이미지" />
           <Title>
             예약 확인 요청이
             <br />
