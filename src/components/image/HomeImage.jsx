@@ -1,4 +1,4 @@
-import HomeBackgroundImage from "../../assets/images/HomeImage.png";
+import HomeBackgroundImage from "../../assets/images/HomeImage.webp";
 import { HomeImg, HomeImgContainer } from "./HomeImage.style";
 
 function HomeImage() {

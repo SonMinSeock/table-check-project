@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Button } from "../../form/includes/form-style";
-import EmailImage from "../../../assets/images/icon_Email.png";
-import ChatImage from "../../../assets/images/icon_Chat.png";
+import EmailImage from "../../../assets/images/icon_Email.webp";
+import ChatImage from "../../../assets/images/icon_Chat.webp";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const Title = styled.h1`
