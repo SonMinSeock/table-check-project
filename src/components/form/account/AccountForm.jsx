@@ -2,8 +2,8 @@ import { useForm } from "react-hook-form";
 import styled from "styled-components";
 import { Button } from "../includes/form-style";
 import { Link, useNavigate } from "react-router-dom";
-import { useRecoilState, useSetRecoilState } from "recoil";
-import { reservationAtom, reservationsAtom } from "../../../recoil/reservation/reservation";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { reservationAtom } from "../../../recoil/reservation/reservation";
 import { userAtom, userIdAtom } from "../../../recoil/user/user";
 import { accountUser } from "../../../model/user";
 
@@ -59,14 +59,9 @@ const LinkContainer = styled.section`
 `;
 
 function AccountForm() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
-  const [getReservation, setReservation] = useRecoilState(reservationAtom);
-  const setReservations = useSetRecoilState(reservationsAtom);
+  const getReservation = useRecoilValue(reservationAtom);
   const setUserId = useSetRecoilState(userIdAtom);
   const setUser = useSetRecoilState(userAtom);
   const navigate = useNavigate();
