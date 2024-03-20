@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import { Button } from "../../form/includes/form-style";
 import EmailImage from "../../../assets/images/icon_Email.webp";
@@ -10,6 +11,7 @@ const Title = styled.h1`
   text-align: center;
   line-height: 30px;
 `;
+
 const Paragraph = styled.p`
   color: #757880;
   margin: 0 var(--space-4);
@@ -27,6 +29,7 @@ const Main = styled.main`
   align-items: center;
   height: 80%;
   padding: var(--space-4);
+
   img {
     width: 190px;
     height: auto;
@@ -47,6 +50,15 @@ function ReservationConfirmFinal() {
   } = useLocation();
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // 이미지를 사전로드합니다.
+    const img1 = new Image();
+    img1.src = EmailImage;
+
+    const img2 = new Image();
+    img2.src = ChatImage;
+  }, []); // 컴포넌트가 마운트될 때 한 번만 실행되도록 빈 배열을 전달합니다.
 
   if (message === "예약 확정") {
     return (
