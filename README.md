@@ -45,6 +45,10 @@
   <div>
     <img src="https://img.shields.io/badge/Firebase-FFCA28?style=flat-square&logo=firebase&logoColor=black"/>
   </div>
+- 배포 플랫폼 : Netlify
+  <div>
+    <img src="https://img.shields.io/badge/Netlify-00C7B7?style=flat-square&logo=Netlify&logoColor=white"/>
+  </div>
 - 버전 및 이슈관리 : Github
   <div>
     <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white"/>
