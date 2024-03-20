@@ -1,5 +1,4 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import DifrentTypeHeader from "../../../../components/header/account/DifrentTypeHeader";
 import styled from "styled-components";
 import { Button } from "../../../../components/form/includes/form-style";
 

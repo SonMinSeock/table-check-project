@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { Button } from "../includes/form-style";
 import { useNavigate } from "react-router-dom";
 import { fireStore } from "../../../database/config";
-import { collection, doc, onSnapshot, query, where } from "firebase/firestore";
-import { useRecoilState, useSetRecoilState } from "recoil";
+import { collection, onSnapshot, query, where } from "firebase/firestore";
+import { useSetRecoilState } from "recoil";
 import { userAtom, userIdAtom } from "../../../recoil/user/user";
 import { reservationsAtom } from "../../../recoil/reservation/reservation";
 
@@ -43,16 +43,8 @@ const Input = styled.input`
   }
 `;
 
-const Paragraph = styled.p`
-  font-size: var(--font-size-2);
-`;
-
 function AccountConfirmForm() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const navigate = useNavigate();
 

@@ -1,8 +1,5 @@
 import { Link, Outlet } from "react-router-dom";
-
 import { IoIosArrowBack } from "react-icons/io";
-
-import ReservationHeader from "../../header/reservation/ReservationHeader";
 import { Header } from "../../header/includes/header.style";
 
 function ReservationPlusLayout() {

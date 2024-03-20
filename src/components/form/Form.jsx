@@ -102,14 +102,8 @@ const Paragraph = styled.p`
 `;
 
 function Form({ state = "무료 예약", reservationNumber }) {
-  const {
-    control,
-    register,
-    handleSubmit,
-    formState: { errors },
-    reset,
-  } = useForm();
-  const [getReservation, setReservation] = useRecoilState(reservationAtom);
+  const { control, register, handleSubmit, reset } = useForm();
+  const setReservation = useSetRecoilState(reservationAtom);
   const [getDateTime, setDateTime] = useRecoilState(dateAtom);
 
   const getUser = useRecoilValue(userAtom);

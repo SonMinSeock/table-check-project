@@ -3,8 +3,6 @@ import { Button } from "../../form/includes/form-style";
 import EmailImage from "../../../assets/images/icon_Email.png";
 import ChatImage from "../../../assets/images/icon_Chat.png";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useRecoilValue } from "recoil";
-import { userIdAtom } from "../../../recoil/user/user";
 
 const Title = styled.h1`
   font-size: 1.7rem;
@@ -50,13 +48,11 @@ function ReservationConfirmFinal() {
 
   const navigate = useNavigate();
 
-  const userId = useRecoilValue(userIdAtom);
-
   if (message === "예약 확정") {
     return (
       <>
         <Main>
-          <img src={EmailImage} alt="이메일 아이콘 이미지" />
+          <img src={EmailImage} alt="이메일 아이콘 이미지" decoding="async" />
           <Title>예약이 완료되었어요</Title>
           <Paragraph>
             해당 음식점에 예약 확인 후 예약 안내를
@@ -73,7 +69,7 @@ function ReservationConfirmFinal() {
     return (
       <>
         <Main>
-          <img src={ChatImage} alt="차트 아이콘 이미지" />
+          <img src={ChatImage} alt="차트 아이콘 이미지" decoding="async" />
           <Title>
             예약 확인 요청이
             <br />

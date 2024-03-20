@@ -123,7 +123,6 @@ function ReservationConfirm() {
     state: {
       reservation: {
         id,
-        state,
         adultNumber,
         childNumber,
         mapUrl,
@@ -133,7 +132,6 @@ function ReservationConfirm() {
         secondTime,
         thirdDate,
         thirdTime,
-        isCancleMessage,
         isFirstDateTimeConfirm,
         isSecondDateTimeConfirm,
         isThirdDateTimeConfirm,

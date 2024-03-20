@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import { collection, onSnapshot, query, doc } from "firebase/firestore";
+import { collection, onSnapshot, query } from "firebase/firestore";
 import { fireStore } from "../../../database/config";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
@@ -51,11 +51,7 @@ const Button = styled.button`
 `;
 
 function AdminLogin() {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const [user, setUser] = useRecoilState(userAtom);
 
@@ -65,7 +61,7 @@ function AdminLogin() {
     if (user) {
       navigate("/admin");
     }
-  }, []);
+  }, [user, navigate]);
 
   const onValid = (data) => {
     const q = query(collection(fireStore, "users"));

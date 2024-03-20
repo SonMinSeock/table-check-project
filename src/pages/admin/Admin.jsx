@@ -148,7 +148,7 @@ function Admin() {
     if (!user) {
       return navigate("/admin/login");
     }
-  }, []);
+  }, [user, navigate]);
 
   useEffect(() => {
     getReservations();
