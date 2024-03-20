@@ -60,8 +60,7 @@
 
 ## 프로젝트 흐름도
 - 사용자 흐름도
-  <img width="1132" alt="오마타세-사용자-흐름도" src="https://github.com/SonMinSeock/table-check-project/assets/44064257/a04b1643-c82b-492b-8347-50f1b0b68afa">
-
+  <img width="1292" alt="오마타세-사용자-흐름도" src="https://github.com/SonMinSeock/table-check-project/assets/44064257/25773072-74c6-4922-b144-f5f706315c6a">
 
 - 관리자 흐름도
   <img width="1023" alt="오마타세-관리자-흐름도" src="https://github.com/SonMinSeock/table-check-project/assets/44064257/4e66336e-4a14-48f5-ac64-d3f3bc5dfd34">
