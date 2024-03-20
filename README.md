@@ -57,6 +57,15 @@
     <img src="https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=Figma&logoColor=white"/>
   </div>
 
+## 프로젝트 흐름도
+- 사용자 흐름도
+  <img width="1132" alt="오마타세-사용자-흐름도" src="https://github.com/SonMinSeock/table-check-project/assets/44064257/a04b1643-c82b-492b-8347-50f1b0b68afa">
+
+
+- 관리자 흐름도
+  
+  <img width="716" alt="오마타세-관리자-흐름도" src="https://github.com/SonMinSeock/table-check-project/assets/44064257/780c4767-e8c0-4306-82b3-c00d2a09c161">
+
 ## 채택한 개발 기술
 ### [React]
   - 컴포넌트화를 통해 추후 유지보수와 재사용성을 고려하기 위해 React를 채택하여 개발했습니다.
