@@ -9,6 +9,7 @@
   - [프로젝트 기간](#프로젝트-기간)
   - [팀원 구성](#팀원-구성)
   - [개발 환경](#개발-환경)
+  - [프로젝트 흐름도](#프로젝트-흐름도)
   - [채택한 개발 기술](#채택한-개발-기술)
   - [화면 구성](#화면-구성)
   - [주요 기능](#주요-기능)
@@ -65,6 +66,7 @@
 - 관리자 흐름도
   
   <img width="716" alt="오마타세-관리자-흐름도" src="https://github.com/SonMinSeock/table-check-project/assets/44064257/780c4767-e8c0-4306-82b3-c00d2a09c161">
+- <a href="https://www.figma.com/file/uxtXCgYMHPQKLctfWR548s/%EC%98%A4%EB%A7%88%ED%83%80%EC%84%B8---%EC%9D%BC%EB%B3%B8-%EC%9D%8C%EC%8B%9D%EC%A0%90-%EC%98%88%EC%95%BD-%EB%8C%80%ED%96%89-%EC%9B%B9-%EC%84%9C%EB%B9%84%EC%8A%A4-%ED%9D%90%EB%A6%84%EB%8F%84?type=whiteboard&node-id=3%3A2406&t=Ry1kUu8GCDWyeYWO-1">프로젝트 흐름도 링크</a>
 
 ## 채택한 개발 기술
 ### [React]
