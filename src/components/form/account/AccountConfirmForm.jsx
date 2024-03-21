@@ -7,6 +7,7 @@ import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { useSetRecoilState } from "recoil";
 import { userAtom, userIdAtom } from "../../../recoil/user/user";
 import { reservationsAtom } from "../../../recoil/reservation/reservation";
+import Loading from "../../loading/Loading";
 
 const Form = styled.form`
   height: 100%;
@@ -44,7 +45,11 @@ const Input = styled.input`
 `;
 
 function AccountConfirmForm() {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm();
 
   const navigate = useNavigate();
 
@@ -74,23 +79,26 @@ function AccountConfirmForm() {
   };
 
   return (
-    <Form onSubmit={handleSubmit(onValid)}>
-      <section>
-        <InputContainer>
-          <Label>전화번호</Label>
-          <Input
-            type="tel"
-            {...register("phoneNumber", { required: true, minLength: 11, maxLength: 11 })}
-            minLength="11"
-            maxLength="11"
-            placeholder="01012345678"
-          />
-        </InputContainer>
-      </section>
-      <section>
-        <Button>확인</Button>
-      </section>
-    </Form>
+    <>
+      {isSubmitting && <Loading />}
+      <Form onSubmit={handleSubmit(onValid)}>
+        <section>
+          <InputContainer>
+            <Label>전화번호</Label>
+            <Input
+              type="tel"
+              {...register("phoneNumber", { required: true, minLength: 11, maxLength: 11 })}
+              minLength="11"
+              maxLength="11"
+              placeholder="01012345678"
+            />
+          </InputContainer>
+        </section>
+        <section>
+          <Button>확인</Button>
+        </section>
+      </Form>
+    </>
   );
 }
 
