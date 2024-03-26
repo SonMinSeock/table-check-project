@@ -212,13 +212,10 @@
   1. 사용하지 않는 JavaScript 코드 제거.
   2. 구글 폰트, 이미지 Preloading 추가.
     
-- 웹 성능 최적화 이전.
-
-  <img width="531" alt="스크린샷 2024-03-26 오전 9 40 57" src="https://github.com/SonMinSeock/table-check-project/assets/44064257/befaa76d-4b37-4d00-9358-d5e1faa5436b">
-
-- 웹 성능 최적화 이후.
-
-  <img width="582" alt="스크린샷 2024-03-26 오전 9 41 23" src="https://github.com/SonMinSeock/table-check-project/assets/44064257/0a0c8451-f9ef-4e0c-a03b-d32287f60399">
+- 웹 성능 최적화 이전, 이후.
+  | **웹 성능 최적화 이전** |**웹 성능 최적화 이후**|
+  | :------: |  :------: |
+  |<img width="531" alt="스크린샷 2024-03-26 오전 9 40 57" src="https://github.com/SonMinSeock/table-check-project/assets/44064257/befaa76d-4b37-4d00-9358-d5e1faa5436b">|<img width="582" alt="스크린샷 2024-03-26 오전 9 41 23" src="https://github.com/SonMinSeock/table-check-project/assets/44064257/0a0c8451-f9ef-4e0c-a03b-d32287f60399">|
 
 - 위의 작업을 통해 웹 페이지의 성능을 향상시켰습니다. 이전에는 First Contentful Paint(FCP)가 발생하는 데 2.0초가 걸렸지만, 작업을 완료한 후 FCP 시간이 0.7초로 감소하여 웹 페이지가 로드될 때 브라우저에게 첫 번째 콘텐츠가 렌더링되는 시간이 1.3초나 줄었습니다.
 
@@ -228,12 +225,9 @@
   - 데이터를 처리하는 동안 화면이 변화하지 않아 사용자가 작업이 진행 중인지 인지하지 못하는 문제가 있었습니다.
 - 해결 방안.
   - 이 문제를 해결하기 위해 우리는 "react-spinners" 라이브러리를 활용하여 예약 제출 중일 때 로딩 스피너를 표시하여 사용자 경험을 향상시켰습니다.
-- 로딩 스피너 적용하기 이전.
-
-  ![로딩스피너-적용이전](https://github.com/SonMinSeock/table-check-project/assets/44064257/8bea90f5-4fb1-4dc6-825e-e618e15f7e26)
-
-- 로딩 스피너 적용 후.
-
-  ![로딩스피너-적용이후](https://github.com/SonMinSeock/table-check-project/assets/44064257/2bbb52ba-3112-4d49-9998-d8098fa13a7f)
+- 로딩 스피너 적용하기 이전, 이후.
+  | **로딩 스피너 적용하기 이전** | **로딩 스피너 적용하기 이후** |
+  | :------: |  :------: |
+  |![로딩스피너-적용이전](https://github.com/SonMinSeock/table-check-project/assets/44064257/8bea90f5-4fb1-4dc6-825e-e618e15f7e26)|![로딩스피너-적용이후](https://github.com/SonMinSeock/table-check-project/assets/44064257/2bbb52ba-3112-4d49-9998-d8098fa13a7f)|
 
   
