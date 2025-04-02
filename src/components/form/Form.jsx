@@ -110,10 +110,15 @@ function Form({ state = "무료 예약", reservationNumber }) {
     reset,
     formState: { isSubmitting },
   } = useForm();
+
+  // 예약 정보는 setReservation으로 업데이트되고, 날짜 정보는 setDateTime으로 관리한다.
   const setReservation = useSetRecoilState(reservationAtom);
   const [getDateTime, setDateTime] = useRecoilState(dateAtom);
 
+  // 첫 예약 할시 유저 생성
+  // 유저 상태데이터 불러오기
   const getUser = useRecoilValue(userAtom);
+  // 유저 아이디 불러오기
   const getUserId = useRecoilValue(userIdAtom);
 
   const navigate = useNavigate();

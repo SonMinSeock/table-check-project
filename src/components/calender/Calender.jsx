@@ -8,6 +8,7 @@ import { Controller } from "react-hook-form";
 import { dateAtom } from "../../recoil/date/date";
 import { useSetRecoilState } from "recoil";
 
+// 선택된 날짜의 배경색을 var(--color-primary)로 설정하고, 글자 색을 흰색으로 바꿔주기.
 const CalenderWrapper = styled.div`
   .react-datepicker__header,
   .react-datepicker__day--selected {
@@ -24,6 +25,7 @@ const CalenderWrapper = styled.div`
   } */
 `;
 
+// 날짜 입력에 대한 라벨을 커스텀 스타일. date-label 클래스를 사용하여 날짜 라벨을 꾸며준다.
 const Label = styled.label`
   font-size: var(--font-size-3);
   font-weight: 600;
@@ -39,7 +41,9 @@ const Label = styled.label`
   }
 `;
 
+// useForm에서 관리하는 폼 데이터에 자동으로 반영. 그러므로 날짜 선택 후, control을 통해 해당 값을 폼 데이터로 처리할 수 있게 된다.
 function Calender({ index, control }) {
+  // 선택된 날짜를 dateAtom에 저장하기 위해 사용된다.
   const setDateTime = useSetRecoilState(dateAtom);
 
   const calendar = useRef(null);
@@ -54,11 +58,13 @@ function Calender({ index, control }) {
     }
   };
 
+  // onClick을 통해 DatePicker가 열리도록 하고, 날짜를 선택하면 이 값이 onChange를 통해 부모 컴포넌트로 전달된다.
   const CustomDatePickerInput = forwardRef(({ value, onClick, type = "date" }, ref) => {
     let format = value;
 
+    // 날짜를 선택하면 선택한 날짜가 "MM월 dd일" 형식으로 표시되도록 설정한다.
     if (type === "date") {
-      format = value.split(" ")[1] + " " + value.split(" ")[2];
+      format = value.split(" ")[1] + " " + value.split(" ")[2]; // "MM월 dd일" 형식으로 표시되도록 설정
     }
 
     return (
@@ -109,7 +115,7 @@ function Calender({ index, control }) {
               }
               onChange(date);
             }}
-            dateFormat="yyyy년 MM월 dd일"
+            dateFormat="yyyy년 MM월 dd일" // "yyyy년 MM월 dd일" 형식
             popperPlacement="auto"
             withPortal
             minDate={new Date()}
