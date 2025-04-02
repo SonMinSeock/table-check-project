@@ -38,15 +38,16 @@ function ReservationConfirmJPN() {
   } = useLocation();
   const navigate = useNavigate();
 
+  console.log(checkDateTime.split(" ")[0].split("월")[0]);
   return (
     <>
       <Main>
         <Section>
           <span>
-            {checkDateTime.split(" ")[0]}월 {checkDateTime.split(" ")[1]}일에 예약한
+            {checkDateTime.split(" ")[0]} {checkDateTime.split(" ")[1]}에 예약한
           </span>
           <span>
-            {checkDateTime.split(" ")[0]}月 {checkDateTime.split(" ")[1]}日 に予約した
+            {checkDateTime.split(" ")[0].split("월")[0]}月 {checkDateTime.split(" ")[1].split("일")[0]}日 に予約した
           </span>
         </Section>
         <Section>

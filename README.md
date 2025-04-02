@@ -211,7 +211,7 @@
 
   - 예약자 일본어 페이지에서는 예약자의 이름, 날짜, 시간을 일본어로 표시합니다.
 
-    <img width="300" alt="예약자 일본어 페이지" src="https://github.com/SonMinSeock/table-check-project/assets/44064257/1bd5509a-4f47-45e0-88a6-96d5ad4dcfc8">
+    <img width="373" alt="예약자 일본어 페이지" src="https://github.com/user-attachments/assets/7c266efc-47fc-4962-b6e9-408b6d5477ff" />
 
 - 이를 통해 음식점은 사용자의 예약을 신속하게 확인하고 서비스를 제공할 수 있습니다.
 
