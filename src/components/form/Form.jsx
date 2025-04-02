@@ -118,6 +118,38 @@ function Form({ state = "무료 예약", reservationNumber }) {
 
   const navigate = useNavigate();
 
+  // 성인, 어린이 수 선택 항목
+  const numberOptions = ["0", "1", "2", "3", "4", "5", "6", "그외"];
+
+  // 시간 선택 항목
+  const timeOptions = [
+    "선택",
+    "09:00",
+    "09:30",
+    "10:00",
+    "10:30",
+    "11:00",
+    "11:30",
+    "12:00",
+    "12:30",
+    "13:00",
+    "13:30",
+    "14:00",
+    "14:30",
+    "15:00",
+    "15:30",
+    "16:00",
+    "16:30",
+    "17:00",
+    "17:30",
+    "18:00",
+    "18:30",
+    "19:00",
+    "19:30",
+    "20:00",
+    "그외",
+  ];
+
   const onValid = async (data) => {
     if (data.firstTime === "선택") {
       return alert("1차 예약 시간 선택하지 않았습니다!");
@@ -195,14 +227,11 @@ function Form({ state = "무료 예약", reservationNumber }) {
               성인<span className="highlight-red">(필수)</span>
             </Label>
             <Select {...register("adultNumber")} id="adult-number">
-              <option value="0">0</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="그외">그외</option>
+              {numberOptions.map((value) => (
+                <option key={value} value={value}>
+                  {value}
+                </option>
+              ))}
             </Select>
           </div>
           <div>
@@ -210,14 +239,11 @@ function Form({ state = "무료 예약", reservationNumber }) {
               어린이<span className="highlight-red">(필수)</span>
             </Label>
             <Select {...register("childNumber")} id="child-number">
-              <option value="0">0</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="그외">그외</option>
+              {numberOptions.map((value) => (
+                <option key={value} value={value}>
+                  {value}
+                </option>
+              ))}
             </Select>
           </div>
         </DropMenuSection>
@@ -230,31 +256,11 @@ function Form({ state = "무료 예약", reservationNumber }) {
               시간<span className="highlight-red">(필수)</span>
             </Label>
             <Select {...register("firstTime")} id="first-time">
-              <option value="선택">선택</option>
-              <option value="09:00">09:00</option>
-              <option value="09:30">09:30</option>
-              <option value="10:00">10:00</option>
-              <option value="10:30">10:30</option>
-              <option value="11:00">11:00</option>
-              <option value="11:30">11:30</option>
-              <option value="12:00">12:00</option>
-              <option value="12:30">12:30</option>
-              <option value="13:00">13:00</option>
-              <option value="13:30">13:30</option>
-              <option value="14:00">14:00</option>
-              <option value="14:30">14:30</option>
-              <option value="15:00">15:00</option>
-              <option value="15:30">15:30</option>
-              <option value="16:00">16:00</option>
-              <option value="16:30">16:30</option>
-              <option value="17:00">17:00</option>
-              <option value="17:30">17:30</option>
-              <option value="18:00">18:00</option>
-              <option value="18:30">18:30</option>
-              <option value="19:00">19:00</option>
-              <option value="19:30">19:30</option>
-              <option value="20:00">20:00</option>
-              <option value="그외">그외</option>
+              {timeOptions.map((time) => (
+                <option key={time} value={time}>
+                  {time}
+                </option>
+              ))}
             </Select>
           </div>
         </DropMenuSection>
@@ -266,31 +272,11 @@ function Form({ state = "무료 예약", reservationNumber }) {
               시간<span>(2순위)</span>
             </Label>
             <Select {...register("secondTime")} id="second-time">
-              <option value="선택">선택</option>
-              <option value="09:00">09:00</option>
-              <option value="09:30">09:30</option>
-              <option value="10:00">10:00</option>
-              <option value="10:30">10:30</option>
-              <option value="11:00">11:00</option>
-              <option value="11:30">11:30</option>
-              <option value="12:00">12:00</option>
-              <option value="12:30">12:30</option>
-              <option value="13:00">13:00</option>
-              <option value="13:30">13:30</option>
-              <option value="14:00">14:00</option>
-              <option value="14:30">14:30</option>
-              <option value="15:00">15:00</option>
-              <option value="15:30">15:30</option>
-              <option value="16:00">16:00</option>
-              <option value="16:30">16:30</option>
-              <option value="17:00">17:00</option>
-              <option value="17:30">17:30</option>
-              <option value="18:00">18:00</option>
-              <option value="18:30">18:30</option>
-              <option value="19:00">19:00</option>
-              <option value="19:30">19:30</option>
-              <option value="20:00">20:00</option>
-              <option value="그외">그외</option>
+              {timeOptions.map((time) => (
+                <option key={time} value={time}>
+                  {time}
+                </option>
+              ))}
             </Select>
           </div>
         </DropMenuSection>
@@ -302,31 +288,11 @@ function Form({ state = "무료 예약", reservationNumber }) {
               시간<span>(3순위)</span>
             </Label>
             <Select {...register("thirdTime")} id="third-time">
-              <option value="선택">선택</option>
-              <option value="09:00">09:00</option>
-              <option value="09:30">09:30</option>
-              <option value="10:00">10:00</option>
-              <option value="10:30">10:30</option>
-              <option value="11:00">11:00</option>
-              <option value="11:30">11:30</option>
-              <option value="12:00">12:00</option>
-              <option value="12:30">12:30</option>
-              <option value="13:00">13:00</option>
-              <option value="13:30">13:30</option>
-              <option value="14:00">14:00</option>
-              <option value="14:30">14:30</option>
-              <option value="15:00">15:00</option>
-              <option value="15:30">15:30</option>
-              <option value="16:00">16:00</option>
-              <option value="16:30">16:30</option>
-              <option value="17:00">17:00</option>
-              <option value="17:30">17:30</option>
-              <option value="18:00">18:00</option>
-              <option value="18:30">18:30</option>
-              <option value="19:00">19:00</option>
-              <option value="19:30">19:30</option>
-              <option value="20:00">20:00</option>
-              <option value="그외">그외</option>
+              {timeOptions.map((time) => (
+                <option key={time} value={time}>
+                  {time}
+                </option>
+              ))}
             </Select>
           </div>
         </DropMenuSection>
