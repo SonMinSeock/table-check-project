@@ -1,13 +1,14 @@
+// 예약 작성 폼
 import styled from "styled-components";
 import Calender from "../calender/Calender";
 import { useForm } from "react-hook-form";
 import { Button } from "./includes/form-style";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
-import { reservationAtom } from "../../recoil/reservation/reservation";
+import { reservationAtom, reservationsAtom } from "../../recoil/reservation/reservation";
 import { dateAtom } from "../../recoil/date/date";
 import { userAtom, userIdAtom } from "../../recoil/user/user";
-import { accountUser } from "../../model/user";
+import { accountUser, getReservationNumber } from "../../model/user";
 import Loading from "../loading/Loading";
 
 const Card = styled.form`
@@ -102,7 +103,7 @@ const Paragraph = styled.p`
   color: #5e5e5e;
 `;
 
-function Form({ state = "무료 예약", reservationNumber }) {
+function Form() {
   const {
     control,
     register,
@@ -114,6 +115,7 @@ function Form({ state = "무료 예약", reservationNumber }) {
   // 예약 정보는 setReservation으로 업데이트되고, 날짜 정보는 setDateTime으로 관리한다.
   const setReservation = useSetRecoilState(reservationAtom);
   const [getDateTime, setDateTime] = useRecoilState(dateAtom);
+  const reservations = useRecoilValue(reservationsAtom);
 
   // 첫 예약 할시 유저 생성
   // 유저 상태데이터 불러오기
@@ -190,9 +192,9 @@ function Form({ state = "무료 예약", reservationNumber }) {
       await accountUser({
         ...getUser,
         reservation: {
-          adultNumber: data.adultNumber,
-          childNumber: data.childNumber,
-          mapUrl: data.mapUrl,
+          adultNumber: data.adultNumber, // 성인 수
+          childNumber: data.childNumber, // 어린이 수
+          mapUrl: data.mapUrl, // 지도 URL
           ...getDateTime,
           firstTime: data.firstTime,
           secondTime: data.secondTime,
@@ -214,7 +216,11 @@ function Form({ state = "무료 예약", reservationNumber }) {
     <>
       {isSubmitting && <Loading />}
       <Card onSubmit={handleSubmit(onValid)}>
-        {state === "무료 예약" ? <Title>첫 번째 예약</Title> : <Title>{reservationNumber}</Title>}
+        {(reservations.length === 0) === "무료 예약" ? (
+          <Title>첫 번째 예약</Title>
+        ) : (
+          <Title>{getReservationNumber(reservations)}</Title>
+        )}
         <InputMapSection>
           <Label htmlFor="map-link">
             구글 지도 음식점 링크 공유<span className="highlight-red">(필수)</span>
@@ -301,7 +307,7 @@ function Form({ state = "무료 예약", reservationNumber }) {
             </Select>
           </div>
         </DropMenuSection>
-        {state === "무료 예약" ? (
+        {reservations === 0 ? (
           <Button>무료 예약 요청</Button>
         ) : (
           <>

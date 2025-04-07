@@ -79,6 +79,7 @@ function AccountForm() {
     });
     setUserId(userId);
 
+    // 라우터 경로를 설정: 예약확인 메시지 화면
     navigate("/user/reservation/confirm/check/final", { state: { message: "예약 확인" } });
   };
 

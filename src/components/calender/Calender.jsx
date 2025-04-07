@@ -11,13 +11,11 @@ import { useSetRecoilState } from "recoil";
 // 선택된 날짜의 배경색을 var(--color-primary)로 설정하고, 글자 색을 흰색으로 바꿔주기.
 const CalenderWrapper = styled.div`
   .react-datepicker__header,
-  .react-datepicker__day--selected {
-    background-color: var(--color-primary);
-  }
   .react-datepicker__day-name,
   .react-datepicker__current-month,
   .react-datepicker__day--selected {
     color: white;
+    background-color: var(--color-primary);
   }
 
   /* .react-datepicker__navigation-icon {

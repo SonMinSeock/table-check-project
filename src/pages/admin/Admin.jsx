@@ -208,6 +208,7 @@ function Admin() {
     });
   };
 
+  // 어드민 해당 예약에 메시지를 작성하는 함수
   const updateMessageState = async (id, message) => {
     const reservationRef = doc(fireStore, "reservations", id);
     await updateDoc(reservationRef, {
