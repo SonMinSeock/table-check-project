@@ -1,16 +1,5 @@
-import styled from "styled-components";
 import AccountConfirmForm from "../../components/form/account/AccountConfirmForm";
-
-const Title = styled.h1`
-  font-weight: bold;
-  font-size: var(--font-size-6);
-  margin: var(--space-4);
-`;
-
-const Main = styled.main`
-  height: 80%;
-`;
-
+import { Main, Title } from "../../styles/pages/account/AccountConfirm.style";
 function Account() {
   return (
     <>

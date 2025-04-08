@@ -1,25 +1,7 @@
 import { collection, query, getDocs, addDoc, updateDoc, doc, where } from "firebase/firestore";
 import { fireStore } from "../database/config";
-import { reservationNumber } from "../util/reservation-number";
 import { addReservation, getReservations } from "./reservation";
-
-export function getReservationNumber(reservations) {
-  const reservationsLength = reservations.length;
-
-  if (reservationsLength === 0) {
-    return reservationNumber[reservationsLength];
-  } else if (reservationsLength === 1) {
-    return reservationNumber[1];
-  } else if (reservationsLength === 2) {
-    return reservationNumber[2];
-  } else if (reservationsLength === 3) {
-    return reservationNumber[3];
-  } else if (reservationsLength === 4) {
-    return reservationNumber[4];
-  } else {
-    return reservationNumber[5];
-  }
-}
+import { getReservationNumber, reservationNumber } from "../util/reservation-number";
 
 // Firestore에서 해당 User 불러오기
 export async function readUser(userId) {

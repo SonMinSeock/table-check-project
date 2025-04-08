@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import HomeBackgroundImage from "../../assets/images/HomeImage.webp";
-import { HomeImg, HomeImgContainer } from "./HomeImage.style";
+import { HomeImgContainer, HomeImg } from "../../styles/components/image/HomeImage.style";
 
 function HomeImage() {
   useEffect(() => {

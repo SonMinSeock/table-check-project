@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { forwardRef, useRef } from "react";
@@ -7,37 +6,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { Controller } from "react-hook-form";
 import { dateAtom } from "../../recoil/date/date";
 import { useSetRecoilState } from "recoil";
-
-// 선택된 날짜의 배경색을 var(--color-primary)로 설정하고, 글자 색을 흰색으로 바꿔주기.
-const CalenderWrapper = styled.div`
-  .react-datepicker__header,
-  .react-datepicker__day-name,
-  .react-datepicker__current-month,
-  .react-datepicker__day--selected {
-    color: white;
-    background-color: var(--color-primary);
-  }
-
-  /* .react-datepicker__navigation-icon {
-    color: white;
-  } */
-`;
-
-// 날짜 입력에 대한 라벨을 커스텀 스타일. date-label 클래스를 사용하여 날짜 라벨을 꾸며준다.
-const Label = styled.label`
-  font-size: var(--font-size-3);
-  font-weight: 600;
-  span {
-    font-size: var(--font-size-2);
-    font-weight: normal;
-  }
-  .highlight-red {
-    color: var(--color-alert-red);
-  }
-  &.date-label {
-    margin-bottom: 0.62rem;
-  }
-`;
+import { CalenderWrapper, Label } from "../../styles/components/calender/Calender.style";
 
 // useForm에서 관리하는 폼 데이터에 자동으로 반영. 그러므로 날짜 선택 후, control을 통해 해당 값을 폼 데이터로 처리할 수 있게 된다.
 function Calender({ index, control }) {

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Section } from "./Guide.style";
+import { Section } from "../../styles/components/guide/Guide.style";
 import { IoIosArrowForward } from "react-icons/io";
 
 function Guide() {

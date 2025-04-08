@@ -1,36 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import styled from "styled-components";
-import { Button } from "../../../../components/form/includes/form-style";
-
-const Main = styled.main`
-  height: 90%;
-  padding: 5rem var(--space-4);
-  img {
-    width: 254px;
-    height: auto;
-  }
-  & .label {
-    margin-bottom: var(--space-2);
-  }
-`;
-
-const Section = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-bottom: 2rem;
-  & > span {
-    font-size: 1.4rem;
-    font-weight: 500;
-    margin-bottom: 0.4rem;
-  }
-`;
-
-const Footer = styled.footer`
-  padding: 0 var(--space-4);
-  display: flex;
-  align-items: center;
-`;
+import { Button } from "../../../../styles/components/Button.style";
+import { Main, Section, Footer } from "../../../../styles/pages/reservation/confirm/jpn/ReservationConfirmJPN.style";
 
 function ReservationConfirmJPN() {
   const {
@@ -38,7 +8,6 @@ function ReservationConfirmJPN() {
   } = useLocation();
   const navigate = useNavigate();
 
-  console.log(checkDateTime.split(" ")[0].split("월")[0]);
   return (
     <>
       <Main>

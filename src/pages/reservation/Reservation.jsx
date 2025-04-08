@@ -1,6 +1,4 @@
-import styled from "styled-components";
 import ReservationCard from "../../components/card/ReservationCard";
-import { BigButton } from "../../components/form/includes/form-style";
 import { useNavigate } from "react-router-dom";
 import Guide from "../../components/guide/Guide";
 import { useEffect, useState } from "react";
@@ -9,36 +7,8 @@ import { userAtom, userIdAtom } from "../../recoil/user/user";
 import { reservationsAtom } from "../../recoil/reservation/reservation";
 import { collection, onSnapshot, orderBy, query, where } from "firebase/firestore";
 import { fireStore } from "../../database/config";
-
-const Main = styled.main`
-  height: calc(100vh - 70px - 80px);
-  overflow: scroll;
-`;
-const Footer = styled.footer`
-  position: fixed;
-  width: 100%;
-  height: 88px;
-  max-width: 430px;
-  bottom: 0;
-  background-color: var(--color-gray-900);
-  /* padding: var(--space-8) var(--space-4); */
-  & button {
-    height: 100%;
-    font-size: 23px;
-  }
-`;
-
-const EmptyTitle = styled.h1`
-  color: #000000;
-  font-size: 1.5rem;
-  font-weight: bold;
-  height: 80%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const LoadingTitle = styled(EmptyTitle)``;
+import { BigButton } from "../../styles/components/Button.style";
+import { Main, LoadingTitle, EmptyTitle, Footer } from "../../styles/pages/reservation/Reservation.style";
 
 function Reservation() {
   const [reservations, setReservations] = useRecoilState(reservationsAtom);

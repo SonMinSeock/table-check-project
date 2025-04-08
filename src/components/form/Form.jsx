@@ -1,107 +1,25 @@
 // 예약 작성 폼
-import styled from "styled-components";
 import Calender from "../calender/Calender";
 import { useForm } from "react-hook-form";
-import { Button } from "./includes/form-style";
 import { useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 import { reservationAtom, reservationsAtom } from "../../recoil/reservation/reservation";
 import { dateAtom } from "../../recoil/date/date";
 import { userAtom, userIdAtom } from "../../recoil/user/user";
-import { accountUser, getReservationNumber } from "../../model/user";
+import { accountUser } from "../../model/user";
 import Loading from "../loading/Loading";
-
-const Card = styled.form`
-  background-color: var(--color-white);
-  margin: var(--space-4) var(--space-6);
-  padding: var(--space-8) var(--space-4);
-  border-radius: var(--border-radius-2);
-  border: 1px solid #000000;
-  hr {
-    background: var(--color-gray-700);
-    height: 1px;
-    border: 0;
-    margin: var(--space-4) 0;
-  }
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-`;
-
-const Title = styled.h2`
-  font-size: var(--font-size-6);
-  margin-bottom: var(--space-4);
-  font-weight: bold;
-`;
-
-const InputMapSection = styled.section`
-  border: 1px solid #717171;
-  padding: var(--space-3) var(--space-4);
-  margin-bottom: var(--space-4);
-  border-radius: var(--border-radius-3);
-  input {
-    margin-top: var(--space-2);
-  }
-`;
-
-const Label = styled.label`
-  font-size: var(--font-size-3);
-  font-weight: 600;
-  span {
-    font-size: var(--font-size-2);
-    font-weight: normal;
-  }
-  .highlight-red {
-    color: var(--color-alert-red);
-  }
-  margin-bottom: var(--space-2);
-`;
-
-const Input = styled.input`
-  border: none;
-  width: 100%;
-  font-size: 14px;
-`;
-
-const DropMenuSection = styled.section`
-  display: flex;
-  border: 1px solid #717171;
-  border-radius: var(--border-radius-3);
-  padding: var(--space-3) var(--space-4);
-  margin-bottom: var(--space-4);
-  & > div {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding: 0 10px;
-  }
-  & > div:first-of-type {
-    border-right: 1px solid #000000;
-  }
-  .datapicker-container {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  font-size: var(--font-size-3);
-  .date-record {
-    display: none;
-  }
-`;
-
-const Select = styled.select`
-  border: none;
-  background-color: var(--color-white);
-  color: #000000;
-  font: inherit;
-`;
-const Paragraph = styled.p`
-  font-size: 0.82rem;
-  line-height: 21px;
-  text-align: center;
-  margin-bottom: 0.3rem;
-  font-weight: bold;
-  color: #5e5e5e;
-`;
+import {
+  Card,
+  DropMenuSection,
+  Input,
+  InputMapSection,
+  Label,
+  Paragraph,
+  Select,
+  Title,
+} from "../../styles/components/form/Form.style";
+import { Button } from "../../styles/components/Button.style";
+import { getReservationNumber } from "../../util/reservation-number";
 
 function Form() {
   const {
@@ -157,16 +75,37 @@ function Form() {
     "그외",
   ];
 
-  const onValid = async (data) => {
-    if (data.firstTime === "선택") {
-      return alert("1차 예약 시간 선택하지 않았습니다!");
+  // validateDateTimeSelection: 예약 날짜와 시간 선택 여부를 검사
+  const validateDateTimeSelection = (data) => {
+    // 1차는 필수
+    if (!getDateTime.firstDate || data.firstTime === "선택") {
+      alert("1차 예약 날짜 또는 시간을 선택하지 않았습니다!");
+      return false;
     }
 
-    if (getDateTime.secondDate && data.secondTime === "선택") {
-      return alert("2차 예약 시간 선택하지 않았습니다!");
+    // 2차와 3차는 하나라도 선택됐으면 둘 다 선택되어 있어야 함
+    const optionalSteps = [
+      { label: "2차", date: getDateTime.secondDate, time: data.secondTime },
+      { label: "3차", date: getDateTime.thirdDate, time: data.thirdTime },
+    ];
+
+    for (const step of optionalSteps) {
+      const isDateSelected = !!step.date;
+      const isTimeSelected = step.time !== "선택";
+
+      if (isDateSelected !== isTimeSelected) {
+        alert(`${step.label} 예약 날짜와 시간을 모두 선택해주세요!`);
+        return false;
+      }
     }
-    if (getDateTime.thirdDate && data.thirdTime === "선택") {
-      return alert("3차 예약 시간 선택하지 않았습니다!");
+
+    return true;
+  };
+
+  const onValid = async (data) => {
+    // 예약 날짜와 시간 선택 여부를 검사
+    if (!validateDateTimeSelection(data)) {
+      return;
     }
 
     setReservation({

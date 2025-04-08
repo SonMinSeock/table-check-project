@@ -1,7 +1,7 @@
 import HomeHeader from "../../components/header/HomeHeader";
 import HomeImage from "../../components/image/HomeImage";
 import Form from "../../components/form/Form";
-import { Title, Paragraph, Footer } from "./Home.style";
+import { Title, Paragraph, Footer } from "../../styles/pages/home/Home.style";
 
 function Home() {
   return (

@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { Button } from "../../form/includes/form-style";
 import EmailImage from "../../../assets/images/icon_Email.webp";
 import ChatImage from "../../../assets/images/icon_Chat.webp";
 import { useLocation, useNavigate } from "react-router-dom";
+import { Button } from "../../../styles/components/Button.style";
 
 const Title = styled.h1`
   font-size: 1.7rem;

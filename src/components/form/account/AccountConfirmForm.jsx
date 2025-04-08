@@ -1,6 +1,4 @@
 import { useForm } from "react-hook-form";
-import styled from "styled-components";
-import { Button } from "../includes/form-style";
 import { useNavigate } from "react-router-dom";
 import { fireStore } from "../../../database/config";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
@@ -8,41 +6,8 @@ import { useSetRecoilState } from "recoil";
 import { userAtom, userIdAtom } from "../../../recoil/user/user";
 import { reservationsAtom } from "../../../recoil/reservation/reservation";
 import Loading from "../../loading/Loading";
-
-const Form = styled.form`
-  height: 100%;
-  padding: var(--space-4);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  color: var(--color-gray-300);
-`;
-
-const InputContainer = styled.section`
-  display: flex;
-  flex-direction: column;
-  &:first-of-type input {
-    margin-bottom: var(--space-6);
-  }
-  &:nth-of-type(2) input {
-    margin-bottom: var(--space-2);
-  }
-`;
-const Label = styled.label`
-  font-size: var(--font-size-3);
-  margin-bottom: var(--space-2);
-`;
-const Input = styled.input`
-  font-size: var(--font-size-5);
-  border-bottom: 1px solid var(--color-gray-700);
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  padding: 0.3rem 0;
-  &::placeholder {
-    color: var(--color-gray-800);
-  }
-`;
+import { Button } from "../../../styles/components/Button.style";
+import { Form, InputContainer, Label, Input } from "../../../styles/components/form/account/AccountConfirmForm.style";
 
 function AccountConfirmForm() {
   const {
