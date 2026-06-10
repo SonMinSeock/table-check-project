@@ -14,6 +14,7 @@
 - [채택한 개발 기술](#채택한-개발-기술)
 - [화면 구성](#화면-구성)
 - [주요 기능](#주요-기능)
+- [핵심 코드 바로가기](#핵심-코드-바로가기)
 - [배운점](#배운점)
 
 ## 프로젝트 소개
@@ -214,6 +215,43 @@
     <img width="373" alt="예약자 일본어 페이지" src="https://github.com/user-attachments/assets/7c266efc-47fc-4962-b6e9-408b6d5477ff" />
 
 - 이를 통해 음식점은 사용자의 예약을 신속하게 확인하고 서비스를 제공할 수 있습니다.
+
+## 핵심 코드 바로가기
+
+오마타세는 사용자가 예약을 요청하면 일본어가 가능한 팀원이 음식점에 직접 연락하고, 확인 결과를 관리자 페이지에 반영하는 예약 대행 MVP입니다.
+
+### 예약 요청
+
+- [예약 폼 제출 및 입력값 검증](https://github.com/SonMinSeock/table-check-project/blob/master/src/components/form/Form.jsx#L78-L152)
+  1차 일정은 필수로 검사하고, 2차와 3차 일정은 날짜와 시간이 함께 입력됐는지 검증합니다.
+- [사용자 확인 및 예약 데이터 생성](https://github.com/SonMinSeock/table-check-project/blob/master/src/model/user.js#L23-L119)
+  신규 사용자와 기존 사용자를 구분한 뒤 Firestore에 예약 데이터를 생성합니다.
+- [Firestore 예약 문서 생성](https://github.com/SonMinSeock/table-check-project/blob/master/src/model/reservation.js#L25-L29)
+  `addDoc`을 사용해 `reservations` 컬렉션에 예약 문서를 저장합니다.
+
+### 관리자 처리
+
+- [관리자 예약 목록 실시간 조회](https://github.com/SonMinSeock/table-check-project/blob/master/src/pages/admin/Admin.jsx#L32-L57)
+  Firestore의 `onSnapshot`으로 새로운 예약과 상태 변경을 실시간 반영합니다.
+- [예약 가능한 일정 선택 및 상태 변경](https://github.com/SonMinSeock/table-check-project/blob/master/src/pages/admin/Admin.jsx#L72-L99)
+  팀원이 음식점에 확인한 결과를 바탕으로 가능한 일정을 선택하고 상태를 `확정 대기중`으로 변경합니다.
+- [예약 불가 사유와 일본어 예약자명 저장](https://github.com/SonMinSeock/table-check-project/blob/master/src/pages/admin/Admin.jsx#L101-L143)
+  관리자가 예약 불가 사유와 체크인에 필요한 일본어 예약자명을 입력할 수 있습니다.
+
+### 사용자 최종 확정
+
+- [사용자 예약 목록 실시간 조회](https://github.com/SonMinSeock/table-check-project/blob/master/src/pages/reservation/Reservation.jsx#L21-L45)
+  사용자 ID에 해당하는 예약만 조회하고 관리자 변경 내용을 실시간 반영합니다.
+- [확정 화면 이동 및 예약 정보 전달](https://github.com/SonMinSeock/table-check-project/blob/master/src/components/card/ReservationCard.jsx#L189-L217)
+  상태가 `확정 대기중`일 때만 확정 버튼을 표시하고 선택된 예약 정보를 전달합니다.
+- [사용자의 최종 예약 확정](https://github.com/SonMinSeock/table-check-project/blob/master/src/pages/reservation/confirm/ReservationConfirm.jsx#L130-L143)
+  사용자가 일정을 확인하면 Firestore의 상태를 `예약 확정`으로 변경합니다.
+
+```text
+예약 폼 제출 → Firestore 저장 → 관리자 실시간 조회
+→ 팀원이 음식점에 수작업으로 확인 → 관리자가 가능한 일정 선택
+→ 사용자가 일정 확인 → 예약 확정
+```
 
 ## 배운점
 
