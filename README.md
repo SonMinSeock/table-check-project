@@ -10,7 +10,7 @@
 - [프로젝트 기간](#프로젝트-기간)
 - [팀원 구성](#팀원-구성)
 - [개발 환경](#개발-환경)
-- [프로젝트 흐름도](#프로젝트-흐름도)
+- [서비스 흐름](#서비스-흐름)
 - [채택한 개발 기술](#채택한-개발-기술)
 - [화면 구성](#화면-구성)
 - [주요 기능](#주요-기능)
@@ -67,14 +67,27 @@
     <img src="https://img.shields.io/badge/Figma-F24E1E?style=flat-square&logo=Figma&logoColor=white"/>
   </div>
 
-## 프로젝트 흐름도
+## 서비스 흐름
 
-- 사용자 흐름도
-  <img width="1292" alt="오마타세-사용자-흐름도" src="https://github.com/SonMinSeock/table-check-project/assets/44064257/25773072-74c6-4922-b144-f5f706315c6a">
-
-- 관리자 흐름도
-  <img width="1023" alt="오마타세-관리자-흐름도" src="https://github.com/SonMinSeock/table-check-project/assets/44064257/4e66336e-4a14-48f5-ac64-d3f3bc5dfd34">
-- <a href="https://www.figma.com/file/uxtXCgYMHPQKLctfWR548s/%EC%98%A4%EB%A7%88%ED%83%80%EC%84%B8---%EC%9D%BC%EB%B3%B8-%EC%9D%8C%EC%8B%9D%EC%A0%90-%EC%98%88%EC%95%BD-%EB%8C%80%ED%96%89-%EC%9B%B9-%EC%84%9C%EB%B9%84%EC%8A%A4-%ED%9D%90%EB%A6%84%EB%8F%84?type=whiteboard&node-id=3%3A2406&t=Ry1kUu8GCDWyeYWO-1">프로젝트 흐름도 링크</a>
+```mermaid
+flowchart LR
+    A[예약자 정보와 음식점 URL 입력] --> B[1~3차 희망 날짜 및 시간 선택]
+    B --> C[입력값 검증]
+    C --> D[Firestore에 예약 요청 저장]
+    D --> E[관리자 페이지에 실시간 반영]
+    E --> F[팀원이 음식점에 예약 가능 여부 확인]
+    F --> G{예약 가능 여부}
+    G -->|예약 가능| H[관리자가 가능한 일정 선택]
+    H --> I[확정 대기중으로 상태 변경]
+    I --> J[사용자가 예약 내역에서 일정 확인]
+    J --> K[사용자가 최종 예약 확정]
+    K --> L[예약 확정 상태로 변경]
+    L --> M[관리자가 일본어 예약자명 입력]
+    M --> N[사용자가 체크인용 일본어 예약 정보 확인]
+    G -->|예약 불가| O[관리자가 예약 불가 사유 입력]
+    O --> P[예약 불가 상태로 변경]
+    P --> Q[사용자가 예약 내역에서 사유 확인]
+```
 
 ## 채택한 개발 기술
 
